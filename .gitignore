@@ -1,0 +1,22 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Secrets
+.env
+
+# Qdrant docker volume - live server state, 25 MB, rebuilt by index.py
+data/qdrant/
+
+# Regenerable from data/raw/ via parse.py + chunk.py
+data/interim/
+
+# Models / caches
+.cache/
