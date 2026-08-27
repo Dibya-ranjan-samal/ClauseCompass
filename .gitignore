@@ -20,3 +20,6 @@ data/interim/
 
 # Models / caches
 .cache/
+
+# macOS Finder metadata
+.DS_Store
