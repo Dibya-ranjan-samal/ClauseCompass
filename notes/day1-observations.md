@@ -34,6 +34,33 @@ must confirm across the golden set before this is called solved.
 **Fix:** label excerpts `[1]`…`[k]` in the prompt, map back to `chunk_id` after
 generation. Never show the model a label that resembles contract text.
 
+### Implemented, and the prompt wording turned out to matter more than the labels
+
+Shipped in `ask.py`: excerpts labelled `[1]`…`[k]`, chunk_ids restored after
+generation, and citations validated against the retrieved label set.
+
+First attempt regressed. Opaque labels *plus* added prohibitions ("do not
+invent labels", "do not cite section numbers") produced `[Governing Law]` and
+`[jurisdiction where the Premises are located]` — worse than before. A third
+variant instructed "never put words inside brackets" and emitted `[27.15]`:
+obeying the letter while still citing a contract section number.
+
+**Negative instructions steer this model toward the forbidden content.** A/B
+over the 4 stock questions, 5 excerpts each:
+
+| Prompt variant | has valid citation | emitted fabricated label |
+|---|---|---|
+| minimal (`Cite the excerpt label ... like [3].`) | 3/4 | **0/4** |
+| + prohibitions | 3/4 | 1/4 |
+| + enumerated labels, "never put words in brackets" | 2/4 | 1/4 |
+
+Minimal shipped. Fabricated citations went to **0/4**, and the governing-law
+answer now cites `contract_19::413` alone — hand-verified to contain both
+"governed by" and "where the premises are located", with the F2 splice gone.
+
+Residual: the termination query still emits no citation at all (F4). The
+validator catches it and warns, which is the safe direction to fail.
+
 ---
 
 ## F2 — Sentence spliced across two contracts  ·  SYMPTOM OF F1, not its own bug
