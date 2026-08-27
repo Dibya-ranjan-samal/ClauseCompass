@@ -18,6 +18,14 @@ OLLAMA_URL = "http://localhost:11434/api/generate"
 LLM_MODEL = "qwen2.5:3b"
 TOP_K = 5
 
+# Ollama defaults num_ctx to 2048 tokens regardless of what the model supports
+# (qwen2.5:3b declares 32768), and it TRUNCATES an over-long prompt silently -
+# no error, no warning. Measured: a 20,316-char prompt (~5,079 tokens) had only
+# 2,050 tokens evaluated, i.e. 60% of the retrieved excerpts were discarded
+# before the model ever saw them. TOP_K=5 costs ~1,200 tokens so it fits inside
+# the default, but with no margin. Set it explicitly.
+NUM_CTX = 8192
+
 # Required for BGE models: queries get this prefix, documents do not.
 # Omitting it silently costs 5-10% retrieval quality.
 QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
@@ -96,12 +104,13 @@ def main() -> int:
             "model": LLM_MODEL,
             "prompt": PROMPT.format(context=context, question=question),
             "stream": False,
-            "options": {"temperature": 0.0},
+            "options": {"temperature": 0.0, "num_ctx": NUM_CTX},
         },
         timeout=300.0,
     )
     resp.raise_for_status()
-    answer = resp.json()["response"].strip()
+    body = resp.json()
+    answer = body["response"].strip()
 
     cited = set(CITATION.findall(answer))
     bogus = sorted(cited - set(label_to_chunk))
@@ -116,6 +125,13 @@ def main() -> int:
               f"left unmapped: {', '.join(f'[{b}]' for b in bogus)}", file=sys.stderr)
     if not cited & set(label_to_chunk):
         print("WARNING: answer contains no valid citation.", file=sys.stderr)
+
+    # Guard against the silent truncation described at NUM_CTX above.
+    used = body.get("prompt_eval_count")
+    if used and used >= NUM_CTX * 0.9:
+        print(f"WARNING: prompt used {used}/{NUM_CTX} context tokens - excerpts "
+              f"may have been truncated. Raise NUM_CTX or lower TOP_K.",
+              file=sys.stderr)
     return 0
 
 

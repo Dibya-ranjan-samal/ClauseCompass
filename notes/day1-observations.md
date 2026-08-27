@@ -184,12 +184,39 @@ generation failures.
 
 ---
 
+## F8 — Ollama silently truncated the prompt  ·  CAUSE CONFIRMED  ·  FIXED
+
+Found while fact-checking the learning notes. `qwen2.5:3b` declares
+`context_length = 32768`, but **Ollama defaults `num_ctx` to 2048 and truncates
+an over-long prompt with no error and no warning.**
+
+| Prompt | Tokens evaluated |
+|---|---|
+| top_k=5 (5,215 chars) | 1,201 |
+| top_k=10 (10,246 chars) | 2,304 |
+| top_k=20 (20,316 chars) | **2,050** — fewer than top_k=10 |
+
+Same 20,316-char prompt with `num_ctx` set explicitly: **4,479** tokens
+evaluated vs 2,050 on the default — 60% of the excerpts were being discarded
+before the model saw them.
+
+Not an active Day 1 bug (top_k=5 costs ~1,200 tokens, inside the 2,048 cap) but
+a landmine with zero margin: any increase in top-k, chunk size or prompt length
+would have degraded answers silently while every log looked healthy.
+
+**Fix:** `NUM_CTX = 8192` passed explicitly, plus a warning when
+`prompt_eval_count` exceeds 90% of it. Same failure class as the BGE query
+prefix — silently wrong, never loud.
+
+---
+
 ## Priority for Day 3–5
 
 1. **F1** — opaque citation labels + post-hoc mapping. Verified fix, ~10 lines. Kills F2 too.
 2. **F3** — cross-encoder re-rank; never threshold on bi-encoder score for relevance.
 3. **F4** — programmatic citation validation with retry-then-refuse.
 4. **F5/F7** — structural chunking + header stripping + per-doc slot cap.
+   Re-check `NUM_CTX` headroom (F8) whenever top-k or chunk size changes.
 5. **F6** — decide the product question: one-contract Q&A or cross-corpus comparison.
 
 ## Corpus collection gotchas (from automating Task 1)
