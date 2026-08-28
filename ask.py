@@ -5,11 +5,11 @@ Uses a local Ollama model, so no API key is needed. Requires:
     ollama pull qwen2.5:3b
 """
 
+import argparse
 import re
-import sys
 
 import httpx
-from qdrant_client import QdrantClient
+from qdrant_client import QdrantClient, models
 from sentence_transformers import SentenceTransformer
 
 COLLECTION = "clauses"
@@ -68,20 +68,41 @@ def restore_chunk_ids(answer: str, label_to_chunk: dict[str, str]) -> str:
 
 
 def main() -> int:
-    question = " ".join(sys.argv[1:]).strip()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("question", nargs="*", help="question about the contracts")
+    # Day 1 F6: every stock question says "this agreement", but the corpus now
+    # holds 530 unrelated contracts, so an unscoped question is ill-posed - the
+    # model correctly refuses when handed governing-law clauses from five
+    # different agreements. Day 2's doc_id payload index makes scoping cheap.
+    ap.add_argument("--doc", help="restrict retrieval to one doc_id")
+    ap.add_argument("--contract-type", help="restrict to one contract_type")
+    ap.add_argument("--top-k", type=int, default=TOP_K)
+    args = ap.parse_args()
+
+    question = " ".join(args.question).strip()
     if not question:
         question = input("Ask a question about the contracts: ").strip()
     if not question:
-        print("No question given.", file=sys.stderr)
+        print("No question given.")
         return 1
 
     model = SentenceTransformer(EMBED_MODEL, device="mps")
     client = QdrantClient(url="http://localhost:6333")
 
+    must = []
+    if args.doc:
+        must.append(models.FieldCondition(
+            key="doc_id", match=models.MatchValue(value=args.doc)))
+    if args.contract_type:
+        must.append(models.FieldCondition(
+            key="contract_type", match=models.MatchValue(value=args.contract_type)))
+    qfilter = models.Filter(must=must) if must else None
+
     qv = model.encode(QUERY_PREFIX + question, normalize_embeddings=True)
     # client.search is deprecated in qdrant-client >=1.19; query_points replaces it.
     hits = client.query_points(
-        COLLECTION, query=qv.tolist(), limit=TOP_K, with_payload=True
+        COLLECTION, query=qv.tolist(), limit=args.top_k, with_payload=True,
+        query_filter=qfilter,
     ).points
 
     if not hits:
@@ -90,9 +111,11 @@ def main() -> int:
 
     label_to_chunk = {str(i): h.payload["chunk_id"] for i, h in enumerate(hits, 1)}
 
-    print("\nRetrieved:")
+    scope = f" (scoped: {args.doc or args.contract_type})" if must else ""
+    print(f"\nRetrieved{scope}:")
     for label, h in zip(label_to_chunk, hits):
-        print(f"  [{label}] {h.score:.4f}  {h.payload['chunk_id']}")
+        sec = h.payload.get("section_heading") or "-"
+        print(f"  [{label}] {h.score:.4f}  {sec[:28]:<30} {h.payload['chunk_id'][:64]}")
 
     context = "\n\n".join(
         f"[{label}]\n{h.payload['text']}" for label, h in zip(label_to_chunk, hits)

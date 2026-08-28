@@ -118,29 +118,55 @@ def make_labels_todo(n: int, seed: int) -> None:
 
 
 def score_governing_law() -> None:
-    p = INTERIM / "labels_done.json"
-    if not p.exists():
-        print("governing_law: labels_done.json not present - skipping")
-        return
-    doc = json.loads(p.read_text())
-    truth = doc["rows"] if isinstance(doc, dict) else doc
+    """Score dev and held-out separately.
+
+    'none' in the truth column means the document genuinely has no
+    governing-law clause (amendments, joint filings, redacted clauses). For
+    those, an EMPTY prediction is the correct answer - so an empty string and
+    the literal 'none' must be treated as equal. Scoring them as a mismatch
+    understated accuracy by 18 points (80% vs 98% on the dev set) purely
+    through label encoding.
+    """
     pred = json.loads((INTERIM / "metadata.json").read_text())
 
-    labeled = [t for t in truth if t.get("true_governing_law", "").strip()]
-    def norm(s): return re.sub(r"\s+", " ", s or "").strip().lower()
+    def norm(s: str | None) -> str:
+        v = re.sub(r"\s+", " ", s or "").strip().lower()
+        return "none" if v in ("", "none") else v
 
-    correct = sum(1 for t in labeled
-                  if norm(pred.get(t["doc_id"], {}).get("governing_law"))
-                  == norm(t["true_governing_law"]))
-    # A refusal (no value) is not the same error as a wrong value.
-    missing = sum(1 for t in labeled
-                  if not pred.get(t["doc_id"], {}).get("governing_law")
-                  and norm(t["true_governing_law"]) != "none")
-    n = len(labeled)
-    print(f"governing_law: {correct}/{n} = {100*correct//max(n,1)}% exact "
-          f"(of which {missing} were misses, not wrong answers)")
-    print(f"  provenance: {doc.get('_provenance','(unrecorded)')}"
-          if isinstance(doc, dict) else "")
+    for fname, name in [("labels_done.json", "DEV (scoring was tuned here)"),
+                        ("labels_holdout_done.json", "HELD-OUT (never tuned on)")]:
+        path = INTERIM / fname
+        if not path.exists():
+            print(f"governing_law {name}: {fname} absent - skipping")
+            continue
+        doc = json.loads(path.read_text())
+        rows = [r for r in doc["rows"] if r.get("true_governing_law", "").strip()]
+
+        exact = near = miss = wrong = 0
+        errs = []
+        for r in rows:
+            t = norm(r["true_governing_law"])
+            p = norm(pred.get(r["doc_id"], {}).get("governing_law"))
+            if p == t:
+                exact += 1
+            elif t != "none" and p != "none" and (t in p or p in t):
+                near += 1                      # "new york" vs "new york state"
+                errs.append((r["doc_id"][:34], t, p + "  [NEAR]"))
+            elif p == "none":
+                miss += 1                      # failed to extract
+                errs.append((r["doc_id"][:34], t, "(missing)"))
+            else:
+                wrong += 1                     # extracted the wrong jurisdiction
+                errs.append((r["doc_id"][:34], t, p))
+        n = len(rows)
+        print(f"governing_law {name}: n={n}")
+        print(f"  strict  {exact}/{n} = {100*exact//n}%")
+        print(f"  lenient {exact+near}/{n} = {100*(exact+near)//n}%  "
+              f"(+{near} normalisation-only)")
+        print(f"  errors: {miss} missing, {wrong} wrong jurisdiction")
+        for a, b, c in errs:
+            print(f"    {a:<36} truth={b:<18} pred={c}")
+        print()
 
 
 def main() -> int:
