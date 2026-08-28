@@ -1,0 +1,518 @@
+{
+  "_provenance": "LABELLED BY CLAUDE (an AI), not by an attorney and not by the repository owner. Method: read the ranked governing-law excerpts and, where ambiguous, searched the full document for the governing-law clause body. metadata.json was NOT consulted while labelling. 'none' means the document contains no governing-law clause (amendments, joint filings, notices) or the clause is redacted. A party's incorporation jurisdiction was deliberately NOT treated as the governing law. Cite this number as AI-labelled ground truth.",
+  "_seed": 42,
+  "rows": [
+    {
+      "doc_id": "cuad_ArconicRolledProductsCorp_20191217_10-12B_EX-2.7_11923804_EX-2.7_Trademark_License_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "NTY OF NONINFRINGEMENT; AND (4) IMPLIED WARRANTY OF ANY OTHER TYPE. 6. MISCELLANEOUS. 6.1 Governing Law. This Agreement shall be governed by and interpreted in accordance with the laws of the State of Delaware without regard to its conflicts of law principles. 6.2 Jurisdiction and Venue. Each of the parties: (a) submits to the exclusive jurisdiction of any state or federal court sitting in Wilmington, Delaware for any action or proceeding arising out of, or relating to, this Agreement; (b) agre",
+        " or privilege by such party. 6.4 Waiver of Jury Trial. TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW EACH PARTY HEREBY IRREVOCABLY WAIVES ALL RIGHT OF TRIAL BY JURY IN ANY ACTION, PROCEEDING, CLAIM, OR COUNTERCLAIM ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT OR ANY MATTER ARISING HEREUNDER. 6.5 Notices. Any notice or other communication under this Agreement shall be effective when: (a) delivered in person; (b) if mailed, when deposited in the mail by registered or certified mail, return "
+      ],
+      "text_head": "Exhibit 2.7 FORM OF TRADEMARK LICENSE AGREEMENT THIS TRADEMARK LICENSE AGREEMENT (this \"Agreement\"), made and entered into as of the [ ] day of [ ], 2020 (the \"Effective Date\"), by and between ARCONIC INC., a corporation organized under the laws of Delaware (\"Licensee\") and ARCONIC ROLLED PRODUCTS CORP., a corporation organized under the laws of Delaware (\"Licensor\"). WHEREAS, Licensor and Licensee entered into a Separation and Distribution Agreement having an effective date of the [ ] day of [ ], 2020 (\"Separation and Distribution Agreement\"); unless specifically defined in this Agreement, an",
+      "true_governing_law": "Delaware"
+    },
+    {
+      "doc_id": "cuad_ADAMSGOLFINC_03_21_2005-EX-10.17-ENDORSEMENT_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "This Agreement shall be governed and construed according to the laws of the State of Kansas.",
+        "25. APPLICABLE LAW",
+        "Any provision or part of this Agreement prohibited by applicable law shall be ineffective to the extent of such prohibition without invalidating the remaining provisions or parts hereof."
+      ],
+      "text_head": "REDACTED COPY  CONFIDENTIAL TREATMENT REQUESTED  CONFIDENTIAL PORTIONS OF THIS  DOCUMENT HAVE BEEN REDACTED  AND HAVE BEEN SEPARATELY  FILED WITH THE COMMISSION    1      ENDORSEMENT AGREEMENT  This Agreement is entered into on January 13, 2005 between professional golfer, TOM WATSON, (hereinafter referred to as \"CONSULTANT\") and ADAMS GOLF, LTD. (hereinafter referred to as \"ADAMS GOLF\").  WITNESSETH  WHEREAS, ADAMS GOLF desires to obtain the right to use the name, likeness and ENDORSEMENT of CONSULTANT in connection with the advertisement and promotion of ADAMS GOLF'S PRODUCT;  NOW THEREFORE,",
+      "true_governing_law": "Kansas"
+    },
+    {
+      "doc_id": "cuad_LifewayFoodsInc_20160316_10-K_EX-10.24_9489766_EX-10.24_Endorsement_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "ces for approvals under this agreement may be via email. 14. [Intentionally Omitted.] 15. Choice of Law and Forum - This Agreement will be construed and governed in accordance with the laws of the State of Illinois, without regard to conflict of laws principles. 16. Survival - Unless and to the extent otherwise specified herein, all terms of this Agreement which by their nature extend beyond its termination, remain in effect until fulfilled, and apply to respective successors and assigns. 17. Force",
+        "o the performance of its obligations hereunder, the Warranting Party will comply with all applicable laws, rules and regulation. 12. Assignment - Neither party will assign any of its rights or obligations under this Agreement without the prior written consent of the other party, such consent not to be unreasonably, conditioned, withheld or delayed. 13. Notice - Notices to the parties shall be sent via overnight mail or U.S. Certified Mail or overnight express or priority mail to the addresses listed"
+      ],
+      "text_head": "EXHIBIT 10.24 ENDORSEMENT AGREEMENT  This Endorsement Agreement (\"Agreement\") is made this 14th day of March, 2016 (\"Effective Date\"), by and between Lifeway Foods, Inc. (\"Lifeway\") with a principal business address of 6431 West Oakton Street, Morton Grove, IL 60053 and Ludmila Smolyansky(\"Individual\") on her own behalf with an address of 182 N. Harbor Drive, Chicago, IL 60602. Lifeway and Individual are collectively referred to as the \"parties,\" or individually as a \"party.\" The terms of the Agreement are as follows: 1. License - Individual grants Lifeway together with its affiliates, subsidi",
+      "true_governing_law": "Illinois"
+    },
+    {
+      "doc_id": "cuad_FulucaiProductionsLtd_20131223_10-Q_EX-10.9_8368347_EX-10.9_Content_License_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "ceipt of acceptance or if by personal delivery, upon physical delivery of the same.   15. Governing Law. All questions with respect to the construction of this Agreement, and the rights and liabilities of the Parties hereto, shall be governed by the laws of the State of Florida. The Parties also agree that the venue for this Agreement shall be in the County of Brevard, Florida. The Parties expressly waive any claim to jurisdiction in any federal or other state forum or venue in any other county"
+      ],
+      "text_head": "CONTENT DISTRIBUTION AND LICENSE AGREEMENT   Deal Terms   Licensed Program/ Film or Video Inevitable \"Licensed Rights\" to ConvergTV and ConvergTV Channels and/or Distribution Outlets x All, including but not limited to: xSimultaneous Internet Streaming x OTT Television x Internet Protocol Television x Radio, short wave, microwave, fiber optic x Alternative, secondary and specialty distribution x Stored as VOD, Content Distribution Networks/Company Servers x Full Television Broadcast Rights: x Free: Terrestrial, Cable, Satellite x Pay: Terrestrial, Cable, Satellite x Direct Satellite IP Distrib",
+      "true_governing_law": "Florida"
+    },
+    {
+      "doc_id": "cuad_SMITHELECTRICVEHICLESCORP_04_04_2012-EX-10.26-FLEET_MAINTENANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "party to whom it is made in addition to any other consideration payable therefor.     28. Law and jurisdiction     This Agreement shall be governed by and construed in all respects in accordance with the law of England and Wales and both parties  submit to the exclusive jurisdiction of the English Courts.     29. Headings     Headings to Clauses in this Agreement are for the purposes of information and identification only and shall not be construed as forming  part of this Agreement.     30. Entire agreem"
+      ],
+      "text_head": "EXHIBIT 10.26   ***Confidential treatment requested pursuant to a request for confidential treatment filed with the Securities and Exchange Commission. Omitted  portions have been filed separately with the Commission.     FLEET MAINTENANCE AGREEMENT     1. Definitions     1.1 In this Agreement:     1.1.1 the following expressions have the following meanings unless inconsistent with the context:     \"the Act\" means the Employment Rights Act 1996.     \"Additional Charges\" means the charges to be calculated by SEV on a time and materials basis at the rates described in Clause 7  of this Agreement",
+      "true_governing_law": "England and Wales"
+    },
+    {
+      "doc_id": "cuad_NYLIACVARIABLEANNUITYSEPARATEACCOUNTIII_04_10_2020-EX-99.8.KK-SERVICE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "5. Applicable Law. This Agreement shall be construed and the provisions hereof interpreted under and in accordance with the laws of the Commonwealth of Massachusetts.",
+        "erminate this Agreement immediately upon written notice to Company (1) if required by any applicable law or regulation, (2) if so required by action of the Fund(s) Board of Trustees, or (3) if Company engages in any material breach of this Agreement. This Agreement shall terminate immediately and automatically upon the termination of Company's Participation Agreement(s) with the Funds, and in such event no notice need be given hereunder."
+      ],
+      "text_head": "Exhibit (8)(k)(k)  SERVICE AGREEMENT  This Agreement is entered into and effective as of the 1st day of January, 1998, by and between FIDELITY INVESTMENTS INSTITUTIONAL OPERATIONS COMPANY, INC. (\"FIIOC\") and NEW YORK LIFE INSURANCE AND ANNUITY CORPORATION (\"Company\").  WHEREAS, FIIOC provides transfer agency and other services to Fidelity's Variable Insurance Products Fund, Variable Insurance Products Fund II and Variable Insurance Products Fund III (collectively \"Funds\"); and  WHEREAS, the services provided by FIIOC on behalf of the Funds include responding to inquiries about the Funds includ",
+      "true_governing_law": "Massachusetts"
+    },
+    {
+      "doc_id": "cuad_PACIFICSYSTEMSCONTROLTECHNOLOGYINC_08_24_2000-EX-10.53-SPONSORSHIP_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "8)      This Agreement shall be governed by, and construed and enforced in accordance with, the laws of the State of California and the laws of Hong Kong.  In the event of a dispute, the parties shall seek mediation at a third country mutually agreed upon."
+      ],
+      "text_head": "EXHIBIT 10.53                    SPONSORSHIP AGREEMENT       for Boxing Event in China, on April 22, 2000  American Champion Media, Inc. (\"ACM\"), a Delaware company with headquarters at 1694 The Alameda, San Jose, CA 95126, U.S.A., is the  host and producer of a boxing event to take place at the Tian He Stadium in Guangzhou, China (the \"Event\").  This Event is scheduled to take place on April 22, 2000, and this Sponsorship Agreement (the  \"Agreement\") dated as of April 14, 2000 is made by and between Shun Li  De Commerce & Trading Ltd (\"SLD\") a Beijing company, with headquarters at Xin Xing Do",
+      "true_governing_law": "California"
+    },
+    {
+      "doc_id": "cuad_OASYSMOBILE_INC_07_05_2001-EX-10.17-OUTSOURCING_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "This Agreement, and all matters arising out of or relating to this Agreement, shall be governed by the laws of the State of California. Any legal action or proceeding relating to this Agreement shall be instituted in a state or federal court in San Francisco or San Mateo County, California, and each party hereby submits to the personal jurisdiction of such courts. Except for actions for nonpayment of breach of E.piphany's proprietary rights in the Application, no action, regardless of form,",
+        "e lesser of one and one half percent (1 1/2%) per month or the maximum rate allowed under applicable law. All payments made hereunder are non-cancelable and non-refundable. All fees are payable in U.S. dollars and shall be payable to E.piphany, Inc. by company check, or via wire transfer to the following account: Silicon Valley Bank - Santa Clara, ABA: 121140399, Account: 3300109833, Money Market."
+      ],
+      "text_head": "1                                                                   EXHIBIT 10.17 [E.PIPHANY Logo]                             OUTSOURCING AGREEMENT  This ASP and Outsourcing Agreement (\"Agreement\") is entered into as of this 31 day of July, 2000 (\"Effective Date\") by and between E.PIPHANY, INC., a Delaware corporation (\"E.piphany\"), whose principal place of business 1900 South Norfolk Street, Suite 310, San Mateo, California 94403 and HIGH SPEED NET SOLUTIONS, INC. (\"HSNS\"), whose principal place of business is 434 Fayetteville Street, St. Suite 2120, Raleigh, NC 27601.  1. LICENSE  1.1 OUTSO",
+      "true_governing_law": "California"
+    },
+    {
+      "doc_id": "cuad_BellringBrandsInc_20190920_S-1_EX-10.12_11817081_EX-10.12_Manufacturing_Agreement2",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(no 'govern' language found)"
+      ],
+      "text_head": "AMENDMENT NO. 1 TO STREMICK'S HERITAGE FOODS, LLC and PREMIER NUTRITION CORPORATION MANUFACTURING AGREEMENT  This Amendment No. 1 (the \"Amendment\"), entered into by and between Stremick's Heritage Foods, LLC (\"Heritage\") Premier Nutrition Corporation (\"Premier\") is effective as of June 11, 2018 (\"Amendment Effective Date\") and amends that certain Manufacturing Agreement between Heritage and Premier dated July 1, 2017 (\"Agreement\"). Heritage and Premier are each referred to herein as a \"Party\" and collectively as the \"Parties.\"  WHEREAS, Heritage and Premier entered into the Agreement;  WHEREAS",
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_DOMINIADVISORTRUST_02_18_2005-EX-99._H_2_-SPONSORSHIP_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "of. This Agreement shall be construed and enforced and interpreted in accordance with and governed by the laws of the Commonwealth of Massachusetts without reference to principles of conflicts of law. The captions in this Agreement are included for convenience only and in no way define or delimit any of the provisions hereof or otherwise affect their construction or effect. This Agreement may be executed in any number of counterparts, each of which shall be deemed to be an original, but such c",
+        "ion of and, if applicable, filing all documents required for compliance by the Trust with applicable laws and regulations (including state \"blue sky\" laws and regulations), including registration statements on Form N-1A, prospectuses and statements of additional information, or similar forms, as applicable, semi-annual and annual reports to shareholders and proxy statements, and reviewing tax returns; (e) preparation of agendas and supporting documents for and minutes of meetings of Trustees, commit"
+      ],
+      "text_head": "Exhibit h(2)                               SPONSORSHIP AGREEMENT           SPONSORSHIP AGREEMENT, dated as of February 4, 2005, by and between Domini Advisor Trust, a Massachusetts business trust (the \"Trust\"), and Domini Social Investments LLC, a Massachusetts limited liability company (\"Domini\" or the \"Sponsor\").                                W I T N E S S E T H:           WHEREAS, the Trust is engaged in business as an open-end investment company registered under the Investment Company Act of 1940, as amended, and consists of one or more series; and           WHEREAS, the Trust desires to ",
+      "true_governing_law": "Massachusetts"
+    },
+    {
+      "doc_id": "cuad_MetLife_Inc._-_Remarketing_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "This letter is governed by, and shall be construed in accordance with, the laws of the State of New York. The provisions of Sections 14 and 15 of the Remarketing Agreement shall apply to this letter as if set out herein in full.   III-1",
+        "15. GOVERNING LAW. THIS REMARKETING AGREEMENT AND THE PRICING AGREEMENT SHALL BE GOVERNED BY AND CONSTRUED IN ACCORDANCE WITH THE LAWS OF THE STATE OF NEW YORK, WITHOUT REGARD TO PRINCIPLES OF CONFLICTS OF LAW TO THE EXTENT THAT SUCH PRINCIPLES WOULD REQUIRE OR PERMIT THE APPLICATION OF LAWS OF ANOTHER JURISDICTION.",
+        "dge of the Company, the Company and each Significant Subsidiary is in compliance with all applicable laws, rules, regulations, orders, by-laws and similar requirements, including in connection with registrations or memberships in self-regulatory organizations, and all such Approvals and Filings are in full force and effect and neither the Company nor any Significant Subsidiary has received any notice of any event, inquiry, investigation or proceeding that would reasonably be expected to result in th"
+      ],
+      "text_head": "Exhibit 99.1  EXECUTION VERSION  METLIFE, INC.  Series E Senior Component Debentures, Tranche 1, due 2018 Series E Senior Component Debentures, Tranche 2, due 2045  REMARKETING AGREEMENT  August 26, 2014  Deutsche Bank Securities Inc. 60 Wall Street New York, New York 10005  Ladies and Gentlemen:  This Remarketing Agreement is dated as of August 26, 2014 (this \"Remarketing Agreement\"), among MetLife, Inc., a Delaware corporation (the \"Company\"), and Deutsche Bank Securities Inc. (\"Deutsche Bank\") (the \"Remarketing Agents,\" which expression shall include any institution appointed as a Remarketi",
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_ABILITYINC_06_15_2020-EX-4.25-SERVICES_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "ing out the intent of this Agreement and the documents referred to in this Agreement. 7.2 Governing Law. This Agreement and any claim, controversy or dispute arising out of or related to this Agreement, any of the transactions contemplated hereby and/or the interpretation and enforcement of the rights and duties of the Parties, whether arising in contract, tort, equity or otherwise, shall be governed by and construed in accordance with the domestic laws of the State of Israel (including in resp",
+        "warrants and agrees that the Services shall be provided in good faith, in accordance with applicable law and in a manner generally consistent with the historical provision of the Services and with the same standard of care as historically provided. (b) Provider shall maintain complete and accurate records relating to the provision of the Services under this Agreement, in such form as Recipient shall approve."
+      ],
+      "text_head": "EXHIBIT 4.25 INFORMATION IN THIS EXHIBIT IDENTIFIED BY [ * * * ] IS CONFIDENTIAL AND HAS BEEN EXCLUDED BECAUSE IT IS BOTH (I) NOT MATERIAL AND (II) WOULD LIKELY CAUSE COMPETITIVE HARM TO THE REGISTRANT IF PUBLICLY DISCLOSED. SERVICES AGREEMENT This Services Agreement (this \"Agreement\") is entered into on October 1, 2019 and is made effective as of November 1, 2019 (the \"Effective Date\"), by and between [ * * * ] (the \"Provider\"), and TELCOSTAR PTE, LTD., a company organized and existing under the laws of Singapore and Ability Computer & Software Industries Ltd, a company organized and existing",
+      "true_governing_law": "Israel"
+    },
+    {
+      "doc_id": "cuad_ALLISONTRANSMISSIONHOLDINGSINC_12_15_2014-EX-99.1-COOPERATION_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "ors, and their affiliates and representatives in a proxy statement or other filings under applicable law or stock exchange rules or listing standards, information in connection with assessing eligibility, independence and other criteria applicable to directors or satisfying compliance and legal obligations, and such other information as reasonably requested by the Company from time to time with respect to the ValueAct Group and the ValueAct Designee.",
+        "ions, including fiduciary duties to the Company and its stockholders, of a director under applicable law and the Company's organizational documents while the ValueAct Designee is serving on the Board. Notwithstanding the foregoing, nothing in this Section 2 shall limit any actions that may be taken by the ValueAct Designee acting solely as a director of the Company consistent with his fiduciary duties as a director of the Company (it being understood and agreed that the ValueAct Group and the ValueA",
+        "king relief. Each of the parties hereto agrees to waive any bonding requirement under any applicable law, in the case any other party seeks to enforce the terms by way of equitable relief. Furthermore, each of the parties hereto (a) consents to submit itself to the personal jurisdiction of the Court of Chancery or other federal or state courts of the State of Delaware in the event any dispute arises out of this Agreement or the transactions contemplated by this Agreement, (b) agrees that it shall no"
+      ],
+      "text_head": "Exhibit 99.1  COOPERATION AGREEMENT  This Cooperation Agreement (this \"Agreement\") dated December 12, 2014, is by and among the persons and entities listed on Schedule A (collectively, the \"ValueAct Group\", and individually a \"member\" of the ValueAct Group), Allison Transmission Holdings, Inc. (the \"Company\") and Gregory P. Spivy, in his individual capacity and as a member of the ValueAct Group (the \"ValueAct Designee\").  WHEREAS, the ValueAct Group currently beneficially owns 19,125,204 shares of the common stock, par value $0.01 per share, of the Company (the \"Common Stock\"), which represent",
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_PRIMEENERGYRESOURCESCORP_04_02_2007-EX-10.28-COMPLETION_AND_LIQUIDITY_MAINTENANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "This Agreement shad be deemed a contract made under and shall be construed in accordance with and governed by the laws ofthe State ofTexas  and that actions arising out ofthis Agreement may be litigated in courts having situs in Harris County, Texas."
+      ],
+      "text_head": "EXHIBIT 10.23  COMPLETION AND LIOUDm MAINTENANCE 4GRFFMFST  THIS COMPLEHON AGREEMENT AND UQITDITV MAINTENANCE AGREEMENT ( 'Agreement\") {5 made and entered into effective as of  June 29, 2006 between PRIMEEVERG\\'CORPORATION ( Time\"), GUARANTY BANK, FSB ('Guaranty\") and PRIME OFFSHORELT.C. T: Offshore\"!  Prime is the majority shareholder of Prime Offshore L.L.C. COffshore\"! Offshore and Guaranty are parties to a Credit Agreement dated June 29,  2006, by and between Offshore as Borrower and Guaranty, as Agent and Lender i \"Credit Agreement'T wherein Guaranty is loaning certain funds  to Offshore ",
+      "true_governing_law": "Texas"
+    },
+    {
+      "doc_id": "cuad_NETZEEINC_11_14_2002-EX-10.3-MAINTENANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "THIS MAINTENANCE AGREEMENT IS GOVERNED BY, AND SHALL BE SUBJECT TO, THE TERMS AND CONDITIONS OF THE MASTER AGREEMENT BETWEEN NETZEE AND BANKERS BANK, INCLUDING THE LIMITED WARRANTY AND DISCLAIMER AND LIMITATIONS OF LIABILITY PROVIDED THEREIN. SUCH TERMS AND CONDITIONS ARE HEREBY AFFIRMED BY BOTH PARTIES AND INCORPORATED BY REFERENCE IN THIS MAINTENANCE AGREEMENT, INCLUDING, WITHOUT LIMITATION, ALL LICENSES GRANTED OR EXERCISABLE THERE"
+      ],
+      "text_head": "EXHIBIT 10.3  NETZEE, INC.  MAINTENANCE AGREEMENT  This Agreement provides for Continued Service and for Netzee to provide basic maintenance in support following expiration of the initial one (1) year term of the License/Services Schedule.  The Continued Service provided by Netzee will be the operation, maintenance, and support of the computer systems, software and interfaces included in the System.  Bankers Bank agrees to pay fees equal to $40 per month for all Participating Banks (original or added) for which maintenance is provided.  The maintenance is for a period of one (1) year commencin",
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_VEONEER_INC_02_21_2020-EX-10.11-JOINT_VENTURE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "Article 3.Governing Law",
+        "This Amendment shall be governed by and construed in accordance with the laws of Japan."
+      ],
+      "text_head": "Exhibit 10.11  AMENDMENT AND TERMINATION  OF  JOINT VENTURE AGREEMENT  This AMENDMENT AND TERMINATION OF JOINT VENTURE AGREEMENT (this \"Amendment\") is made and entered into effective as of October 30, 2019 (the \"Effective Date\") by and among (1) Veoneer AB, a Swedish corporation (\"Veoneer AB\") and Veoneer US, Inc., a Delaware corporation (\"Veoneer US\" and together with Veoneer AB, the \"Veoneer Parties\"), and (2) Nissin Kogyo Co., Ltd., a Japanese corporation (\"Nissin\"), Nissin Kogyo Holdings USA, Inc., an Ohio corporation (\"Nissin Holding\") and Zhongshan Nissin Industry Co., Ltd., a Peoples' R",
+      "true_governing_law": "Japan"
+    },
+    {
+      "doc_id": "cuad_HEMISPHERX_-_Sales_Marketing_Distribution_and_Supply_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        " 11433 Saudi Arabia   B. This Agreement and the transactions contemplated herein shall be governed by, and construed in accordance with, the laws of the State of Delaware, USA and disputes, if not resolved by the Parties, will be settled by binding arbitration in and under the rules of arbitration in London, England.   C. This Agreement constitutes the entire understanding of the parties with respect to the purchase and sale of Products and supersedes all prior discussions, agreements, and und",
+        " based recordkeeping system, as the case may be, to the extent and as provided for in any applicable law, including the Federal Electronic Signatures in Global and National Commerce Act, and any other similar State laws based on the Uniform Electronic Transactions Act.   IN WITNESS WHEREOF, the parties have executed this Agreement as of the last date below and in so doing acknowledge that they have a corporate authority to bind their respective organizations to this Agreement.   SCIENTIFIC PRODUCTS ",
+        "ds and/or data to assess SCIEN's compliance with standards, regulatory submissions, SOPs; applicable laws, regulations, directives, standards and guidelines; the terms of this Agreement and other contracts in place defining the services being provided and to verify data integrity.   Good Clinical Practices (\"GCPs\"): Good clinical practice (GCP) is an international ethical and scientific quality standard for designing, conducting, recording, and reporting trials that involve the participation of huma"
+      ],
+      "text_head": "Exhibit 10.1    Sales, Marketing, Distribution, and Supply Agreement {***}   WHEREAS HEMISPHERX is a biopharmaceutical company with headquarters at One Penn Center, 1617 JFK Boulevard, Suite 500, Philadelphia, PA 19103, U.S. (\"HEMISPHERX\") and Scientific Products Pharmaceutical Co. LTD is a pharmaceutical company with its primary offices located at Tahlia Street, P.O Box 10485, Riyadh 11433 Saudi Arabia (\" SCIEN\"), each a \"Party\" together, \"Parties\", and   WHEREAS HEMISPHERX owns intellectual proprietary rights relating to Interferon alfa-n3 (human leukocyte derived), and   WHEREAS HEMISPHERX ",
+      "true_governing_law": "Delaware"
+    },
+    {
+      "doc_id": "cuad_ALLIANCEBANCORPINCOFPENNSYLVANIA_10_18_2006-EX-1.2-AGENCY_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "SECTION 13. GOVERNING LAW AND TIME. This Agreement shall be governed by and construed in accordance with the laws of the State of New York applicable to agreements made and to be performed in said State without regard to the conflicts of laws provisions thereof. Unless otherwise noted, specified times of day refer to Eastern time.",
+        "Syndicated Community Offering. If there is a Public Offering, the Public Offering will be governed by a separate definitive purchase agreement as described in Section 2 hereof. It is acknowledged that the number of Securities to be sold in the Offerings may be increased or decreased in accordance with the Plans. If the number of Securities is increased or decreased, the term \"Securities\" shall mean such greater or lesser number, where applicable. In the event that a mid-tier holding company fo",
+        "Stock Issuance in accordance with the Plans, the applicable OTS Regulations and all other applicable laws, regulations, decisions and orders, including all material terms, conditions, requirements and provisions precedent to the Reorganization and Additional Stock Issuance imposed upon the Company, the Bank or the MHCs by the OTS, the FDIC, or any other regulatory authority, other than those which the regulatory authority permits to be completed after the Reorganization and Additional Stock Issuance"
+      ],
+      "text_head": "Exhibit 1.2  Up to 2,445,223 Shares  (subject to increase to up to 2,812,006 shares in the event of an increase in the pro forma market value of the Company's Common Stock)  Alliance Bancorp, Inc. of Pennsylvania (a federal stock holding company)  Common Stock (par value $.01 per share)  AGENCY AGREEMENT  November ___, 2006  SANDLER O'NEILL & PARTNERS, L.P. 919 Third Avenue, 6  Floor New York, New York 10022  Ladies and Gentlemen:  Greater Delaware Valley Holdings, A Mutual Company, a Pennsylvania-chartered mutual holding company (the \"PA MHC\"), Alliance Mutual Holding Company, a federal mutua",
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_WARNINGMANAGEMENTSERVICESINC_12_10_1999-EX-10-ENDORSEMENT_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "      23.   Governing Law.  This Agreement shall be governed and construed according to the law of Tennessee."
+      ],
+      "text_head": "EXHIBIT 10.14                              ENDORSEMENT AGREEMENT        THIS ENDORSEMENT AGREEMENT (this \"Agreement\"), made and entered into as of May 31, 1999, by and between FAMOUS FIXINS, INC., 250 West 57th Street, Suite 2501, New York, New York 10107 (\"Company\") and PEY DIRT, INC. (\"Pey Dirt\").                                    WITNESSETH        WHEREAS, Company desires to obtain the right to use the name, likeness and endorsement of Peyton Manning (hereinafter called \"Manning\") in connection with the advertisement, promotion and sale of Company's \"Products\" (hereinafter defined); and   ",
+      "true_governing_law": "Tennessee"
+    },
+    {
+      "doc_id": "cuad_VIRTUALSCOPICS_INC_11_12_2010-EX-10.1-STRATEGIC_ALLIANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "ry. Upon request, VS shall provide PPD with a copy of its certificate of insurance.   17. Governing Law. This Agreement shall be construed in accordance with the laws of the State of Delaware without regard to its conflict of laws provisions.   18. Assignment. This Agreement shall be binding upon and inure to the benefit of the parties hereto and their successors and assigns. Neither party shall have the right to assign this Agreement or any Work Order or to assign any rights thereunder without",
+        " associated with compensation for its services under this Agreement as may be required by applicable law. VS acknowledges that as an independent contractor it will not be entitled to insurance or other benefits made available to employees of PPD.   7. Additional Personnel. VS shall have the authority to utilize a third party vendor as may be required to perform the Services (\"Subcontractors\"); provided, however, that:   a. Subcontractors must be approved in advance by PPD, such approval not to be un",
+        "o perform its duties and responsibilities under this Agreement; and (iii) comply with all applicable laws, rules, regulations and guidelines.   Further, VS represents and warrants that it has all of the necessary licenses, permits and/or registrations to perform the Services in accordance with the terms and conditions of this Agreement and that during the Term of this Agreement, all such licenses, permits and/or registrations are and shall remain current and in good standing.   [*** 1 paragraph omit"
+      ],
+      "text_head": "Exhibit 10.1  Confidential treatment has been requested for portions of this Exhibit. The copy filed herewith omits the information subject to the confidentiality request. Omissions are marked by brackets with asterisks, such as [***]. A complete version of this Exhibit has been filed separately with the Securities and Exchange Commission.  STRATEGIC ALLIANCE AGREEMENT   THIS STRATEGIC ALLIANCE AGREEMENT  (\"Agreement\"), entered into as of October 22, 2010 (the \"Effective Date\") by and between PPD Development, LP, a Texas limited partnership, with its principal executive offices located at 929 ",
+      "true_governing_law": "Delaware"
+    },
+    {
+      "doc_id": "cuad_SPRINGBANKPHARMACEUTICALS_INC_04_08_2020-EX-99.A-JOINT_FILING_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(no 'govern' language found)"
+      ],
+      "text_head": "EXHIBIT A JOINT FILING AGREEMENT In accordance with Rule 13d-1(k) under the Securities Exchange Act of 1934, as amended, the undersigned agree to the joint filing on behalf of each of them of a statement on Schedule 13G (including amendments thereto) with respect to the Common Stock of Spring Bank Pharmaceuticals, Inc. and further agree that this agreement be included as an exhibit to such filing. Each party to the agreement expressly authorizes each other party to file on its behalf any and all amendments to such statement. Each party to this agreement agrees that this joint filing agreement ",
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "contract_07",
+      "source": "edgar",
+      "governing_law_excerpts": [
+        "Governing",
+        "applicable law to any withholding tax, the Customer shall make payment to the Service Provider",
+        "mployee\u2019s, agent\u2019s, representative\u2019s or subcontractor\u2019s entitlement or benefits under any applicable law, rule or regulation;"
+      ],
+      "text_head": "EX-10.4 5 filename5.htm Exhibit 10.4 Master Services Agreement MASTER AGREEMENT For Platinum Analytics Singapore Pte. Ltd. Date: 27 August 2020 OCSC Master Services Agreement - Platinum Analytics 28 August signed Modification Date: Apr 20 31/08/2020 11:54:19 Page 1 of 32 Master Services Agreement CONTENTS 1. Definitions 4 2. Application Of Terms 5 3. Commencement 5 4. Services 5 5. Service Provider\u2019s Skills 6 6. Location And Scheduling Of Services 6 7. Acceptance 6 8. Change Control 7 9. Anti - Virus [Not Applicable For Non-Technology] 7 10. Certifications [Not Applicable For Non-Technology] 7",
+      "true_governing_law": "Singapore"
+    },
+    {
+      "doc_id": "cuad_FUSIONPHARMACEUTICALSINC_06_05_2020-EX-10.17-Supply_Agreement_-_FUSION",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        " shall determine, and naming [***]. (b) When shipping Product, CPDC shall comply with all applicable laws and regulations, [***]. (c) All costs and responsibility for return shipping of any Products [***] and or re-usable packaging including but not limited to, lead pots, cardboard boxes or foam inserts, and/or other materials shall be borne by [***]. (d) In the event that any Product packaging materials are returned for reuse from clinical trial sites, [***] shall be responsible for transportation,",
+        "eptable if, upon testing, it meets the Specifications, relevant cGMP standards, all other applicable laws, rules and regulations (and any additional tests as agreed by the Parties). If either Party discovers that a Batch does not meet the Specifications, relevant cGMP standards or other applicable laws, rules or regulations, then the discovering Party shall promptly communicate with the other Party. All warranty obligations of CPDC with respect to a particular Batch shall cease and have no effect to",
+        "conflict regarding whether or not Product met the Specifications, cGMP standards or other applicable laws, rules or regulations, at the time of delivery, which CPDC and FUSION are unable to resolve after a good faith attempt by both Parties to resolve such matter in a period of [***] after the conflict arises, a sample of such Product shall be submitted by FUSION or its designee to an independent laboratory or quality assurance professional reasonably acceptable to both Parties for testing or review"
+      ],
+      "text_head": "Exhibit 10.17  Supply Agreement - FUSION  CERTAIN CONFIDENTIAL PORTIONS OF THIS EXHIBIT HAVE BEEN OMITTED AND REPLACED WITH \"[***]\". SUCH IDENTIFIED INFORMATION HAS BEEN EXCLUDED FROM THIS EXHIBIT BECAUSE IT IS (I) NOT MATERIAL AND (II) WOULD LIKELY CAUSE COMPETITIVE HARM TO THE COMPANY IF DISCLOSED.  SUPPLY AGREEMENT (\"Supply Agreement\") effective as of the date of last signing (\"Effective Date\") between Centre for Probe Development and Commercialization, a not-for-profit research and services institution with offices located at McMaster University, Nuclear Research Building, 1280 Main Street",
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_TRIZETTOGROUPINC_08_18_1999-EX-10.17-TECHNICAL_INFRASTRUCTURE_MAINTENANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(no 'govern' language found)"
+      ],
+      "text_head": "1                                                                 EXHIBIT 10.17                         [MEDICAL MANAGER LETTERHEAD]                TECHNICAL INFRASTRUCTURE MAINTENANCE AGREEMENT  Date:                           March 1, 1998  Contract No.:                   pr-4544                                   Between  Client Name:                    MEDICAL MANAGER MIDWEST, INC.                                 53702 Generations Drive                                 South Bend, IN 46635 Principle Contact:              Tom Liddell                                     And  Customer Name:    ",
+      "true_governing_law": "Indiana"
+    },
+    {
+      "doc_id": "cuad_SightLife_Surgical_Inc._-_STRATEGIC_SALES___MARKETING_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "t be construed against any party by reason of the drafting or preparation hereof.     19. Governing Law. This Agreement shall be governed by and construed in accordance with the laws of the State of California, excluding  the choice of law rules, and the parties hereby agree to submit to the jurisdiction and venue of the State and Federal courts  of the State of California, and agree that the State and Federal courts of the State of California shall be the exclusive forum for the resolution of ",
+        "uct all activities under this Agreement or relating to the Product in accordance with all applicable laws and regulations and all quality standards, protocols and systems established by Imprimis from time to time therefor.     10. Tax Indemnity. Surgical agrees to indemnify and hold harmless Imprimis from any and all claims or demands under the Internal Revenue Code of 1986, as amended, or any state or local tax law or ordinance in respect of any failure of Imprimis to withhold income tax, FICA or a",
+        "l warnings and instructions applicable for the proper use of the Product, comply with all applicable laws and regulations in the Territory, and do not contain any claims regarding a Product or its performance that the Sales Team does not reasonably demonstrate are supported by such Product or its performance. The Sales Team has adequate experience and is knowledgeable in applicable state and federal laws and FDA regulations related to the sales and marketing of the Product in the Territory, includin"
+      ],
+      "text_head": "EXHIBIT 10.1   STRATEGIC SALES & MARKETING AGREEMENT   THIS STRATEGIC SALES & MARKETING AGREEMENT (the \"Agreement\") is effective as of the last date provided for on the signature page and is entered into by and between SightLife Surgical, Inc., a Delaware corporation, having its principal place of business at 1200 6th Ave, Ste. 300, Seattle, WA 98101 (\"Surgical\") and Imprimis Pharmaceuticals, Inc., a Delaware corporation, and its subsidiaries, having its principal place of business at 12264 El Camino Real, Suite 350, San Diego, CA 92130 (\"Imprimis\").   WHEREAS, Imprimis and/or its subsidiary c",
+      "true_governing_law": "California"
+    },
+    {
+      "doc_id": "cuad_ReynoldsConsumerProductsInc_20200121_S-1A_EX-10.22_11948918_EX-10.22_Service_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "Section 10.8 Governing Law, etc.",
+        " during the twelve (12) month period prior to the date hereof and (ii) in accordance with applicable Law (collectively, (i) and (ii), the \"Service Standard\"). Subject to Section 3.1(c), internal controls of Provider and its Affiliates with respect to the Service Standard shall remain materially the same in effect throughout the term of this Agreement. Each Party acknowledges that the other Party and their Affiliates are not professional service providers of the Services.",
+        " shall continue to apply to such Service following any Change. If a Change is required by applicable Law or is in response to a threatened Security Incident, Provider may make any and all changes to the Service necessary to comply with applicable Law and any changes thereto or to respond to such threatened Security Incident in a manner consistent with responses made by Provider on its own behalf or in respect of their Affiliates; provided that Provider shall provide Recipient such reasonable advance"
+      ],
+      "text_head": "Exhibit 10.22  TRANSITION SERVICES AGREEMENT  TRANSITION SERVICES AGREEMENT (the \"Agreement\") dated as of [\u2022], 2020, between Reynolds Group Holdings Inc., a Delaware corporation (\"RGHI\"), and Reynolds Consumer Products Inc., a Delaware corporation, (the \"Company\" or \"RCP\"). Each Party or any of its Affiliates providing services hereunder shall be a \"Provider,\" and each Party or any of its Affiliates receiving services hereunder shall be a \"Recipient.\"  PRELIMINARY STATEMENT  A. Prior to the Commencement Date, RGHI and the Company were wholly owned subsidiaries of Reynolds Group Holdings Limite",
+      "true_governing_law": "Illinois"
+    },
+    {
+      "doc_id": "cuad_BIOPURECORP_06_30_1999-EX-10.13-AGENCY_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "   5.6. Governing Law; Jurisdiction. This Agreement and all related business transactions will be governed by the laws of the Commonwealth of Massachusetts (without reference to principles of conflicts or choice of law which would cause the application of the internal laws of any other jurisdiction). The courts of or in the Commonwealth of Massachusetts will have nonexclusive jurisdiction over any disputes hereund",
+        "of this Agreement, in whole or in part, is invalid, unenforceable or in conflict with the applicable laws or    15",
+        "e of Citibank, N.A. in effect on the due date or, if lower, the maximum rate permitted by applicable law."
+      ],
+      "text_head": "1                                                                    EXHIBIT 10.13  2                              BIOPURE CORPORATION                                 AGENCY AGREEMENT     This \"Agency\" Agreement is made as of March 29, 1999, by and between Biopure Corporation, a Delaware corporation (the \"Company\") and the Agent named on the signature page hereof (the \"Agent\").     WHEREAS, the Company is preparing to manufacture and sell Oxyglobin(R) brand veterinary products (\"Products\") enumerated on the Company's veterinary products agency price list (Exhibit A)(as such list may be changed",
+      "true_governing_law": "Massachusetts"
+    },
+    {
+      "doc_id": "cuad_VARIABLESEPARATEACCOUNT_04_30_2014-EX-13.C-UNCONDITIONAL_CAPITAL_MAINTENANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "  12.   Governing Law. This Agreement shall be governed by and construed in accordance with the laws of New York, without giving effect to the principles of conflict of laws.",
+        "eriods set forth under paragraph 3, in accordance with paragraph 4 and in compliance with applicable law, provide to the Company cash, cash equivalents, securities or other",
+        " AIG may, at any time as it deems necessary in its sole discretion and in compliance with applicable law, make a contribution to the Company in such amount as is required for the Company's Total Adjusted Capital to equal a percentage of its Company Action Level RBC determined to be appropriate by the Company and AIG."
+      ],
+      "text_head": "Exhibit (13)(c)  AMENDED AND RESTATED UNCONDITIONAL CAPITAL MAINTENANCE AGREEMENT BETWEEN AMERICAN INTERNATIONAL GROUP, INC. AND AMERICAN GENERAL LIFE INSURANCE COMPANY  This Amended and Restated Unconditional Capital Maintenance Agreement (this \"Agreement\"), is made, entered into and effective as of February 18, 2014, by and between American International Group, Inc., a corporation organized under the laws of the State of Delaware (\"AIG\"), and American General Life Insurance Company, a corporation organized under the laws of the Texas (the \"Company\").  WITNESSETH:  WHEREAS, the Company is a l",
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_VISIUMTECHNOLOGIES_INC_10_20_2004-EX-10.20-DISTRIBUTOR_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(no 'govern' language found)"
+      ],
+      "text_head": "DISTRIBUTOR AGREEMENT  This Agreement is made and entered into this 7th day of April, 2003 (the \"Effective Date\"), by and between Wireless Links Inc, a Pennsylvania corporation having its principal place of business at 1050 Wall Street, Suite 202, Lyndhurst, New Jersey 07071 (hereinafter called \"WLI\"), and Jaguar Investments, Inc. and its affiliates, a Nevada corporation, having its principal place of business at 10400 Griffin Rd., Suite 101, Ft. Lauderdale, Florida 33328 (hereinafter called \"Power2Ship\") with reference to the following facts:  Whereas WLI is engaged in the design and developm",
+      "true_governing_law": "New Jersey"
+    },
+    {
+      "doc_id": "cuad_FreezeTagInc_20180411_8-K_EX-10.1_11139603_EX-10.1_Sponsorship_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "27. Governing Law: This Agreement is subject to and shall be construed in accordance with the laws of the Commonwealth of Virginia with jurisdiction and venue in federal and Virginia courts in Alexandria and Arlington, Virginia. If any terms of this Agreement are invalid or unenforceable under any statute, regulation, ordinance, executive order or other rule or law, such term shall be deemed reformed or deleted only to the extent necessary to comply with such statute, regulation,",
+        "ompany agrees to provide its services, as defined in Attachment A, in accordance with all applicable laws and in accordance with standards of decorum and taste so as not to adversely reflect upon the Association or its mission. 3. Term: This Agreement shall commence on March 15, 2018 and will expire on March 14, 2020 unless terminated earlier pursuant to Section 13 of the Agreement (the \"Term\"). 4. Intellectual Property: The Association is the sole and exclusive owner of its name and logos, with or ",
+        "ractors, in connection with this Agreement. 12. Notification: Except as may be limited by applicable law, each of the Parties hereto shall promptly notify the other of, and reasonably cooperate in responding to or defending any inquiry, investigation, claim, suit or other cause of action instituted, asserted or threatened against either Party hereto or any of their respective Affiliates, shareholders, directors, officers, agents, independent contractors or employees and arising out of or relating to"
+      ],
+      "text_head": "EXHIBIT 10.1  Corporate Sponsorship Agreement Between American Diabetes Association and Freeze Tag, Inc. This Agreement (\"Agreement\") is made effective March 22, 2018, by and between Freeze Tag Inc., a Delaware Corporation (\"Company\"), with its principal place of business located at 1720 Bray Central Drive, McKinney, TX 75069 and the American Diabetes Association, Inc. (\"Association\"), an Ohio not-for profit corporation, with its principal place of business located at 2451 Crystal Drive, Suite 900, Arlington, VA 22202. ADA and/or Company may be referred to as a \"Party\" or collectively as the \"",
+      "true_governing_law": "Virginia"
+    },
+    {
+      "doc_id": "cuad_ADMA_BioManufacturing_LLC_-_Amendment_3_to_Manufacturing_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(no 'govern' language found)"
+      ],
+      "text_head": "Confidential treatment has been requested with respect to portions of this agreement as indicated by \"[***]\" and such confidential portions have been deleted and filed separately with the Securities and Exchange Commission pursuant to Rule 24b-2 of the Securities Exchange Act of 1934, as amended. Amendment #3 to the Manufacturing Agreement This Amendment #3 to the Manufacturing Agreement (this \"Amendment #3\") is made effective as of December 21, 2017 (\"Amendment Effective Date\"), by and between ADMA BioManufacturing, LLC, a Delaware limited liability company, having a place of business at 5800",
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_ARMSTRONGFLOORING_INC_01_07_2019-EX-10.2-INTELLECTUAL_PROPERTY_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "d obligations of the Buyer Entities or Arizona, as applicable, under this Agreement. 13.5 Governing Law; Jurisdiction; Waiver of Jury Trial. (a) This Agreement shall be governed by the laws of the State of Delaware, its rules of conflict of laws notwithstanding. Each Party hereby agrees and consents to be subject to the jurisdiction of the Court of Chancery of the State of Delaware in and for New Castle County, or if the Court of Chancery lacks jurisdiction over such dispute, in any state or fe",
+        "8. Governing Law. This Assignment shall be governed by the laws of the State of Delaware, its rules of conflict of laws notwithstanding. Each Party hereby agrees and consents to be subject to the jurisdiction of the Court of Chancery of the State of Delaware in and for New Castle County, or if the Court of Chancery lacks jurisdiction over such dispute, in any",
+        "18. Governing Law. This Assignment shall be governed by the laws of the State of Delaware, its rules of conflict of laws notwithstanding. Each Party hereby agrees and consents to be subject to the jurisdiction of the Court of Chancery of the State of Delaware in and for New Castle County, or if the Court of Chancery lacks jurisdiction over such dispute, in any state or federal court having jurisdiction over the matter situated in New Castle County,"
+      ],
+      "text_head": "Exhibit 10.2  Execution Version  INTELLECTUAL PROPERTY AGREEMENT  This INTELLECTUAL PROPERTY AGREEMENT (this \"Agreement\"), dated as of December 31, 2018 (the \"Effective Date\") is entered into by and between Armstrong Flooring, Inc., a Delaware corporation (\"Seller\") and AFI Licensing LLC, a Delaware limited liability company (\"Licensing\" and together with Seller, \"Arizona\") and AHF Holding, Inc. (formerly known as Tarzan HoldCo, Inc.), a Delaware corporation (\"Buyer\") and Armstrong Hardwood Flooring Company, a Tennessee corporation (the \"Company\" and together with Buyer the \"Buyer Entities\") (",
+      "true_governing_law": "Delaware"
+    },
+    {
+      "doc_id": "cuad_QuantumGroupIncFl_20090120_8-K_EX-99.2_3672910_EX-99.2_Hosting_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "Choice of Law This Agreement will be governed by the substantive laws of the State of New York, without regard for its conflict of laws provisions. Waiver of Jury Trial The parties waive any right to a jury trial in any proceeding arising out of or related to this Agreement. Severability If any provision of this Agreement shall be held by a court of competent jurisdiction to be invalid, illegal, or unenforceable, the validity, legality, and ",
+        ". If Customer desires to purchase or lease goods from IBM, such purchase or lease will be governed by a separate mutually acceptable written agreement between Customer and IBM or an IBM Affiliate. No Lease of Real Property This Agreement is a services agreement and not a lease of any real property. 13.0 Changes Service Description IBM, in its reasonable discretion, may change the terms and conditions of Attachment A upon at least ninety (90) days prior notice to Customer if such change was the",
+        "Choice of Law"
+      ],
+      "text_head": "EXHIBIT 99.2  e-business Hosting Agreement 1.0 Introduction This e-business Hosting Agreement (\"Agreement\") between International Business Machines Corporation (\"IBM\") and  The Quantum Group Inc., (\"Customer\"), sets forth the terms and conditions under which IBM will provide hosting and related services (\"Services\") to Customer. The Agreement includes the terms and conditions and the documents referenced herein (\"Base Terms\") and the following Attachments: Attachment A - Services; Attachment B - Hosting Components; and Attachment C - Charges In the event of a conflict between the Base Terms an",
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_OPERALTD_04_30_2020-EX-4.14-SERVICE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "t any time, save and except the metadata or hashed data collected in full compliance with applicable law and PC Financial's privacy policy and solely for the purpose of invoicing .and billing PC Financial; (e) on the Effective Date and during the Service Period of this Agreement it will conduct its business in accordance with applicable law and without violating the rights of any third party. (f) It will not intend to access to the data relating to Indian operations of the PC Financial except for th",
+        "eriod of this Agreement: (a) it will conduct its business in Territory in accordance with applicable law and without violating the rights of any third party; and (b) in connection with the conduct of its business in Territory, as well as its performance of this Agreement, PC Financial and Its affiliates will not violate any provision of the US Foreign Corrupt Practices Act, the UK Bribery Act, or any anti-corruption related laws in the Territory. 2",
+        " warrants that it will not take any action, or collect any data, which causes a breach of applicable law or PC Financial'& privacy policy and consent driven architecture. Subject to the foregoing as wen as Mobimagic's obligations under this Agreement, Mobimagic shall not in any manner be held or be responsible or liable for any unforeseen contingency, claims, liabilities, demands. losses, damages or expenses arising due to absence of storage or retention of any PC Financial data which shall be the s"
+      ],
+      "text_head": "Exhibit 4.14 SERVICE AGREEMENT This Service Agreement (\"Agreement\") is entered into on April. 1st 2019 (\"Effective Date\") by and between: PC Financial Services Private Limited, a India company with an address at Building RZ-2, Pole No.-3, G/F Kapashera, Near HDFC Bank, New Delhi (\"PC Financial\"), a registered Non-banking Financial Company (NBFC) in India; and Mobimagic Co., Ltd., a company Incorporated under the laws of the People 's Republic of China with its principal place of business at Room 1110-046, A District, No. 1 Building, No.18 East Road, Zhongguancun, Haidlan District, Beijing City",
+      "true_governing_law": "India"
+    },
+    {
+      "doc_id": "cuad_MOELIS_CO_03_24_2014-EX-10.19-STRATEGIC_ALLIANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "Laws. Each of the parties shall execute and perform this Agreement in compliance with all applicable laws or regulations. Notwithstanding the foregoing, a party shall not be obligated to take any action that violates, infringes or conflicts with or prohibited from taking any action required to be in compliance with any applicable laws or regulations.   15.8 Governing Laws; Jurisdiction. This Agreement shall be governed by, and construed in accordance with, the laws of the State of New York without r",
+        "of SMBC/Nikko   32   15.6   Separability   32   15.7   Compliance with Laws   32   15.8   Governing Laws; Jurisdiction   32   15.9   Effect on Prior Agreement   33   15.10   Good Faith Discussion; Further Assurances   33     iii",
+        " including the ability to elect the majority of the directors or the members of a similar governing body of such entity.   \"Covered Businesses\" has the meaning given in Section 3.2.   \"Covered Regions\" has the meaning given in Section 3.3.   \"Demand Notice\" has the meaning set forth in Section 13.1(a)(i).   \"Demand Registration\" has the meaning set forth in Section 13.1(a)(i).   \"Effective Date\" has the meaning set forth Section 11.1.   \"Indemnified Party\" has the meaning set forth in Section 1"
+      ],
+      "text_head": "Exhibit 10.19   STRATEGIC ALLIANCE AGREEMENT  Among   SUMITOMO MITSUI BANKING CORPORATION, SMBC NIKKO SECURITIES INC.   And   MOELIS & COMPANY HOLDINGS LP, MOELIS & COMPANY HOLDINGS GP LLC   Dated December 27, 2011        TABLE OF CONTENTS                                               ARTICLE I.       CERTAIN DEFINITIONS; INTERPRETATION.       1.1   Certain Definitions   2   1.2   Interpretations   5               ARTICLE II.       STRATEGIC ALLIANCE.       2.1   Strategic Alliance   6   2.2   Obligations of the Parties   6               ARTICLE III.       SCOPE.       3.1   Scope   6   3.2   ",
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_BELLRINGBRANDS_INC_02_07_2020-EX-10.18-MASTER_SUPPLY_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "12.1 This Agreement will be governed by the laws of the State of Delaware without regard to its conflicts of law principles.",
+        "12 Governing Law; Dispute Resolution.",
+        "Supplier. Each Purchase Order issued by PNC or its TPMs and accepted by Supplier shall be governed by the terms and conditions of this Agreement. Additional terms included in acknowledgments, standard terms and conditions, or any other documents or communications exchanged by the Parties in connection with the sale or purchase of any Ingredients shall be void and of no force or effect. The Parties may only modify, add to or amend any of the terms or conditions of this Agreement by a writing si"
+      ],
+      "text_head": "EXHIBIT 10.18  CERTAIN CONFIDENTIAL INFORMATION CONTAINED IN THIS DOCUMENT, MARKED WITH \"[***]\", HAS BEEN EXCLUDED BECAUSE IT IS NOT MATERIAL AND WOULD BE COMPETITIVELY HARMFUL IF PUBLICLY DISCLOSED.  MASTER SUPPLY AGREEMENT  THIS MASTER SUPPLY AGREEMENT (\"Agreement\") is made as of 31 October 2019 (\"Effective Date\") by and between Premier Nutrition Company, LLC, a Delaware limited liability company with its headquarters located at 1222 67th Street, Suite 210, Emeryville, CA 94608 (\"Buyer\" or \"PNC\"), and Fonterra (USA) Inc., a California corporation with its principal place of business located ",
+      "true_governing_law": "Delaware"
+    },
+    {
+      "doc_id": "cuad_ADUROBIOTECH_INC_06_02_2020-EX-10.7-CONSULTING_AGREEMENT_1",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(c) Consultant to perform the Services in accordance with all Applicable Law; and"
+      ],
+      "text_head": "Exhibit 10.7  CONSULTING AGREEMENT  Aduro Biotech, Inc., with a place of business at 740 Heinz Avenue, Berkeley, CA 94710 (\"Aduro\") and IREYA B.V having an address at Staalwijkstraat 16, 2313 XR Leiden, the Netherlands, represented by Andrea van Elsas, (\"Consultant\") agree to all terms and conditions of this Consulting Agreement (\"Agreement\") dated June 1, 2020, effective as of July 1, 2020 (\"Effective Date\").  1. Services. At the request and direction of Aduro and the agreement of Consultant, Consultant will provide advice and consultation to Aduro with respect to its research, clinical devel",
+      "true_governing_law": "California"
+    },
+    {
+      "doc_id": "cuad_PelicanDeliversInc_20200211_S-1_EX-10.3_11975895_EX-10.3_Development_Agreement1",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(no 'govern' language found)"
+      ],
+      "text_head": "SeattleSoftwareDevelopers  SOFTWARE DEVELOPMENT AGREEMENT  PELICAN DELIVERS iOS APPLICATION  ENHANCEMENTS & WEB APPLICATION  DEVELOPMENT PHASE 1 4 102nd Ave NE Suite 300 Bellevue, WA 98004 (425) 256-2815 julian@seattlesoftwaredevelopers.com www .seattlesoftwaredeveIopers.com  1  Source: PELICAN DELIVERS, INC., S-1, 2/11/2020      STATEMENT OF WORK - APPENDIX A This Statement of Work is issued to and made part of that Software Development Agreement executed by and between Developer and Client on the Effective Date (the Agreement). Any word or phrase not otherwise defined in this Appendix will h",
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_NmfSlfIInc_20200115_10-12GA_EX-10.5_11946987_EX-10.5_Trademark_License_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        " Floor New York, New York 10019 Tel. No.: 212.720.0300 Attn: Chief Executive Officer 5.5. Governing Law. This Agreement shall be governed by, and construed in accordance with, the laws of the State of New York without giving effect to the principles of conflicts of law rules. The parties unconditionally and irrevocably consent to the exclusive jurisdiction of the courts located in the State of New York and waive any objection with respect thereto, for the purpose of any action, suit or proceedi"
+      ],
+      "text_head": "Exhibit 10.5 TRADEMARK LICENSE AGREEMENT This TRADEMARK LICENSE AGREEMENT (this \"Agreement\") is made and effective as of [\u00b7], 2019 (the \"Effective Date\"), by and among New Mountain Capital, L.L.C., a Delaware limited liability company (the \"Licensor\"), and NMF Senior Loan Fund I, Inc., a Maryland corporation (the \"Licensee\"). The Licensor and the Licensee are sometimes referred to herein separately as a \"party\" and collectively as the \"parties.\" RECITALS WHEREAS, the Licensee is a closed-end management investment company that intends to elect to be treated as a business development company und",
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_DUOSTECHNOLOGIESGROUP_INC_04_21_2009-EX-10.1-STRATEGIC_ALLIANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "this Agreement without such disclaimers and  limitations.     11. MISCELLANEOUS.     11.1 Governing Law and Jurisdiction. This Agreement shall be governed by and interpreted under the laws of the State of Florida, USA,.  The state and federal courts in the jurisdiction in which Palm City, Florida is located shall have non- exclusive jurisdiction for the purposes of  adjudicating any controversy or claim between the parties concerning any breach or alleged breach of this Agreement or performance",
+        "determines that the foregoing restrictions are too broad or otherwise unreasonable  under applicable law, including with respect to time or space, the court is hereby requested and authorized by the Parties to revise the foregoing  restrictions to include the maximum restrictions allowable under applicable law. Rubicon acknowledges, however, that the Parties have negotiated  this Section and that the time limitations, the limitation on activities and the geographic limitations are reasonable in ligh",
+        "determines that the foregoing restrictions are too broad or  otherwise unreasonable under applicable law, including with respect to time or space, the court is hereby requested and authorized by the Parties  to revise the foregoing restrictions to include the maximum restrictions allowable under applicable law. ISA acknowledges, however, that the Parties have negotiated this Section and that the time limitations, the limitation on activities and the geographic limitations are reasonable in light of "
+      ],
+      "text_head": "Exhibit 10.1    STRATEGIC ALLIANCE AGREEMENT    This Strategic Alliance Agreement (this \"Agreement\"), effective as of 15 April, 2009 (the \"Effective Date\"), is by and between Information  System Associates, Inc., a Florida Corporation whose registered office is 1151 Southwest 30th Street, Suite E, Palm City FL, 34990 (\"ISA\") and  Rubicon Software Group plc, a company registered under the laws of England and Wales (Registered Company No. 5701810) whose registered  office is Rubicon House, Guildford Road, West End, Surrey GU24 9PW (\"Rubicon\").    Background    WHEREAS, Rubicon desires to engage ",
+      "true_governing_law": "Florida"
+    },
+    {
+      "doc_id": "cuad_PareteumCorp_20081001_8-K_EX-99.1_2654808_EX-99.1_Hosting_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "of the Agreement 18. Termination of the Agreement 19. Modifications 20. Miscellaneous 21. Governing Law 22. Dispute resolution 23. Counterpart",
+        "  21.  GOVERNING LAW   This Agreement shall be governed by and construed in all respects exclusively in accordance with the laws of the Netherlands.    22.  DISPUTE RESOLUTION   Any dispute, excluding invoice disputes as described in Appendix 7, controversy or claim arising out of or in connection with any aspect of this Agreement, or the breach, termination or invalidity thereof, shall:",
+        "1.29 \"Regulatory Provisions\" shall mean all applicable laws, directives, consents, specifications, regulations and/or stipulations set forth by the relevant regulatory authority."
+      ],
+      "text_head": "Exhibit 99.1   CONFIDENTIAL TREATMENT REQUESTED WITH RESPECT TO CERTAIN PORTIONS HEREOF DENOTED WITH \"***\"  MOBILE VIRTUAL NETWORK ENABLER HOSTING AGREEMENT  BETWEEN  T-MOBILE NETHERLANDS B.V.  &  Elephant Talk Communication Holding AG  Source: PARETEUM CORP, 8-K, 10/1/2008      CONFIDENTIAL TREATMENT REQUESTED WITH RESPECT TO CERTAIN PORTIONS HEREOF DENOTED WITH \"***\"   Hosting Agreement between ELEPHANT TALK and T-Mobile, 18/9/2008    TABLE OF CONTENT 1. Definitions 2. Purpose and Scope of the Agreement 3. Hosting Services 4. Implementation 5. Forecast & Commitments 6. Service level 7. Data ",
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_Principal_Life_Insurance_Company_-_Broker_Dealer_Marketing_and_Servicing_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "not be unreasonably withheld.      27. This Agreement shall be governed by and construed in accordance with the laws of the State of Iowa.      28. No failure or delay to exercise, nor any single or partial exercise of, any right, power, or privilege given   or arising under this Agreement will operate as a waiver of future rights to exercise any such right,",
+        "nts of the 1934 Act, FINRA Conduct Rule 2310, and any   state insurance law or regulation governing the offer and sale of Annuity Contracts, including any state   law or regulation governing sales to the public in general (e.g. consumer protection laws or regulations,   unfair trade practices, annuity disclosure regulations, etc.) or to senior citizens, as the same may be   amended or interpreted from time to time. Broker Dealer will use commercially reasonable efforts to   determine that each ",
+        "ty's confidential or proprietary information. The Parties acknowledge that certain laws   governing Confidential Information about individuals are more restrictive than the foregoing   statements and they agree to comply in all respects with such laws.      21. e. Compliance with law. Each Party agrees, in connection with its performance under this Agreement,   to comply with all applicable laws, including but not limited to laws protecting the privacy of non-   public personal information abou"
+      ],
+      "text_head": "BROKER DEALER   MARKETING AND SERVICING AGREEMENT   FOR VARIABLE ANNUITY CONTRACTS      This Broker Dealer Marketing and Servicing Agreement for Variable Annuity Contracts (the \"Agreement\") is   effective this ______ day of ________________, 2013, by and among Principal Life Insurance Company   (\"Issuer\") and Princor Financial Services Corporation (\"Distributor\"), on the one hand, and   _______________________ and its duly licensed insurance affiliates indicated on the signature page of this   Agreement, if any, (collectively \"Broker Dealer\"), on the other hand. Distributor, Issuer and Broker ",
+      "true_governing_law": "Iowa"
+    },
+    {
+      "doc_id": "cuad_ZEBRATECHNOLOGIESCORP_04_16_2014-EX-10.1-INTELLECTUAL_PROPERTY_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "Section 6.6 Governing Law; Forum.",
+        "llowing the Initial Closing Date, to include appropriate Trademark notices as required by applicable Law in connection with each of their respective uses of the Licensed Trademarks. The Purchaser acknowledges and agrees that all use of the Licensed Trademarks by the Purchaser Licensees following the Initial Closing Date and all goodwill associated therewith shall inure to the benefit of the Seller.   22",
+        " Trademarks following the Initial Closing Date with appropriate legends as required under applicable Law. Purchaser agrees that the quality of all Seller Excluded Products and any other products and services marketed or sold by the Purchaser Licensees under the Licensed Trademarks will conform to at least the level of quality of the Enterprise Products as currently provided by the Seller Entities as of the Initial Closing Date. Purchaser will (and will cause each Purchaser Licensee to) reasonably co"
+      ],
+      "text_head": "Exhibit 10.1  INTELLECTUAL PROPERTY AGREEMENT  THIS INTELLECTUAL PROPERTY AGREEMENT (this \"IP Agreement\") is entered into as of April 14, 2014 (the \"Effective Date\"), by and between Motorola Solutions, Inc., a Delaware corporation (the \"Seller\"), and Zebra Technologies Corporation, a Delaware corporation (the \"Purchaser\").  RECITALS  WHEREAS, the Seller, directly and through certain of its Affiliates, is engaged in the Business;  WHEREAS, the Seller desires to sell and transfer to the Purchaser, and the Purchaser desires to acquire from the Seller, the Business, and in furtherance thereof, at ",
+      "true_governing_law": "Delaware"
+    },
+    {
+      "doc_id": "cuad_VIOLINMEMORYINC_12_12_2012-EX-10.14-SPONSORSHIP_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(n) Governing Law. This Agreement shall be governed by and construed in accordance with the laws of the State of California without regard to its conflict of laws provisions.",
+        "and (b) do not conflict with or result in any breach or contravention of any provision of applicable law or the constitution, bylaws or other requirements of the NFL.",
+        "and (b) do not conflict with or result in any breach or contravention of any provision of applicable law."
+      ],
+      "text_head": "Exhibit 10.14  Confidential Treatment Requested. Confidential portions of this document have been redacted and have been separately filed with the Commission.  SPONSORSHIP AGREEMENT  THIS SPONSORSHIP AGREEMENT (this \"Agreement\") is made and entered into as of June 13, 2012 the (\"Effective Date\"), by and between Forty Niners SC Stadium Company LLC, a Delaware limited liability company (\"Forty Niners SC\") having its principal place of business at 4949 Centennial Boulevard, Santa Clara, CA 95054, and Violin Memory, Inc., a Delaware corporation (\"Sponsor\") having its principal place of business at",
+      "true_governing_law": "California"
+    },
+    {
+      "doc_id": "cuad_NETGROCERINC_07_31_1998-EX-10.15-SPONSORSHIP_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "         b)       Governing Law. This Agreement will be governed by and                   construed in accordance with the laws of the State of                   California, notwithstanding the actual state or country of                   residence or incorporation of NetGrocer.",
+        "a party that such disclosure is necessary or                   appropriate to comply with applicable law. Notwithstanding                   the foregoing, the parties agree to issue an initial press                   release regarding the relationship between Excite and                   NetGrocer, the timing and wording of which will be mutually                   agreed upon,."
+      ],
+      "text_head": "CONFIDENTIAL TREATMENT HAS BEEN REQUESTED FOR PORTIONS OF THIS EXHIBIT. THE CONFIDENTIAL PORTIONS HAVE BEEN REDACTED AND ARE DENOTED BY [*]. THE  CONFIDENTIAL PORTIONS HAVE BEEN SEPARATELY FILED WITH THE SECURITIES AND EXCHANGE COMMISSION.                               SPONSORSHIP AGREEMENT  This agreement (\"Agreement\") is entered into as of the 15th day of December, 1997 (\"Effective Date\"), by and between Excite, Inc., a California corporation, located at 555 Broadway, Redwood City, California 94063 (\"Excite\"), and NetGrocer, Inc. a Delaware corporation, located at 333 Seventh avenue, 11th Fl",
+      "true_governing_law": "California"
+    },
+    {
+      "doc_id": "cuad_ORBSATCORP_08_17_2007-EX-7.3-STRATEGIC_ALLIANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(no 'govern' language found)"
+      ],
+      "text_head": "Exhibit 7.3    STRATEGIC ALLIANCE AGREEMENT  This Strategic Alliance Agreement is made and entered into this 9th day of September 2005, by and between UTEK Corporation (\"UTK\"), 202 South Wheeler Street, Plant City, Florida 33566 a Delaware corporation, and World Energy Solutions, (\"AVDU\"), 3900A 31st Street North, St. Petersburg, Florida, a Florida corporation.  WITNESSETH:  WHEREAS, AVDU desires to engage UTK to provide the services as set forth in this Agreement, and  WHEREAS, UTK is agreeable to provide these services.  NOW THEREFORE, in consideration of the mutual promise made in this Agre",
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_BIOCEPTINC_08_19_2013-EX-10-COLLABORATION_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "14.1 Governing Law. This Agreement and any disputes, claims, or actions related thereto shall be governed by and construed in accordance with the laws of the State of California, USA, without regard to the conflicts of law provisions thereof.",
+        "ally accomplishes the result achieved above. Both parties agree to strictly adhere to all applicable Laws with respect to billing practices.",
+        "racterization, treatment and outcome information. To that end, to the extent permitted by applicable law and as mutually agreed by the parties, where available each party will share all patient data, Test data and results, and corresponding tissue data with the other party, as well as any follow up or outcome data that may become available or provided by the physician or patient for Tests performed and will cooperate in good faith with the other party to agree upon procedures for sharing such inform"
+      ],
+      "text_head": "Exhibit 10.13  COLLABORATION AGREEMENT  THIS COLLABORATION AGREEMENT (the \"Agreement\") is entered into as of November 2, 2012 (the \"Effective Date\") by and between BIOCEPT, INC., a California corporation having an address of 5810 Nancy Ridge Drive, Suite 150, San Diego, CA 92121 (\"Biocept\"), and LIFE TECHNOLOGIES  CORPORATION, a Delaware corporation having an address of 5791 Van Allen Way, Carlsbad, California 92008 (\"Life Technologies\").  WHEREAS, Life Technologies, through its Medical Sciences Division, is engaged in the development and commercialization of diagnostic systems, tests and labo",
+      "true_governing_law": "California"
+    },
+    {
+      "doc_id": "cuad_LiquidmetalTechnologiesInc_20200205_8-K_EX-10.1_11968198_EX-10.1_Development_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "ng under or growing out of or in connection with or in respect of this Agreement shall be governed by and construed in accordance with the internal laws of the State of Arizona (U.S.A.), excluding any choice of law rules that may direct the application of the laws of another jurisdiction, and except that questions affecting the construction and effect of any Patent shall be determined by the law of the country in which the Patent has been granted. The parties agree that the United Nations Conv",
+        " such receipt of the Licensed Equipment is not subject to the terms and conditions of any applicable laws pertaining to sales and/or secured transactions. The Licensed Equipment: (a) is and shall remain the sole property of Liquidmetal, (b) shall be made available for reasonable inspection upon at least three (3) weeks prior written request by Liquidmetal, such inspection not to occur more than once per year during the Term, to be conducted with minimal business disruption to Eutectix and to be cond",
+        "his Agreement are issued for convenience of the Parties only and shall be subject to, and governed by, the provisions of this Agreement. 14.3 Assignment. Neither this Agreement nor any rights or obligations hereunder shall be transferred or assigned by either Party without the written consent of the other Party, which consent shall not be unreasonably withheld; provided, however, that Liquidmetal shall have the right, without the prior written consent of Eutectix, to assign its warranty rights"
+      ],
+      "text_head": "Exhibit 10.1 BUSINESS DEVELOPMENT AGREEMENT THIS BUSINESS DEVELOPMENT AGREEMENT (the \"Agreement\") is effective as of , 2020 (the \"Effective Date\"), by and between LIQUIDMETAL TECHNOLOGIES, INC., a Delaware corporation having its principal place of business at 20321 Valencia Circle, Lake Forest, California 92630 (\"Liquidmetal\"), and EUTECTIX, LLC, a Delaware limited liability company having an address of 323 Main Street, Chatham, New Jersey 07928 (\"Eutectix\"). Liquidmetal and Eutectix are sometimes referred to herein individually as a \"Party\" or collectively as the \"Parties.\" RECITALS WHEREAS, ",
+      "true_governing_law": "Arizona"
+    },
+    {
+      "doc_id": "cuad_ATHENSBANCSHARESCORP_11_02_2009-EX-1.2-AGENCY_AGREEMENT_2009",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "Section 17. Construction. This Agreement shall be construed in accordance with the laws of the State of New York without regard to principles of  conflicts of law.",
+        "to purchase any Shares or be obligated to take any action which  is inconsistent with all applicable laws, regulations, decisions or orders.",
+        "n Regulations except to the extent waived or otherwise approved by the OTS, and all other applicable laws, regulations, decisions and  orders, including all terms, conditions, requirements and provisions precedent to the Offering imposed upon the Company and the Bank by the  OTS, the Commission, or any other regulatory authority and in the manner described in the Prospectus. To the best knowledge of the Company  and the Bank, no person has sought to obtain review of the final action of the OTS in ap"
+      ],
+      "text_head": "Exhibit 1.2  ATHENS BANCSHARES CORPORATION  up to    Shares  (subject to increase up to    shares)  COMMON SHARES  ($.01 Par Value)  Subscription Price $10.00 Per Share  AGENCY AGREEMENT   , 2009  Keefe, Bruyette & Woods, Inc.  Investment Banking  10 South Wacker Drive, Suite 3400  Chicago, Illinois 60606  Ladies and Gentlemen:  Athens Bancshares Corporation, a Tennessee corporation (the \"Company\"), and Athens Federal Community Bank, a federal savings bank located  in Athens, Tennessee (the \"Bank\") (references to the \"Bank\" include the Bank in mutual or stock form as indicated by the context),",
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_GpaqAcquisitionHoldingsInc_20200123_S-4A_EX-10.6_11951677_EX-10.6_License_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "censes and permits required by law necessary for each of their respective operations. 7.4 Governing Law and Arbitration. (a) This Agreement will be governed in all respects by the laws of the State of Ohio (without regard to conflicts of law provisions), as such laws are applied to agreements entered into and to be performed entirely within the State of Ohio between Ohio residents. (b) Any dispute between the Parties concerning the scope or interpretation of this Agreement shall be submitted to",
+        "ance with this Agreement)) or (f) any failure of the Village Media Company to comply with applicable laws in connection with the rights and performance of its obligations under this Agreement."
+      ],
+      "text_head": "Exhibit 10.6 EXECUTION COPY MEDIA LICENSE AGREEMENT THIS MEDIA LICENSE AGREEMENT (this \"Agreement\") is made and effective as of the date of the Closing (as defined in the Merger Agreement (as defined below)) (the \"Effective Date\"), between NATIONAL FOOTBALL MUSEUM, INC., an Ohio non-profit corporation, doing business as Pro Football Hall of Fame (\"PFHOF\"), HOF Village Media Group, LLC (the \"Village Media Company\"), a Delaware limited liability company that is a wholly-owned subsidiary of HOF Village, LLC, a Delaware limited liability company (\"HOFV\") and, solely for purposes of Section 4.5, HO",
+      "true_governing_law": "Ohio"
+    }
+  ],
+  "_label_count": 50
+}

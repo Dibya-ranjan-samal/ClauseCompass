@@ -1,0 +1,280 @@
+{
+  "_provenance": "HELD-OUT test set (seed 7), disjoint from labels_done.json. Labelled by Claude from excerpts + full-document lookup for ambiguous cases, before scoring and with no further tuning afterwards. AI-labelled, not attorney-verified.",
+  "_seed": 7,
+  "rows": [
+    {
+      "doc_id": "cuad_ENTERTAINMENTGAMINGASIAINC_02_15_2005-EX-10.5-DISTRIBUTOR_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "This Agreement shall be governed by, construed in accordance with the laws of Ontario, Canada.",
+        "27. GOVERNING LAW",
+        " its knowledge, all Vendor-supplied promotional materials comply in all respects with all applicable laws, rules and regulations. Although Vendor intends to provide a six-month limited warranty to the end user, Distributor shall make no warranties or representations with respect to the Products on behalf of Vendor. Distributor shall defend, indemnify and hold Vendor harmless from any and all claims, damages, costs or expenses, including attorney fees, incurred by Vendor in relation to any violation "
+      ],
+      "true_governing_law": "Ontario"
+    },
+    {
+      "doc_id": "cuad_FuseMedicalInc_20190321_10-K_EX-10.43_11575454_EX-10.43_Distributor_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "24. Governing law and jurisdiction",
+        "(a) comply with all applicable laws, statutes and regulations relating to anti-bribery and anti- corruption; and",
+        "ided, however, that the other party reserves the right to challenge such disclosure under applicable law. If such party elects to challenge the disclosure, no confidential information shall be disclosed during the pendency of such challenge."
+      ],
+      "true_governing_law": "Ohio"
+    },
+    {
+      "doc_id": "cuad_KUBIENT_INC_07_02_2020-EX-10.14-MASTER_SERVICES_AGREEMENT_Part1",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "a result of the Services or this Agreement. 14. General Provisions. (a) This Agreement is governed in all respects by the laws of the State of Delaware without giving effect to its conflict of laws principles. Each Party hereby irrevocably submits for all disputes to the exclusive jurisdiction and venue of the state and federal courts located in New York, New York. (b) Each Party's names, trademarks and logos are the exclusive property of said respective Party, and neither Party will acquire a",
+        "roprietary rights, indemnification, limitations of liability, effects of termination, and governing Law. The delay or failure of either Party to exercise any right or power provided in this Agreement or to require performance by the other Party of any provision of this Agreement will not impair such right or power, or be deemed a waiver thereof. A waiver by either Party of any covenants to be performed by the other or any breach thereof will not be taken or held to be a waiver of any succeeding",
+        "llectively the \"Properties\") contains or is linked to a privacy policy in accordance with applicable Law. Customer shall be responsible and solely liable for all the Content (including without limitation all intellectual property rights therein) and the Properties. 7. Limitation of Liability. (a) EXCEPT WITH RESPECT TO THE PARTIES' LIABILITY FOR INDEMNIFICATION, OR LIABILITY FOR BREACH OF CONFIDENTIALITY, NEITHER PARTY SHALL BE LIABLE FOR ANY CONSEQUENTIAL, INCIDENTAL, INDIRECT, PUNITIVE, SPECIAL OR"
+      ],
+      "true_governing_law": "Delaware"
+    },
+    {
+      "doc_id": "cuad_MusclepharmCorp_20170208_10-KA_EX-10.38_9893581_EX-10.38_Co-Branding_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "amped registered or certified and deposited in the mail, or deposited with courier.   21. Governing Law:   This Agreement has been executed and delivered in Los Angeles County in the State of California, and its interpretation, validity and performance shall be construed and enforced in accordance with the laws of the State of California. The exclusive venue for any proceeding to interpret, construe or enforce this Agreement in accordance with Section 22 below shall be Los Angeles County, Calif",
+        "ange Commission that it believes in good faith and upon a reasonable basis is required by applicable law or any listing or trading agreement concerning its publicly traded securities.   6B. Sample Products for Endorser's Use:   MusclePharm shall provide a reasonable supply of Products, Licensed Products, and Promotional Products for Endorser's personal use and endorsement as contemplated by this Agreement.",
+        " and manufactured, produced, sold, distributed and promoted in strict compliance with all applicable laws and regulations, and be of substantially the same or better quality as the samples previously submitted by MusclePharm. MusclePharm shall be responsible for ensuring that the products are properly designed and manufactured for safe use and shall promptly and fairly address and resolve all consumer complaints and warranty claims. MusclePharm hereby acknowledges that the AS Parties are not compete"
+      ],
+      "true_governing_law": "California"
+    },
+    {
+      "doc_id": "cuad_KIROMICBIOPHARMA_INC_05_11_2020-EX-10.23-CONSULTING_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "cceeds to substantially all of the business or assets of Company. This Agreement shall be governed by the laws of the State of Texas, without reference to its conflicts of law principles. This Agreement may only be amended or modified by a writing signed by both parties. Waiver of any term or provision of this Agreement or forbearance to enforce any term or provision by either party shall not constitute a waiver as to any subsequent breach or failure of the same term or provision or a waiver o"
+      ],
+      "true_governing_law": "Texas"
+    },
+    {
+      "doc_id": "cuad_ON2TECHNOLOGIES_INC_11_17_2006-EX-10.3-SUPPORT_AND_MAINTENANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "      10.7 Governing Law; Forum. This Agreement shall be governed by and construed in accordance with the laws of the State of New York, without giving effect to any choice of law or conflict of law provision or rule whether such provision or rule is that of the State of New York or any other jurisdiction.",
+        " or supersede any other remedy to which a party is entitled under this Agreement or under applicable law."
+      ],
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_LOOKSMARTLTD_07_20_2012-EX-99._D_I_-SPONSORSHIP_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "sessment or by any legal or equitable proceeding, by virtue of any statute, regulation or applicable  law, or otherwise. Nothing set forth in this Agreement shall confer or give or shall be construed to confer or give to any party other than the  Parties any rights or remedies against any Person other than as expressly set forth herein.     17. Governing Law; Consent to Jurisdiction. This Agreement shall be governed by and construed in accordance with, the laws of the  State of New York applicable to",
+        "      13. Severability. In the event that any provision hereof would, under applicable law, be invalid or unenforceable in any respect, such  provision shall be construed by modifying or limiting it so as to be valid and enforceable to the maximum extent compatible with applicable law.  The provisions hereof are severable, and any provision hereof being held invalid or unenforceable shall not invalidate, render unenforceable or  otherwise affect any other provision hereof.     14. Reme",
+        " WAIVER OF JURY TRIAL. EACH PARTY HERETO HEREBY WAIVES TO THE FULLEST EXTENT PERMITTED BY APPLICABLE  LAW ANY RIGHT IT MAY HAVE TO A TRIAL BY JURY WITH RESPECT TO ANY LITIGATION DIRECTLY OR INDIRECTLY ARISING OUT  OF, UNDER OR IN CONNECTION WITH THIS AGREEMENT OR ANY OF THE TRANSACTIONS CONTEMPLATED HEREBY.     19. Exercise of Rights and Remedies. No delay of or omission in the exercise of any right, power or remedy accruing to any party as a  result of any breach or default by any other party under "
+      ],
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_AudibleInc_20001113_10-Q_EX-10.32_2599586_EX-10.32_Co-Branding_Agreement__Marketing_Agreement__Investment_Distr_d39b31ca",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "a], Company will not be required to deliver to ACSI any user data in contravention of any applicable Law or Company's privacy policy (provided, that if Company modifies its privacy policy, Company shall revise the same in a manner which provides it the maximum legally permissible flexibility to provide the data",
+        "rticipation of ACSI and its Affiliates as contemplated by this Agreement) comply with all applicable Laws.",
+        "            6.1.3  To the maximum extent permitted by applicable Laws, any ACSI Derivative Works or Company Derivative Works, to the extent created by or for the other Party, shall be deemed \"works made for hire\", and all right, title and interest therein shall vest in ACSI (in the case of ACSI Derivative Works) or Company (in the case of Company Derivative Works) immediately upon creation thereof. To the extent that any such ACSI Derivative Works or Company Deriv"
+      ],
+      "true_governing_law": "Washington"
+    },
+    {
+      "doc_id": "cuad_HealthcareIntegratedTechnologiesInc_20190812_8-K_EX-10.1_11776966_EX-10.1_Reseller_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "eemed to have been received within 3 business days after posting. This Agreement shall be governed by the laws of the State of New York and all disputes and controversies arising out of or in connection with the Agreement shall be brought exclusively before the competent courts in New York County, New York; provided however that judgment shall be enforceable in any country and that nothing in this Section shall prevent or restrict either Party from seeking interim relief in any competent juris",
+        " fulfilling its obligations under this Agreement, the Reseller shall: (i) comply with all applicable laws and regulations; (ii) use materials and branding solely as determined by the Supplier (subject to the right of the Reseller to make changes to such materials as are described in Section 2.4); (iii) attend training and sales meetings as required by the Supplier, so as to be able to describe, demonstrate, and sell the Products adequately; (iv) make sure that all the End Users are signing the End U",
+        "to the extent such reimbursements is prohibited by Section 14.9 or prohibited under other applicable laws). For the avoidance of doubt, in no way will Supplier be subject to any tax (i.e., sales tax) relating to the sale of the Products to Reseller's Customers and/or End Users."
+      ],
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_EuromediaHoldingsCorp_20070215_10SB12G_EX-10.B_01__525118_EX-10.B_01__Content_License_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "  (d) This Section shall survive the termination or expiration of this Agreement.     23. GOVERNING LAW.   This Agreement shall be governed by laws of the Province of Ontario and the federal laws of Canada applicable therein. The parties hereby attorn to the non-exclusive jurisdiction of the courts of the Province of Ontario. This Section shall survive the termination or expiration of this Agreement.     24. ASSIGNMENT.   This Agreement may not be assigned, sold or transferred without the prior",
+        " to Section 8 (a) ; and     (E) closed captioning costs incurred by Rogers to comply with Applicable Law.     (ii) Rogers shall be entitled to deduct from License Fees on a rolling monthly basis during the Term:     (A) the marketing allowance pursuant to Section 12;     (B) the Production Fund Commitment pursuant to Section 13; and     (C) copyright royalty payments pursuant to Section 17.     (c) Payment of License Fees shall be made in Canadian funds in arrears within thirty (30) days following e",
+        "withholding taxes and to remit same to the responsible taxing authorities, as required by Applicable Law.     7. TERM.     The term of this Agreement (the \"Initial Term\") shall commence as of the Effective Date and, unless earlier terminated in accordance with this Agreement, shall terminate on June 30, 2010. At Rogers' option, this Agreement shall renew for a subsequent term of two (2) years on the terms and conditions herein (the \"Renewal Term\"). Notwithstanding the foregoing, if, at the expiry of"
+      ],
+      "true_governing_law": "Ontario"
+    },
+    {
+      "doc_id": "cuad_CORALGOLDRESOURCES_LTD_05_28_2020-EX-4.1-CONSULTING_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "18.1 Unless otherwise agreed to in writing by the parties, the Agreement shall be governed by and construed in accordance with the laws of the Province of British Columbia and the federal laws of Canada applicable therein, and the parties hereto submit and attorn to the jurisdiction of the courts of the Province of British Columbia.",
+        "18. GOVERNING LAWS",
+        "nsistency between the terms of this Agreement and the terms of any stock option agreement governing the grant of any stock options to the Consultant or the Principal, then the terms of such stock option agreement shall prevail."
+      ],
+      "true_governing_law": "British Columbia"
+    },
+    {
+      "doc_id": "cuad_CerenceInc_20191002_8-K_EX-10.4_11827494_EX-10.4_Intellectual_Property_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        " Entire Agreement; Corporate Power 14 Section 11.02. Dispute Resolution 14 Section 11.03. Governing Law; Jurisdiction 15 Section 11.04. Waiver of Jury Trial 15 Section 11.05. Court-Ordered Interim Relief 15 Section 11.06. Specific Performance 16 Section 11.07. Third-Party Beneficiaries 16 Section 11.08. Notices 16 Section 11.09. Import and Export Control 17 Section 11.10. Bankruptcy 17 Section 11.11. Severability 18 Section 11.12. Expenses 18 Section 11.13. Headings 18 Section 11.14. Survival o",
+        "Section 11.03. Governing Law; Jurisdiction. Any disputes relating to, arising out of or resulting from this Agreement, including to its execution, performance, or enforcement, shall be governed by, and construed in accordance with, the Laws of the State of Delaware, regardless of the Laws that might otherwise govern under applicable principles of conflicts of Laws thereof. Each Party irrevocably consents to the exclusive",
+        "ell as such additional case specific assignments as deemed appropriate or necessary under applicable Laws (collectively, the \"Intellectual Property Assignment Agreements\") for recordation with the appropriate Governmental Authority."
+      ],
+      "true_governing_law": "Delaware"
+    },
+    {
+      "doc_id": "cuad_ALCOSTORESINC_12_14_2005-EX-10.26-AGENCY_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(no law language found)"
+      ],
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_BravatekSolutionsInc_20170418_8-K_EX-10.1_10205739_EX-10.1_Reseller_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "unterparts shall together constitute one and the same instrument. This Agreement shall be governed by and construed under the laws of the Commonwealth of Virginia without regard to the conflicts of law provisions thereof. This Agreement supersedes all prior agreements or discussions between the parties with respect to the subject matter hereof.     RESELLER   Bravatek Solutions, Inc.               I3 ICS, LLC                     By: /s/ Philip A. Oakley   By: /s/ Thomas A. Cellucci   Name:Phil",
+        "support described in Exhibit B. Company shall comply with good business practices and all applicable laws and regulations. During the term of this Agreement, Company shall notify reseller of any changes, modifications or the discontinuation of any of the Company Products within thirty (30) days. Company shall make reasonable accommodations for any ongoing sales or existing sales.   5. Exclusivity on Registered Referrals and Opportunities. During the Term hereof and for a period of six (6) months fol"
+      ],
+      "true_governing_law": "Virginia"
+    },
+    {
+      "doc_id": "cuad_GULFSOUTHMEDICALSUPPLYINC_12_24_1997-EX-4-AFFILIATE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "dress as shall be furnished in writing by the parties.  This Affiliate Agreement shall be governed by the laws of the State of Delaware."
+      ],
+      "true_governing_law": "Delaware"
+    },
+    {
+      "doc_id": "cuad_LIMEENERGYCO_09_09_1999-EX-10-DISTRIBUTOR_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "6.9      Governing Law.  This Agreement is to be construed according to the laws          of the State of Illinois."
+      ],
+      "true_governing_law": "Illinois"
+    },
+    {
+      "doc_id": "cuad_CORIOINC_07_20_2000-EX-10.5-LICENSE_AND_HOSTING_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "14.3    Choice of Law; Arbitration; Venue. This Agreement shall be governed by         the laws of the State of California, USA, excluding conflict of laws         provisions and excluding the 1980 United Nations Convention on Contracts         for the International Sale of Goods. Any disputes arising out of this         Agreement shall be resolved by binding arbitration in accordance with         the then-current commercial arbitration rules of the American         Arbi"
+      ],
+      "true_governing_law": "California"
+    },
+    {
+      "doc_id": "cuad_LOGANSROADHOUSEINC_03_27_1998-EX-10.17-SPONSORSHIP_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "      18. GOVERNING LAW.  This Agreement shall be constructed under and  governed by the laws of the State of Tennessee."
+      ],
+      "true_governing_law": "Tennessee"
+    },
+    {
+      "doc_id": "cuad_Apollo_Endosurgery_-_Manufacturing_and_Supply_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "10.8 Governing Law and Venue. Notwithstanding its place of execution or performance, this Agreement shall be governed by and construed in accordance with the laws of the State of Texas, irrespective of its laws regarding choice or conflict of laws. Any dispute arising under or relating to this Agreement shall be submitted for resolution to a state or federal court of competent jurisdiction in Austin, Texas, and",
+        "D. APOLLO and ESTABLISHMENT desire to enter into this Agreement governing the supply of the Product upon the terms and conditions contained herein.",
+        "shall be manufactured in accordance with applicable ISO 13485:2012 standards and with all applicable laws and regulations."
+      ],
+      "true_governing_law": "Texas"
+    },
+    {
+      "doc_id": "cuad_INTRICONCORP_03_10_2009-EX-10.22-Strategic_Alliance_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "terparts together will be taken to constitute one  instrument.     12.8 This Agreement is governed by the laws of Victoria, Australia and the parties submit to the jurisdiction of the courts of Victoria,  Australia. The 1980 United Nations Convention on Contracts for the International Sale of Goods does not apply to this Agreement.",
+        "       (c)    the disclosure of information is necessary to comply with any applicable law or legally binding order of any court,  government, semi-government authority or administrative or judicial body or the applicable rules of any stock  exchange, provided that before any such disclosure, the receiving party must, at its cost:"
+      ],
+      "true_governing_law": "Victoria"
+    },
+    {
+      "doc_id": "cuad_VERTEXENERGYINC_08_14_2014-EX-10.24-OPERATION_AND_MAINTENANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "8.6    Governing Law. This Agreement shall be governed by, construed, and enforced in accordance with the laws of the State of Delaware, without regard to choice of law principles that would require the application of the laws of any other jurisdiction.",
+        "ARTICLE VIII : GENERAL PROVISIONS15 8.2 Notices    15 8.3 Rights    16 8.4 Applicable Laws    16 8.5 Rules of Construction.    16 8.6 Governing Law..    17 8.7 Dispute Resolution.    17 8.8 Limitation of Liability..    17 8.9 Entirety of Agreement, Amendments    17 8.10 Waivers.    18 8.11 Headings.    18 8.12 Rights and Remedies.    18 8.13 Assignment    18 8.14 Counterparts    18 8.15 No Third Party Beneficiary    18 8.16 Further Assurances.    28",
+        "\"Environmental Law\" means all applicable Laws and Environmental Permits of any Governmental Authority relating to the environment, natural resources, or the protection thereof, including, without limitation: (a) all requirements pertaining to liability for reporting, management, licensing, permitting, investigation, and remediation of emissions, discharges, releases, or threatened releases of a Constituent of Concern; and (b) CERCLA, the Ha"
+      ],
+      "true_governing_law": "Delaware"
+    },
+    {
+      "doc_id": "cuad_CYBERIANOUTPOSTINC_07_09_1998-EX-10.13-PROMOTION_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "       9.6  Applicable Law.  This Agreement will be construed in accordance with           and governed by the laws of the State of California, without regard to           principles of  conflicts of law."
+      ],
+      "true_governing_law": "California"
+    },
+    {
+      "doc_id": "cuad_AURASYSTEMSINC_06_16_2010-EX-10.25-STRATEGIC_ALLIANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        " as creating, any rights enforceable by any person not a party to this Agreement.     8.6 Applicable Law. This Agreement is deemed made and entered into in the State of California and shall be construed, enforced and performed in  accordance with the laws of the State of California, without reference, to choice of law. THE RIGHTS AND OBLIGATIONS OF THE PARTIES IN  CONNECTION WITH THIS AGREEMENT AND ANY PURCHASE OF THE PRODUCTS SHALL NOT BE GOVERNED BY THE PROVISIONS OF  THE 1980 U.N. CONVENTION ON C",
+        " 4.1 Compliance with Law. Each party shall at all times comply with the provisions of all applicable laws and the rules and regulations thereunder,  and refrain from engaging in any illegal, unfair or deceptive trade practices or unethical business practices whatsoever with respect to the  promotion and sale or service of Products.     4.2 Recalls. Zanotti shall maintain records of all Products sold by Zanotti and shall immediately alert Aura in the event that Zanotti becomes aware  of any defect in",
+        "templated hereby without the other party's written consent, except as way be required by  applicable law, including applicable securities laws or stock exchange regulations, and except for communications to such party's employees and  professional advisors.     4.4 Joint Training. Zanotti and Aura shall jointly schedule periodic training sessions at mutually agreed reasonable intervals with respect to  installation and maintenance of the AETRU Systems, which Aura and Zanotti shall make available to "
+      ],
+      "true_governing_law": "California"
+    },
+    {
+      "doc_id": "cuad_CANOPETROLEUM_INC_12_13_2007-EX-10.1-Sponsorship_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "11. Governing Law. This Agreement shall be governed by and construed in accordance with the laws of the State of Texas and venue for  any legal action brought in State Court shall lie exclusively in Tarrant County, Texas and venue for any action brought in federal court shall  lie exclusively in the Northern District of Texas, Fort Worth Division."
+      ],
+      "true_governing_law": "Texas"
+    },
+    {
+      "doc_id": "cuad_ThriventVariableInsuranceAccountB_20190701_N-6_EX-99.D_IV__11720968_EX-99.D_IV__Endorsement_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(no law language found)"
+      ],
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_CARDAX_INC_08_19_2014-EX-10.1-COLLABORATION_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "greement.   Section 11   Miscellaneous   11.1 Dispute Resolution. This Agreement shall be governed by and interpreted in accordance under the laws of the State of New York. Any dispute, controversy or claim arising out of this Agreement, or the breach, termination or invalidity thereof, shall be discussed between the senior management of the Parties who will attempt to resolve the matter amicably. Any disputes which cannot be resolved in this way within sixty (60) days of one Party notifying t",
+        "    1.5 \"Applicable Laws\" shall mean all applicable laws, statutes, ordinances, codes, rules and regulations applicable to the formulation, development and/or manufacture, marketing, distribution sale, and disposal of the Product or any aspect thereof and the obligations of CAPSUGEL or CARDAX, as the context requires under this Agreement.   1.6 \"Annual Period\" shall mean the twelve (12) month period beginning on the first day in which the Launch Date ",
+        "unt the competitiveness of the marketplace, the proprietary position of the compound, the Applicable Laws, the profitability of the applicable products, and other relevant factors including, without limitation, technical, legal, scientific or medical factors.   1.8 \"Development Plan\" shall have the meaning set forth in Section 2.1.   1.9 \"Disclosing Party\" shall have the meaning set forth in the Confidentiality Agreement.   1.10 \"Formulation\" means a specific combination of excipient(s) that can for"
+      ],
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_GALERATHERAPEUTICS_INC_02_14_2020-EX-99.A-JOINT_FILING_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(no law language found)"
+      ],
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "sion of this Agreement will not be construed as a waiver of any subsequent breach.   10.7 Governing Law. This Agreement shall be governed and construed in accordance with the laws of New York State   (without regard to the conflict of laws provisions thereof).   10.8 Jurisdiction. Subject to Section 10.14, the federal and state Courts of New York State shall have exclusive   jurisdiction to hear and decide any suit, Action or proceedings, and to settle any disputes, which may arise out of or in",
+        "\"Agents\" means Third Parties who are acting under the direction or control of a Party.   \"Applicable Laws\" means all applicable federal, state, local and foreign laws, ordinances, rules, regulations, orders,   writs, injunctions and decrees of any kind.   \"Asset Purchase Agreement\" has the meaning set forth in the recitals.   \"Change of Control\" has the meaning set forth in the Asset Purchase Agreement.   \"Claims\" has the meaning set forth in Article 7.3(a) of this Agreement.   \"Confidential Informa",
+        "Conformis or its Affiliates   to Third Parties, any external Third Party license shall be governed in accordance with the last sentence of Section 4.3(c) of the   APA. Each Party to whom ownership is to vest in Joint IP by operation of law or by assignment by its employees or Agents agrees   to assign and hereby assigns to the other Party an undivided one-half right, title and interest in and to all Joint IP; and to facilitate   such assignment, the Party possessing such ownership agrees (i) t"
+      ],
+      "true_governing_law": "New York"
+    },
+    {
+      "doc_id": "cuad_PacificapEntertainmentHoldingsInc_20051115_8-KA_EX-1.01_4300894_EX-1.01_Content_License_Agreement",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "(no law language found)"
+      ],
+      "true_governing_law": "none"
+    },
+    {
+      "doc_id": "cuad_TELKOMSALTD_01_30_2003-EX-10-LICENCE_AND_MAINTENANCE_AGREEMENT",
+      "source": "cuad",
+      "governing_law_excerpts": [
+        "e format and typeface thereof which consent shall not be unreasonably withheld.   14. 6   Governing Law -This AGREEMENT shall be governed by and construed under the   Laws of the Republic of South Africa.   1 5.     DOMICILIA AND NOTICES   15. 1    Any notices to be given to the parties in terms of this AGREEMENT shall be in   writing and delivered by hand during ordinary business hours or posted by prepaid   registered post or transmitted by fax during normal business hours to the   addresses ",
+        "bmitted to and decided by arbitration. Any such arbitration   (\"the arbitration\") will be governed by the provisions of this clause 22.   22. 2   Subject to the other provisions of this agreement specifically providing for the   resolution of any dispute, where any dispute, disagreement, or claim arises   between the parties (called here after the dispute) concerning this agreement, the   parties shall try to resolve the dispute by negotiation. This entails that the one party"
+      ],
+      "true_governing_law": "South Africa"
+    }
+  ]
+}

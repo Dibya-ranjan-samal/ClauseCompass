@@ -15,8 +15,20 @@ wheels/
 # Qdrant docker volume - live server state, 25 MB, rebuilt by index.py
 data/qdrant/
 
-# Regenerable from data/raw/ via parse.py + chunk.py
-data/interim/
+# Regenerable from data/raw/ via parse.py + chunk.py + ingest_cuad.py
+# Trailing /* not / : git will not descend into an excluded DIRECTORY, so a
+# negation inside it never applies.
+data/interim/*
+# ...except the hand-made ground truth, which is NOT regenerable and is what
+# every accuracy number in the project is measured against.
+!data/interim/labels_done.json
+!data/interim/labels_holdout_done.json
+
+# CUAD_v1.json, 38 MB, re-downloadable (see ingest_cuad.py docstring)
+data/external/
+
+# Model weights fetched from Hugging Face
+models/
 
 # Models / caches
 .cache/

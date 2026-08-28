@@ -1,4 +1,18 @@
-"""Task 4 - embed the chunks with BGE-small and index them into Qdrant."""
+"""Task 6 - embed the enriched chunks and index them into Qdrant with filters.
+
+Two changes over Day 1:
+
+1. CONTEXTUAL PREFIX. Chunking strips the surrounding context a clause needs to
+   be interpretable, so each chunk is embedded with a short header naming its
+   contract type and section. "Termination for convenience" is ambiguous on its
+   own; "Sponsorship agreement | Section 12 TERMINATION" is not.
+
+2. PAYLOAD INDEXES. Filtered vector search needs an index on the filtered field
+   or Qdrant falls back to a full scan.
+
+The prefix is included in the stored `embed_text` so the exact string that
+produced each vector is auditable after the fact.
+"""
 
 import json
 from pathlib import Path
@@ -11,41 +25,75 @@ MODEL_NAME = "BAAI/bge-small-en-v1.5"
 VECTOR_SIZE = 384
 BATCH = 32
 UPSERT_BATCH = 256
+INDEXED_FIELDS = ("contract_type", "governing_law", "source", "doc_id",
+                  "chunking_strategy", "section_heading")
 
-chunks = json.loads(Path("data/interim/chunks.json").read_text())
-print(f"Loaded {len(chunks)} chunks")
 
-model = SentenceTransformer(MODEL_NAME, device="mps")
-client = QdrantClient(url="http://localhost:6333")
+def embed_text(c: dict) -> str:
+    """Contextual prefix. Kept short: it competes with the clause for the
+    model's 512-token budget."""
+    bits = [f"Contract type: {c.get('contract_type') or 'Unknown'}"]
+    if c.get("section_heading"):
+        num = c.get("section_number")
+        bits.append(f"Section {num} {c['section_heading']}" if num
+                    else str(c["section_heading"]))
+    if c.get("governing_law"):
+        bits.append(f"Governing law: {c['governing_law']}")
+    return " | ".join(bits) + "\n\n" + c["text"]
 
-# recreate_collection is deprecated in qdrant-client >=1.19; do it explicitly.
-if client.collection_exists(COLLECTION):
-    client.delete_collection(COLLECTION)
-client.create_collection(
-    COLLECTION,
-    vectors_config=models.VectorParams(
-        size=VECTOR_SIZE, distance=models.Distance.COSINE
-    ),
-)
 
-# NOTE: documents are embedded with no prefix. Only queries get the BGE
-# "Represent this sentence..." prefix - see ask.py.
-texts = [c["text"] for c in chunks]
-vectors = model.encode(
-    texts, normalize_embeddings=True, batch_size=BATCH, show_progress_bar=True
-)
+def main() -> int:
+    src = Path("data/interim/chunks_enriched.json")
+    if not src.exists():
+        print("missing chunks_enriched.json - run extract_metadata.py first")
+        return 1
+    chunks = json.loads(src.read_text())
+    print(f"Loaded {len(chunks)} chunks")
 
-for start in range(0, len(chunks), UPSERT_BATCH):
-    window = list(zip(chunks[start:start + UPSERT_BATCH],
-                      vectors[start:start + UPSERT_BATCH]))
-    client.upsert(
+    model = SentenceTransformer(MODEL_NAME, device="mps")
+    client = QdrantClient(url="http://localhost:6333")
+
+    if client.collection_exists(COLLECTION):
+        client.delete_collection(COLLECTION)
+    client.create_collection(
         COLLECTION,
-        points=[
-            models.PointStruct(id=start + i, vector=v.tolist(), payload=c)
-            for i, (c, v) in enumerate(window)
-        ],
+        vectors_config=models.VectorParams(
+            size=VECTOR_SIZE, distance=models.Distance.COSINE
+        ),
     )
 
-count = client.count(COLLECTION, exact=True).count
-print(f"\nIndexed {len(chunks)} chunks into Qdrant (collection '{COLLECTION}' "
-      f"reports {count} points)")
+    texts = [embed_text(c) for c in chunks]
+    vectors = model.encode(texts, normalize_embeddings=True,
+                           batch_size=BATCH, show_progress_bar=True)
+
+    for start in range(0, len(chunks), UPSERT_BATCH):
+        window = list(zip(chunks[start:start + UPSERT_BATCH],
+                          vectors[start:start + UPSERT_BATCH],
+                          texts[start:start + UPSERT_BATCH]))
+        client.upsert(
+            COLLECTION,
+            points=[
+                models.PointStruct(id=start + i, vector=v.tolist(),
+                                   payload={**c, "embed_text": t})
+                for i, (c, v, t) in enumerate(window)
+            ],
+        )
+
+    for field in INDEXED_FIELDS:
+        client.create_payload_index(
+            COLLECTION, field_name=field,
+            field_schema=models.PayloadSchemaType.KEYWORD,
+        )
+    print(f"payload indexes: {', '.join(INDEXED_FIELDS)}")
+
+    count = client.count(COLLECTION, exact=True).count
+    print(f"\nIndexed {len(chunks)} chunks into Qdrant "
+          f"(collection '{COLLECTION}' reports {count} points)")
+    if count != len(chunks):
+        print("WARNING: point count does not match chunk count")
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
