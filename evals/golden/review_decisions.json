@@ -1,0 +1,12 @@
+{
+  "_provenance": "Manual review of the 120 sampled questions in evals/golden/to_review.jsonl, performed by Claude (an AI) - not by an attorney and not by the repository owner. Method: 22 questions flagged by automated heuristics (short answer, answer starting mid-sentence, gold chunk missing category vocabulary, more than 3 gold chunks) were read in full alongside their gold answer and gold chunk text; a random sample of 12 unflagged questions was also read to check the unflagged bucket. Most flags were false positives - dates are legitimately short, and 'no less than 50%' is a minimum commitment my keyword list missed. Cite as AI-reviewed, not human-verified.",
+  "_key_format": "doc_id|category  (stable across regeneration; question ids are reassigned each run)",
+  "delete": {
+    "cuad_SPARKLINGSPRINGWATERHOLDINGSLTD_07_03_2002-EX-10.13-SOFTWARE_LICENSE_AND_MAINTENANCE_AGREEMENT|Agreement Date": "gold_answer is an unfilled blank ('____ day of May, 2000') - the contract was never dated, so there is no answer to score against",
+    "cuad_VERICELCORP_08_06_2019-EX-10.10-SUPPLY_AGREEMENT|Warranty Duration": "question asks how long the warranty lasts; the annotated answer is a non-conforming-product rejection window, which does not answer it"
+  },
+  "flag_fragment": {
+    "cuad_ASHWORTHINC_01_29_1999-EX-10._D_-PROMOTION_AGREEMENT_AND_NANTZ_COMMUNICATIONS_INC.|Change Of Control": "answer begins mid-sentence ('after Nantz Communications has received notice...') - valid for retrieval scoring, unusable as an answer reference",
+    "cuad_ParatekPharmaceuticalsInc_20170505_10-KA_EX-10.29_10323872_EX-10.29_Outsourcing_Agreement|Minimum Commitment": "answer begins mid-word ('n case of an order volume') - the offset lands one character inside 'In'"
+  }
+}

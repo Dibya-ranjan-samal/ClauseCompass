@@ -1,0 +1,83 @@
+{
+  "corpus_wide": {
+    "config": "corpus_wide",
+    "git_sha": "4a83a6c",
+    "top_k": 50,
+    "timestamp": "2026-09-01T21:07:13",
+    "aggregate": {
+      "recall@5": 0.3632,
+      "recall@10": 0.4526,
+      "recall@50": 0.5849,
+      "hit@5": 0.4375,
+      "hit@10": 0.5156,
+      "mrr": 0.3148,
+      "ndcg@5": 0.2892,
+      "n_scored": 128,
+      "n_excluded_no_gold": 20,
+      "latency_p50_ms": 26.4,
+      "latency_p95_ms": 39.9
+    },
+    "by_type": {
+      "multi_hop": {
+        "n": 4,
+        "recall@5": 0.625,
+        "recall@50": 1.0,
+        "mrr": 0.875
+      },
+      "near_miss": {
+        "n": 6,
+        "recall@5": 0.333,
+        "recall@50": 0.417,
+        "mrr": 0.341
+      },
+      "single_hop": {
+        "n": 118,
+        "recall@5": 0.356,
+        "recall@50": 0.579,
+        "mrr": 0.294
+      }
+    },
+    "run_file": "runs/20260901-210713-corpus_wide.json"
+  },
+  "doc_scoped": {
+    "config": "doc_scoped",
+    "git_sha": "4a83a6c",
+    "top_k": 50,
+    "timestamp": "2026-09-01T21:07:27",
+    "aggregate": {
+      "recall@5": 0.5751,
+      "recall@10": 0.7107,
+      "recall@50": 0.9789,
+      "hit@5": 0.6797,
+      "hit@10": 0.7969,
+      "mrr": 0.4421,
+      "ndcg@5": 0.4246,
+      "n_scored": 128,
+      "n_excluded_no_gold": 20,
+      "latency_p50_ms": 23.7,
+      "latency_p95_ms": 36.6
+    },
+    "by_type": {
+      "multi_hop": {
+        "n": 4,
+        "recall@5": 0.625,
+        "recall@50": 1.0,
+        "mrr": 0.875
+      },
+      "near_miss": {
+        "n": 6,
+        "recall@5": 0.5,
+        "recall@50": 1.0,
+        "mrr": 0.411
+      },
+      "single_hop": {
+        "n": 118,
+        "recall@5": 0.577,
+        "recall@50": 0.977,
+        "mrr": 0.429
+      }
+    },
+    "run_file": "runs/20260901-210727-doc_scoped.json"
+  },
+  "_note": "Dense-only baseline, BAAI/bge-small-en-v1.5 over 18,280 clause chunks. Per-question detail lives in the run files under runs/. Aggregates exclude the 20 questions with no gold chunks (18 unanswerable + 2 aggregation), since every metric returns 1.0 for empty gold."
+}

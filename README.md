@@ -3,9 +3,9 @@
 Question answering over real commercial contracts, with citations you can verify
 against the source text.
 
-**Status: Day 2 of a 7-day build.** The pipeline runs end to end and the data is
-in place. Retrieval quality is **not yet measured** — the eval harness is Day 3,
-and no quality claim in this README goes beyond what has actually been measured.
+**Status: Day 3 of a 7-day build.** The pipeline runs end to end, the data is in
+place, and retrieval is now **measured** against a 148-question golden eval set.
+No quality claim in this README goes beyond what has actually been measured.
 
 ---
 
@@ -69,6 +69,50 @@ recitals and dates. Because CUAD supplies character-level answer offsets, the
 damage was measurable exactly: 16.6% of annotated answers existed in no chunk, so
 retrieval recall was capped at 83.4% before any eval existed.
 
+### Retrieval baseline (dense only, `BAAI/bge-small-en-v1.5`)
+
+Scored on 148 golden questions; the 20 with no gold chunks (18 unanswerable,
+2 aggregation) are excluded from aggregates because every metric returns 1.0 for
+empty gold.
+
+| Config | recall@5 | recall@10 | recall@50 | hit@5 | MRR | p95 |
+|---|---|---|---|---|---|---|
+| `corpus_wide` — search all 530 contracts | **0.3632** | 0.4526 | 0.5849 | 0.4375 | 0.3148 | 39.9 ms |
+| `doc_scoped` — filter to the named contract | **0.5751** | 0.7107 | 0.9789 | 0.6797 | 0.4421 | 36.6 ms |
+
+**The two configs have different bottlenecks, and that is the useful finding.**
+Document-scoped, recall@50 is 0.979 against recall@5 of 0.575 — the right chunk
+is retrieved and mis-ranked, which is a **ranking** problem that re-ranking
+should fix. Corpus-wide, recall@50 is only 0.585, so 41% of gold chunks are never
+retrieved at all — a **retrieval** problem that re-ranking cannot touch, since it
+only reorders what was already fetched.
+
+### Golden eval set
+
+| | |
+|---|---|
+| Size | **148** questions across **127** distinct contracts |
+| Composition | 118 single-hop, 18 unanswerable, 6 near-miss traps, 4 multi-hop, 2 aggregation |
+| Unanswerable share | 12% |
+| Generation-stage rejection | 6.3% |
+| Review-stage rejection | 1.7% (2 of 120 sampled) |
+
+Built from CUAD's character-level answer offsets mapped onto chunk ranges. A
+chunk is only gold if it **both** overlaps the annotated span **and** contains
+the answer text — overlap alone proves the arithmetic lines up, not that the text
+survived chunking. Only 3 of 4,256 generated questions failed that check, a
+direct dividend of the Day 2 preamble fix.
+
+Questions are **entity-qualified** ("Under the *Adams Golf Endorsement*
+agreement, which state's law governs it?"). The generic CUAD phrasing is
+byte-identical across all 530 contracts, which makes corpus-wide retrieval
+mathematically impossible — measured at hit@5 = 0/30. Naming the contract raises
+that to 4/30, giving a baseline that can actually move.
+
+The 18 unanswerable questions are **verified**, not assumed: each ships with the
+terms that must be absent, and is only assigned to a contract where none of them
+appear anywhere in the full text. Independently re-checked: 0 leaks.
+
 ### Metadata extraction
 
 | Field | Coverage (530 docs) | Accuracy |
@@ -118,6 +162,19 @@ Read these before reusing any number.
 - **Retrieval scores are not a quality signal.** Random chunk pairs in this
   corpus average 0.640 cosine similarity, because every chunk is the same
   register. A score of 0.75 means "is legalese", not "is relevant".
+- **The golden set is CUAD-shaped.** 118 of 148 questions come from CUAD's 41
+  annotation categories (20 templated, 21 not), so it reflects what attorneys
+  chose to annotate rather than the full space of contract questions.
+- **The eval set is AI-reviewed, not attorney-verified.** CUAD's clause spans are
+  attorney-reviewed; the sampling review, the 30 hard cases and every
+  keep/delete decision are mine. `evals/golden/review_decisions.json` records
+  the method in its `_provenance` field.
+- **Entity-qualified questions are an intervention.** Real users would not always
+  name the contract, so `corpus_wide` measures retrieval *given a named
+  contract* — easier than a cold query, harder than document-scoped.
+- **Hard-case samples are small.** near-miss n=6, multi-hop n=4, aggregation n=2.
+  Directional only. Also, 0 of 6 traps beat the gold chunk, so that category is
+  not yet discriminating much.
 
 ---
 
@@ -136,7 +193,12 @@ uv run python build_corpus.py         # merge into documents.json
 uv run python chunk_structural.py     # 18,280 clause chunks
 uv run python extract_metadata.py     # metadata + chunks_enriched.json  (~90 min)
 uv run python index.py                # embed + index + payload indexes  (~5 min)
-uv run python eval_metadata.py        # accuracy report
+uv run python eval_metadata.py        # metadata accuracy report
+
+uv run python build_golden.py                              # 148-question golden set
+uv run pytest tests/ -q                                    # metric unit tests
+uv run python -m clausecompass.eval.runner --config both   # retrieval baseline
+
 uv run python ask.py "your question"
 ```
 
@@ -160,8 +222,14 @@ files, which are not.
 | `index.py` | embedding + Qdrant indexing + payload indexes |
 | `ask.py` | retrieval + cited generation, with `--doc` scoping |
 | `compare_day1_day2.py` | structural comparison against Day 1 |
+| `build_golden.py` | golden eval set: generate, stratify, review, hard cases, merge |
+| `src/clausecompass/eval/metrics.py` | recall@k, hit@k, MRR, nDCG |
+| `src/clausecompass/eval/runner.py` | eval runner, `corpus_wide` and `doc_scoped` |
+| `evals/golden/golden.jsonl` | the eval set — the most valuable artifact here |
+| `evals/baseline.json` | recorded dense-only baseline |
 | `notes/day1-explained.md` | how the Day 1 stack works, from scratch |
 | `notes/day2-explained.md` | how the Day 2 stack works, plus every failure and fix |
+| `notes/day3-explained.md` | eval sets and metrics from scratch, plus F18-F20 |
 | `notes/day1-observations.md` | Day 1 root-cause analysis |
 
 ## Roadmap
@@ -170,8 +238,8 @@ files, which are not.
 |---|---|---|
 | 1 | Walking skeleton: parse, chunk, index, ask | ✅ |
 | 2 | CUAD corpus, structural chunking, metadata | ✅ |
-| 3 | Golden eval set + metrics harness | next |
-| 4 | Hybrid retrieval (BM25 + RRF) + cross-encoder re-ranking | |
+| 3 | Golden eval set + metrics harness | ✅ |
+| 4 | Hybrid retrieval (BM25 + RRF) + cross-encoder re-ranking | next |
 | 5 | Grounded generation, faithfulness, refusal accuracy | |
 | 6 | Agentic compliance auditor + observability | |
 | 7 | FastAPI, Docker, CI eval gate, demo | |
