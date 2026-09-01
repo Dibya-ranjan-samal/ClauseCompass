@@ -3,9 +3,11 @@
 Question answering over real commercial contracts, with citations you can verify
 against the source text.
 
-**Status: Day 3 of a 7-day build.** The pipeline runs end to end, the data is in
-place, and retrieval is now **measured** against a 148-question golden eval set.
-No quality claim in this README goes beyond what has actually been measured.
+**Status: Day 4 of a 7-day build.** The pipeline runs end to end and retrieval is
+**measured** against a 148-question golden eval set, with a full ablation of
+hybrid retrieval and cross-encoder re-ranking. No quality claim in this README
+goes beyond what has actually been measured — including the parts that did not
+work.
 
 ---
 
@@ -69,7 +71,63 @@ recitals and dates. Because CUAD supplies character-level answer offsets, the
 damage was measurable exactly: 16.6% of annotated answers existed in no chunk, so
 retrieval recall was capped at 83.4% before any eval existed.
 
-### Retrieval baseline (dense only, `BAAI/bge-small-en-v1.5`)
+### Retrieval ablation
+
+The winning configuration **differs by scope**, which is the main Day 4 finding.
+
+**`doc_scoped`** — filter to the named contract, then retrieve:
+
+| Configuration | R@5 | R@50 | MRR | nDCG@5 | p95 ms |
+|---|---|---|---|---|---|
+| dense only (Day 3 baseline) | 0.575 | 0.979 | 0.442 | 0.425 | 29 |
+| BM25 only | 0.411 | 0.980 | 0.319 | 0.285 | 56 |
+| hybrid RRF | 0.481 | 0.987 | 0.394 | 0.356 | 87 |
+| hybrid + cross-encoder | 0.606 | 0.987 | 0.435 | 0.431 | 12,046 |
+| **hybrid + cross-encoder + entity-stripped query** | **0.762** | 0.987 | **0.657** | **0.646** | 11,599 |
+
+**`corpus_wide`** — search all 18,280 chunks:
+
+| Configuration | R@5 | R@50 | MRR | nDCG@5 | p95 ms |
+|---|---|---|---|---|---|
+| **dense only (still the winner)** | **0.363** | 0.585 | **0.315** | **0.289** | **37** |
+| BM25 only | 0.223 | 0.547 | 0.207 | 0.172 | 58 |
+| hybrid RRF | 0.338 | **0.604** | 0.276 | 0.252 | 94 |
+| hybrid + cross-encoder | 0.331 | 0.604 | 0.263 | 0.243 | 11,080 |
+
+**Corpus-wide did not improve.** BM25 raised the candidate ceiling (recall@50
+0.585 → 0.604) but ranked poorly enough that fusion lowered recall@5, and the
+cross-encoder cannot rank its way out of a pool that is only 60% correct. That
+negative result is kept because it identifies the binding constraint: corpus-wide
+recall@50 is 0.604, so 40% of gold chunks are never retrieved at all.
+
+**The mechanism behind the split.** Golden questions name the contract ("Under
+the *Adams Golf Endorsement* agreement, …"), but only **21%** of gold clauses
+contain that party name. Corpus-wide, the cross-encoder needs the name to
+identify the document; document-scoped, the payload filter already did that, so
+the name is noise competing with clause semantics. Stripping it from the
+re-ranking query is worth **+0.172 recall@5 doc-scoped and −0.173 corpus-wide** —
+the same one-line change, opposite signs. The Day 2 contextual prefix shows the
+same pattern (+0.019 corpus-wide, −0.009 doc-scoped), which is what makes it a
+mechanism rather than noise.
+
+**Per-type recall@5** — BM25 did *not* rescue the near-miss traps, contrary to
+expectation; the cross-encoder did:
+
+| Configuration | single_hop | near_miss | multi_hop |
+|---|---|---|---|
+| dense, doc_scoped | 0.577 | 0.500 | 0.625 |
+| BM25, doc_scoped | 0.421 | **0.250** | 0.354 |
+| hybrid + rerank + strip, doc_scoped | 0.756 | **0.917** | 0.708 |
+
+A near-miss trap is legally *adjacent* language, so it shares vocabulary with the
+question — exactly what lexical matching cannot separate.
+
+**Parameter sweep:** `rrf_k=10` beat the standard 60 (0.356 vs 0.338). Reducing
+BM25 candidates measured monotonically **worse** (0.297 at 5 → 0.356 at 50),
+contradicting the usual "BM25 noise crowds out dense hits" advice — the problem
+was BM25's ordering, not its volume.
+
+### Day 3 dense baseline (for reference)
 
 Scored on 148 golden questions; the 20 with no gold chunks (18 unanswerable,
 2 aggregation) are excluded from aggregates because every metric returns 1.0 for
@@ -173,8 +231,15 @@ Read these before reusing any number.
   name the contract, so `corpus_wide` measures retrieval *given a named
   contract* — easier than a cold query, harder than document-scoped.
 - **Hard-case samples are small.** near-miss n=6, multi-hop n=4, aggregation n=2.
-  Directional only. Also, 0 of 6 traps beat the gold chunk, so that category is
-  not yet discriminating much.
+  Directional only — the 0.917 near-miss result rests on six questions.
+- **The doc-scoped winner is not shippable as-is.** 11.6 s p95 against 29 ms for
+  dense. It needs a smaller cross-encoder, fewer candidates, or quantisation.
+- **BM25 tokenization drops unhyphenated variants.** Keeping compounds intact
+  means `most-favored-nation` scores 0.00 while `most favored nation` scores
+  22.79. No scored question depends on it, so it is recorded rather than fixed.
+- **The `rerank_candidates` sweep was not run** (20/50/100). Three ~20-minute
+  cross-encoder runs to tune a component that is a net loss corpus-wide and
+  already near its ceiling doc-scoped. Deliberately skipped, not overlooked.
 
 ---
 
@@ -197,7 +262,9 @@ uv run python eval_metadata.py        # metadata accuracy report
 
 uv run python build_golden.py                              # 148-question golden set
 uv run pytest tests/ -q                                    # metric unit tests
-uv run python -m clausecompass.eval.runner --config both   # retrieval baseline
+uv run python -m clausecompass.eval.runner --retriever dense --scope both
+uv run python -m clausecompass.eval.runner --retriever hybrid_rerank --scope doc_scoped
+uv run python ablation.py sweep-rrf && uv run python ablation.py table
 
 uv run python ask.py "your question"
 ```
@@ -224,12 +291,16 @@ files, which are not.
 | `compare_day1_day2.py` | structural comparison against Day 1 |
 | `build_golden.py` | golden eval set: generate, stratify, review, hard cases, merge |
 | `src/clausecompass/eval/metrics.py` | recall@k, hit@k, MRR, nDCG |
-| `src/clausecompass/eval/runner.py` | eval runner, `corpus_wide` and `doc_scoped` |
+| `src/clausecompass/eval/runner.py` | eval runner; takes any `Retriever`, both scopes |
+| `src/clausecompass/retrieval/` | `base` (protocol), `dense`, `sparse` (BM25), `fusion` (RRF), `rerank` |
+| `src/clausecompass/config.py` | winning parameters per scope, with the measured reasons |
+| `ablation.py` | parameter sweep and the ablation tables |
 | `evals/golden/golden.jsonl` | the eval set — the most valuable artifact here |
 | `evals/baseline.json` | recorded dense-only baseline |
 | `notes/day1-explained.md` | how the Day 1 stack works, from scratch |
 | `notes/day2-explained.md` | how the Day 2 stack works, plus every failure and fix |
 | `notes/day3-explained.md` | eval sets and metrics from scratch, plus F18-F20 |
+| `notes/day4-explained.md` | BM25, RRF and cross-encoders from scratch, plus F21-F24 |
 | `notes/day1-observations.md` | Day 1 root-cause analysis |
 
 ## Roadmap
@@ -239,7 +310,7 @@ files, which are not.
 | 1 | Walking skeleton: parse, chunk, index, ask | ✅ |
 | 2 | CUAD corpus, structural chunking, metadata | ✅ |
 | 3 | Golden eval set + metrics harness | ✅ |
-| 4 | Hybrid retrieval (BM25 + RRF) + cross-encoder re-ranking | next |
-| 5 | Grounded generation, faithfulness, refusal accuracy | |
+| 4 | Hybrid retrieval (BM25 + RRF) + cross-encoder re-ranking | ✅ |
+| 5 | Grounded generation, faithfulness, refusal accuracy | next |
 | 6 | Agentic compliance auditor + observability | |
 | 7 | FastAPI, Docker, CI eval gate, demo | |

@@ -14,13 +14,20 @@ The prefix is included in the stored `embed_text` so the exact string that
 produced each vector is auditable after the fact.
 """
 
+import argparse
 import json
 from pathlib import Path
 
 from qdrant_client import QdrantClient, models
 from sentence_transformers import SentenceTransformer
 
-COLLECTION = "clauses"
+ap = argparse.ArgumentParser()
+ap.add_argument("--collection", default="clauses")
+ap.add_argument("--no-prefix", action="store_true",
+                help="embed chunk text only, for the Day 4 prefix ablation")
+ARGS = ap.parse_args()
+
+COLLECTION = ARGS.collection
 MODEL_NAME = "BAAI/bge-small-en-v1.5"
 VECTOR_SIZE = 384
 BATCH = 32
@@ -31,7 +38,15 @@ INDEXED_FIELDS = ("contract_type", "governing_law", "source", "doc_id",
 
 def embed_text(c: dict) -> str:
     """Contextual prefix. Kept short: it competes with the clause for the
-    model's 512-token budget."""
+    model's 512-token budget.
+
+    --no-prefix embeds the bare clause, which is the Day 4 ablation arm: Day 2
+    measured that the prefix RAISES mean pairwise chunk similarity by 0.022
+    (every chunk gains the same boilerplate header), but whether that costs
+    retrieval quality was never tested.
+    """
+    if ARGS.no_prefix:
+        return c["text"]
     bits = [f"Contract type: {c.get('contract_type') or 'Unknown'}"]
     if c.get("section_heading"):
         num = c.get("section_number")
