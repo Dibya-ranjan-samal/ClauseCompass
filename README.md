@@ -3,11 +3,10 @@
 Question answering over real commercial contracts, with citations you can verify
 against the source text.
 
-**Status: Day 4 of a 7-day build.** The pipeline runs end to end and retrieval is
-**measured** against a 148-question golden eval set, with a full ablation of
-hybrid retrieval and cross-encoder re-ranking. No quality claim in this README
-goes beyond what has actually been measured — including the parts that did not
-work.
+**Status: Day 5 of a 7-day build.** Retrieval is measured against a 148-question
+golden eval set; answers are validated in code and scored for faithfulness and
+refusal accuracy. No quality claim in this README goes beyond what has actually
+been measured — including the parts that did not work.
 
 ---
 
@@ -145,6 +144,53 @@ should fix. Corpus-wide, recall@50 is only 0.585, so 41% of gold chunks are neve
 retrieved at all — a **retrieval** problem that re-ranking cannot touch, since it
 only reorders what was already fetched.
 
+### Generation: validation, faithfulness and refusal
+
+Answers are JSON with a verbatim quote per claim, and **every claim is validated
+in code** before a user sees it: the cited label must be one we actually
+retrieved, and the quote must string-match its chunk at ≥95%. An answer whose
+every claim fails validation becomes a refusal.
+
+Measured over all 148 golden questions — generator `qwen2.5:3b`, judge
+`qwen2.5:7b`, fully local, $0:
+
+| Metric | Value |
+|---|---|
+| **Correct refusal rate** | **1.000** (18/18 unanswerable refused) |
+| **False answer rate** | **0.000** |
+| Over-refusal rate | 0.469 |
+| **Faithfulness** | **0.493** (hallucination rate 0.507) |
+| **Judge agreement vs 40 hand labels** | **95%** — 1 lenient, 1 strict |
+| Citation validation fires | **64** (60 bad citation, 4 bad quote) |
+| Claims raw → kept | 191 → 127 (33% stripped) |
+| JSON parse failure rate | 0.007 |
+| p95 end-to-end latency | 34.1 s |
+
+**The most important result: the deterministic and semantic checks catch disjoint
+failures.** All 127 kept claims passed verbatim quote validation, and the judge
+still rejected **61 of them (48%)** — the model quotes accurately and then draws a
+conclusion the quote does not support. Shipping only the cheap deterministic check
+would have let the system report "all citations verified" while hallucinating in
+half its claims.
+
+**Over-refusal, attributed rather than assumed.** 61 of 130 answerable questions
+were refused: **57% because the validator stripped every claim** (fabricated
+citations, often contract section numbers like `7.3.1(v)`), 40% because the model
+returned no claims, 1% parse failure. The standard advice — "soften the refusal
+instruction" — would have addressed only the minority and raised the false-answer
+rate from its current zero.
+
+**Model capacity is the bottleneck, not the pipeline** (60-question sample, same judge):
+
+| Generator | Faithfulness | Hallucination | Validator fires | JSON parse fail | p95 |
+|---|---|---|---|---|---|
+| qwen2.5:3b | 0.414 | 0.586 | 36 | 0.000 | 38.7 s |
+| **qwen2.5:7b** | **0.885** | **0.115** | **12** | 0.183 | 347.5 s |
+
+Bigger is not uniformly better: 7b more than doubles faithfulness but is **worse
+at JSON** (18% parse failure vs 0%), and at 347 s p95 on 8 GB RAM it is
+unshippable — swap peaked at 9.3 GB of 10.2 GB.
+
 ### Golden eval set
 
 | | |
@@ -240,6 +286,16 @@ Read these before reusing any number.
 - **The `rerank_candidates` sweep was not run** (20/50/100). Three ~20-minute
   cross-encoder runs to tune a component that is a net loss corpus-wide and
   already near its ceiling doc-scoped. Deliberately skipped, not overlooked.
+- **The hallucination rate is 0.507 on the shipped 3B model.** That is the honest
+  headline. 0.115 with a 7B generator, but on a 60-question sample and at 347 s
+  p95. The pipeline is not the limiting factor; model capacity is.
+- **The 40 judge labels are AI-generated,** not attorney-verified — recorded in
+  `evals/judge_labels.json` under `_provenance`. The 95% agreement figure must
+  travel with every faithfulness number.
+- **The judge is the same model family as the generator** (qwen2.5), which risks
+  shared blind spots. A different family would be a stronger design.
+- **The 7b comparison cannot measure refusal:** its 60-question sample contains no
+  unanswerable questions, which sit at the end of `golden.jsonl`.
 
 ---
 
@@ -265,6 +321,10 @@ uv run pytest tests/ -q                                    # metric unit tests
 uv run python -m clausecompass.eval.runner --retriever dense --scope both
 uv run python -m clausecompass.eval.runner --retriever hybrid_rerank --scope doc_scoped
 uv run python ablation.py sweep-rrf && uv run python ablation.py table
+
+uv run python precompute_hits.py rerank                       # retrieve once (~20 min)
+uv run python -m clausecompass.eval.gen_runner --config final # generation eval
+uv run python judge_agreement.py score                        # judge validation
 
 uv run python ask.py "your question"
 ```
@@ -295,12 +355,19 @@ files, which are not.
 | `src/clausecompass/retrieval/` | `base` (protocol), `dense`, `sparse` (BM25), `fusion` (RRF), `rerank` |
 | `src/clausecompass/config.py` | winning parameters per scope, with the measured reasons |
 | `ablation.py` | parameter sweep and the ablation tables |
+| `src/clausecompass/generation/llm.py` | Ollama access + SQLite response cache |
+| `src/clausecompass/generation/answer.py` | grounded prompt + deterministic claim validation |
+| `src/clausecompass/eval/gen_runner.py` | refusal, validation and faithfulness metrics |
+| `precompute_hits.py` | retrieve the golden set once so generation evals are pure LLM work |
+| `judge_agreement.py` | sample and score the judge against hand labels |
+| `evals/judge_labels.json` | 40 hand-labelled claim/excerpt pairs + provenance |
 | `evals/golden/golden.jsonl` | the eval set — the most valuable artifact here |
 | `evals/baseline.json` | recorded dense-only baseline |
 | `notes/day1-explained.md` | how the Day 1 stack works, from scratch |
 | `notes/day2-explained.md` | how the Day 2 stack works, plus every failure and fix |
 | `notes/day3-explained.md` | eval sets and metrics from scratch, plus F18-F20 |
 | `notes/day4-explained.md` | BM25, RRF and cross-encoders from scratch, plus F21-F24 |
+| `notes/day5-explained.md` | grounded generation and judge validation, plus F25-F28 |
 | `notes/day1-observations.md` | Day 1 root-cause analysis |
 
 ## Roadmap
@@ -311,6 +378,6 @@ files, which are not.
 | 2 | CUAD corpus, structural chunking, metadata | ✅ |
 | 3 | Golden eval set + metrics harness | ✅ |
 | 4 | Hybrid retrieval (BM25 + RRF) + cross-encoder re-ranking | ✅ |
-| 5 | Grounded generation, faithfulness, refusal accuracy | next |
-| 6 | Agentic compliance auditor + observability | |
+| 5 | Grounded generation, faithfulness, refusal accuracy | ✅ |
+| 6 | Agentic compliance auditor + observability | next |
 | 7 | FastAPI, Docker, CI eval gate, demo | |

@@ -35,3 +35,6 @@ models/
 
 # macOS Finder metadata
 .DS_Store
+
+# Regenerable LLM response cache
+data/llm_cache.db
