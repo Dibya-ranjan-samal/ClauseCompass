@@ -38,3 +38,6 @@ models/
 
 # Regenerable LLM response cache
 data/llm_cache.db
+
+# Trace store (regenerable)
+data/traces.db

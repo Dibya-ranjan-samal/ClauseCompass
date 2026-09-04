@@ -1,0 +1,36 @@
+{
+  "policy": "Every agreement must include a cap on liability.",
+  "plan": {
+    "policy_restated": "Every agreement must include a cap on liability to protect the organization from excessive financial damages.",
+    "required_elements": [
+      "liability cap",
+      "financial damages limitation"
+    ],
+    "search_queries": [
+      "include liability cap",
+      "require financial damages limitation",
+      "include limitation on financial damages"
+    ],
+    "decoy_queries": [
+      "confidentiality obligations",
+      "security incident cooperation"
+    ],
+    "compliance_criteria": "The presence of a clause that explicitly limits financial damages in an agreement."
+  },
+  "findings": [
+    {
+      "doc_id": "contract_01",
+      "status": "silent",
+      "severity": "low",
+      "rationale": "The contract does not explicitly mention a liability cap or financial damages limitation. Section 8.2 mentions insurance coverage but does not specify a financial damages limitation.",
+      "citations": [
+        "contract_01::c032::s8.2::p0"
+      ],
+      "quote": null
+    }
+  ],
+  "n_contracts_examined": 1,
+  "duration_s": 25.3,
+  "total_cost_usd": 0.0,
+  "aborted": {}
+}

@@ -1,0 +1,148 @@
+{
+  "policy": "Every agreement must include a cap on liability.",
+  "plan": {
+    "policy_restated": "Every agreement must include a cap on liability to protect the organization from excessive financial damages.",
+    "required_elements": [
+      "liability cap",
+      "financial damages limitation"
+    ],
+    "search_queries": [
+      "include liability cap",
+      "require financial damages limitation",
+      "include limitation on financial damages"
+    ],
+    "decoy_queries": [
+      "confidentiality obligations",
+      "security incident cooperation"
+    ],
+    "compliance_criteria": "The presence of a clause that explicitly limits financial damages in an agreement."
+  },
+  "findings": [
+    {
+      "doc_id": "cuad_2ThemartComInc_19990826_10-12G_EX-10.10_6700288_EX-10.10_Co-Branding_Agreement__Agency_Agreement",
+      "status": "silent",
+      "severity": "low",
+      "rationale": "The contract includes a limitation on liability clause, but it does not explicitly mention a financial damages limitation or a liability cap.",
+      "citations": [
+        "cuad_2ThemartComInc_19990826_10-12G_EX-10.10_6700288_EX-10.10_Co-Branding_Agreement__Agency_Agreement::c009::s10::p0"
+      ],
+      "quote": null
+    },
+    {
+      "doc_id": "cuad_ACCURAYINC_09_01_2010-EX-10.31-DISTRIBUTOR_AGREEMENT",
+      "status": "silent",
+      "severity": "none",
+      "rationale": "The contract includes a liability cap, but it does not address financial damages limitation.",
+      "citations": [
+        "cuad_ACCURAYINC_09_01_2010-EX-10.31-DISTRIBUTOR_AGREEMENT::c004::s11.3::p0"
+      ],
+      "quote": null
+    },
+    {
+      "doc_id": "cuad_ADAPTIMMUNETHERAPEUTICSPLC_04_06_2017-EX-10.11-STRATEGIC_ALLIANCE_AGREEMENT",
+      "status": "silent",
+      "severity": "high",
+      "rationale": "No clauses found addressing liability cap or financial damages limitation",
+      "citations": [
+        "cuad_ADAPTIMMUNETHERAPEUTICSPLC_04_06_2017-EX-10.11-STRATEGIC_ALLIANCE_AGREEMENT::c000::sNA::p13",
+        "cuad_ADAPTIMMUNETHERAPEUTICSPLC_04_06_2017-EX-10.11-STRATEGIC_ALLIANCE_AGREEMENT::c000::sNA::p18",
+        "cuad_ADAPTIMMUNETHERAPEUTICSPLC_04_06_2017-EX-10.11-STRATEGIC_ALLIANCE_AGREEMENT::c000::sNA::p16",
+        "cuad_ADAPTIMMUNETHERAPEUTICSPLC_04_06_2017-EX-10.11-STRATEGIC_ALLIANCE_AGREEMENT::c000::sNA::p3"
+      ],
+      "quote": null
+    },
+    {
+      "doc_id": "cuad_ADIANUTRITION_INC_04_01_2005-EX-10.D2-RESELLER_AGREEMENT",
+      "status": "silent",
+      "severity": "none",
+      "rationale": "No relevant clauses found",
+      "citations": [
+        "cuad_ADIANUTRITION_INC_04_01_2005-EX-10.D2-RESELLER_AGREEMENT::c008::s6::p0",
+        "cuad_ADIANUTRITION_INC_04_01_2005-EX-10.D2-RESELLER_AGREEMENT::c006::s4::p0",
+        "cuad_ADIANUTRITION_INC_04_01_2005-EX-10.D2-RESELLER_AGREEMENT::c009::s5::p0",
+        "cuad_ADIANUTRITION_INC_04_01_2005-EX-10.D2-RESELLER_AGREEMENT::c005::s4::p0"
+      ],
+      "quote": ""
+    },
+    {
+      "doc_id": "cuad_ADMA_BioManufacturing_LLC_-_Amendment_3_to_Manufacturing_Agreement",
+      "status": "violation",
+      "severity": "medium",
+      "rationale": "The contract includes a limitation of liability clause, but it does not specify a financial damages limitation cap.",
+      "citations": [
+        "cuad_ADMA_BioManufacturing_LLC_-_Amendment_3_to_Manufacturing_Agreement::c013::sNA::p0"
+      ],
+      "quote": "Except for the obligation of indemnity as set forth in Section 6.1 (c) with respect to claims by third parties for personal injury, illness or death (but not including property damage) resulting from the manufacture of the Product by BPC, aggregate damages for which ADMA shall be liable to Sanofi Pasteur hereunder, including without limitation costs of Source Plasma yield loss and/or rejected Batches, shall not exceed [***]. All claims by Sanofi Pasteur for breach or default under this Agreement shall be brought within [***] year after the cause of action comes into existence or otherwise shall be waived."
+    },
+    {
+      "doc_id": "cuad_ABILITYINC_06_15_2020-EX-4.25-SERVICES_AGREEMENT",
+      "status": "silent",
+      "severity": "low",
+      "rationale": "No explicit clause addressing liability cap or financial damages limitation was found.",
+      "citations": [
+        "cuad_ABILITYINC_06_15_2020-EX-4.25-SERVICES_AGREEMENT::c007::s8::p0",
+        "cuad_ABILITYINC_06_15_2020-EX-4.25-SERVICES_AGREEMENT::c004::s5::p1",
+        "cuad_ABILITYINC_06_15_2020-EX-4.25-SERVICES_AGREEMENT::c005::s6::p0"
+      ],
+      "quote": null
+    },
+    {
+      "doc_id": "cuad_ACCELERATEDTECHNOLOGYS_HOLDINGCORP_04_24_2003-EX-10.13-JOINT_VENTURE_AGREEMENT",
+      "status": "silent",
+      "severity": "high",
+      "rationale": "No clauses found addressing liability caps or financial damages limitations.",
+      "citations": [],
+      "quote": null
+    },
+    {
+      "doc_id": "cuad_ADAMSGOLFINC_03_21_2005-EX-10.17-ENDORSEMENT_AGREEMENT",
+      "status": "silent",
+      "severity": "low",
+      "rationale": "The contract includes indemnity clauses but does not explicitly mention a liability cap.",
+      "citations": [
+        "cuad_ADAMSGOLFINC_03_21_2005-EX-10.17-ENDORSEMENT_AGREEMENT::c008::s14::p0",
+        "cuad_ADAMSGOLFINC_03_21_2005-EX-10.17-ENDORSEMENT_AGREEMENT::c014::s21::p0"
+      ],
+      "quote": null
+    },
+    {
+      "doc_id": "cuad_ADUROBIOTECH_INC_06_02_2020-EX-10.7-CONSULTING_AGREEMENT",
+      "status": "silent",
+      "severity": "low",
+      "rationale": "No explicit clause addressing liability cap or financial damages limitation.",
+      "citations": [
+        "cuad_ADUROBIOTECH_INC_06_02_2020-EX-10.7-CONSULTING_AGREEMENT::c010::s10::p0",
+        "cuad_ADUROBIOTECH_INC_06_02_2020-EX-10.7-CONSULTING_AGREEMENT::c008::s8::p0",
+        "cuad_ADUROBIOTECH_INC_06_02_2020-EX-10.7-CONSULTING_AGREEMENT::c007::s7::p0",
+        "cuad_ADUROBIOTECH_INC_06_02_2020-EX-10.7-CONSULTING_AGREEMENT::c003::s3::p0"
+      ],
+      "quote": ""
+    },
+    {
+      "doc_id": "cuad_ADUROBIOTECH_INC_06_02_2020-EX-10.7-CONSULTING_AGREEMENT_1",
+      "status": "silent",
+      "severity": "low",
+      "rationale": "The contract contains a miscellaneous section that does not address liability or financial damages limitations.",
+      "citations": [
+        "cuad_ADUROBIOTECH_INC_06_02_2020-EX-10.7-CONSULTING_AGREEMENT_1::c010::s10::p0"
+      ],
+      "quote": null
+    },
+    {
+      "doc_id": "cuad_AIRTECHINTERNATIONALGROUPINC_05_08_2000-EX-10.4-FRANCHISE_AGREEMENT",
+      "status": "silent",
+      "severity": "low",
+      "rationale": "The clause discusses insurance policies and their requirements, but does not explicitly mention a 'liability cap' or 'financial damages limitation'.",
+      "citations": [
+        "cuad_AIRTECHINTERNATIONALGROUPINC_05_08_2000-EX-10.4-FRANCHISE_AGREEMENT::c022::s9::p0"
+      ],
+      "quote": ""
+    }
+  ],
+  "n_contracts_examined": 12,
+  "duration_s": 262.7,
+  "total_cost_usd": 0.0,
+  "aborted": {
+    "cuad_AFSALABANCORPINC_08_01_1996-EX-1.1-AGENCY_AGREEMENT": "max_steps"
+  }
+}

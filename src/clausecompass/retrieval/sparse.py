@@ -13,6 +13,8 @@ from pathlib import Path
 import numpy as np
 from rank_bm25 import BM25Okapi
 
+from clausecompass.obs.trace import tracer
+
 from .base import Hit
 
 # Keep hyphenated legal terms intact: "non-compete" must not become two useless
@@ -46,6 +48,10 @@ class BM25Retriever:
             self.by_doc.setdefault(did, []).append(i)
 
     def search(self, query: str, k: int, doc_id: str | None = None) -> list[Hit]:
+        with tracer.span("retrieve.sparse", doc_id=doc_id, k=k):
+            return self._search(query, k, doc_id)
+
+    def _search(self, query, k, doc_id):
         scores = self.bm25.get_scores(tokenize(query))
         idx = np.asarray(self.by_doc.get(doc_id, [])) if doc_id else None
         if idx is not None:

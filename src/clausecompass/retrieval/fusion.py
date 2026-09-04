@@ -1,5 +1,7 @@
 """Reciprocal Rank Fusion of several ranked lists."""
 
+from clausecompass.obs.trace import tracer
+
 from .base import Hit
 
 
@@ -36,4 +38,7 @@ class HybridRetriever:
         # disabled the knob (every per_k value scored identically to 4 decimals).
         d = self.dense.search(query, max(self.per_k, k), doc_id)
         s = self.sparse.search(query, self.per_k, doc_id)
-        return rrf_fuse([d, s], k=self.rrf_k, top_n=k)
+        with tracer.span("fuse.rrf", rrf_k=self.rrf_k) as sp:
+            out = rrf_fuse([d, s], k=self.rrf_k, top_n=k)
+            sp["n_dense"], sp["n_sparse"], sp["n_fused"] = len(d), len(s), len(out)
+            return out

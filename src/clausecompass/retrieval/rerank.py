@@ -9,6 +9,7 @@ retriever's recall@candidates. That ceiling is the thing to watch.
 
 import re
 
+from clausecompass.obs.trace import tracer
 from sentence_transformers import CrossEncoder
 
 from .base import Hit
@@ -79,11 +80,18 @@ class RerankingRetriever:
         cands = self.base.search(query, max(self.candidates, k), doc_id)
         if not cands:
             return []
-        # retrieval keeps the entity qualifier; re-ranking drops it
-        rq = ENTITY_PREFIX.sub("", query) if self.strip_entity else query
-        scores = self._score(rq, cands)
-        ranked = sorted(zip(scores, cands), key=lambda t: -t[0])
+        with tracer.span("rerank", n_candidates=len(cands),
+                         strip_entity=self.strip_entity) as sp:
+            # retrieval keeps the entity qualifier; re-ranking drops it
+            rq = ENTITY_PREFIX.sub("", query) if self.strip_entity else query
+            scores = self._score(rq, cands)
+            ranked = sorted(zip(scores, cands), key=lambda t: -t[0])
+            # before/after ranks of the final top-5: the single most useful
+            # debugging attribute in the whole trace.
+            before = {h.chunk_id: i for i, h in enumerate(cands, 1)}
+            sp["moves"] = [{"chunk_id": h.chunk_id, "was": before[h.chunk_id],
+                            "now": i} for i, (_, h) in enumerate(ranked[:5], 1)]
         # Reorder only - never drop. Anything beyond the re-ranked window keeps
         # its original order so recall@50 is provably unchanged.
-        head = [Hit(h.chunk_id, float(s), h.text, h.metadata) for s, h in ranked]
-        return head[:k]
+            head = [Hit(h.chunk_id, float(s), h.text, h.metadata) for s, h in ranked]
+            return head[:k]
