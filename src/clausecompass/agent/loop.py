@@ -117,8 +117,8 @@ def audit_one(doc_id: str, policy: str, plan: PolicyPlan, toolbox: ToolBox, llm,
 
                 if not call or "tool" not in call:
                     s["no_tool_call"] = True
-                    convo += (f"\n\nYour reply was not a JSON tool call. "
-                              f"Reply with one JSON object only.")
+                    convo += ("\n\nYour reply was not a JSON tool call. "
+                              "Reply with one JSON object only.")
                     continue
 
                 name = call["tool"]

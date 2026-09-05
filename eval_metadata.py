@@ -94,8 +94,8 @@ def make_labels_todo(n: int, seed: int) -> None:
         NAMES = re.compile(r"laws?\s+of\s*(?:the\s*)?"
                            r"(?:State|Commonwealth|Province|District)?\s*of?\s*[A-Z]")
         cands = [m.group(0).replace("\n", " ")
-                 for m in re.finditer(rf".{{0,90}}{trig}.{{0,400}}", d["text"], re.I)]
-        def rank(e):
+                 for m in re.finditer(rf".{{0,90}}{trig}.{{0,400}}", d["text"], re.IGNORECASE)]
+        def rank(e, NAMES=NAMES):
             return (2 if NAMES.search(e) else 0) + \
                    (1 if re.search(r"(?i)govern(?:ed|ing)\s+law", e) else 0)
         excerpts = sorted(cands, key=rank, reverse=True)[:3]

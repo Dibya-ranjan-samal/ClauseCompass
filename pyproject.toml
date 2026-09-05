@@ -38,3 +38,13 @@ dev = [
     "pytest>=9.1.1",
     "ruff>=0.16.4",
 ]
+
+[tool.ruff.lint]
+# Rules deliberately disabled, with the reason:
+#   BLE001 - `except Exception` in fallback paths is intentional. An eval over
+#            148 questions must not die because one judge reply was malformed;
+#            those handlers record the failure and continue.
+#   SIM115 - short-lived reads in scripts; a context manager buys nothing.
+#   RUF059 - unpacked-but-unused values in tests document the tuple shape.
+#   PLC3002 - one immediately-invoked lambda in a test helper.
+ignore = ["BLE001", "SIM115", "RUF059", "PLC3002"]

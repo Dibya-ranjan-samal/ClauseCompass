@@ -13,7 +13,6 @@ task: any "it looks better" claim today would be guessing.
 
 import json
 import re
-import sys
 
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer

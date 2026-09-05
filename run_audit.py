@@ -80,7 +80,7 @@ def cmd_inject(a):
     from clausecompass.agent.loop import run_audit
     retriever, llm, _ = build(a.model)
     chunks = load_chunks()
-    target = sorted({c["doc_id"] for c in chunks})[0]
+    target = min(c["doc_id"] for c in chunks)
     poisoned = [{**c, "text": c["text"] + POISON} if c["doc_id"] == target else c
                 for c in chunks]
 
@@ -158,7 +158,7 @@ def cmd_eval(a):
                    if f["citations"] and all(c in chunk_ids for c in f["citations"]))
 
     print(f"policy: {rep['policy']}")
-    print(f"ground truth: CUAD 'Cap On Liability' annotations (attorney-reviewed)")
+    print("ground truth: CUAD 'Cap On Liability' annotations (attorney-reviewed)")
     print(f"n = {len(pairs)} contracts\n")
     print(f"  clause-detection precision {prec:.2f}   recall {rec:.2f}")
     print(f"  confusion  tp={tp} fp={fp} fn={fn} tn={tn}")

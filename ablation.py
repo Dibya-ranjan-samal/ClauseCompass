@@ -39,8 +39,8 @@ def sweep_rrf():
 
 def sweep_cands():
     from clausecompass.eval.runner import build, run
-    from clausecompass.retrieval.rerank import RerankingRetriever
     from clausecompass.retrieval.fusion import HybridRetriever
+    from clausecompass.retrieval.rerank import RerankingRetriever
     from clausecompass.retrieval.sparse import BM25Retriever
     hyb = HybridRetriever(build("dense"), BM25Retriever(), rrf_k=60)
     # More candidates raises the re-ranker's ceiling but costs latency linearly.

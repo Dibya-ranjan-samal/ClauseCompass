@@ -54,7 +54,7 @@ def contract_type_from_title(title: str) -> str:
     t = re.sub(r"\.txt$", "", title.strip())
     tail = re.split(r"[-_]", t)[-1].strip()
     tail = re.sub(r"\d+$", "", tail).strip()          # 'Agreement2' -> 'Agreement'
-    tail = re.sub(r"\s*AGREEMENT\s*$", "", tail, flags=re.I).strip()
+    tail = re.sub(r"\s*AGREEMENT\s*$", "", tail, flags=re.IGNORECASE).strip()
     return tail.upper() or "UNKNOWN"
 
 

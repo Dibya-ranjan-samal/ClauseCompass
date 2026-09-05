@@ -1,0 +1,63 @@
+# Retrieval-only eval gate: no LLM calls, so it is free and fast.
+# Generation eval (faithfulness, refusal) needs a local model and runs manually.
+#
+# NOT YET EXECUTED - this repository had no remote when the workflow was
+# written, so it has never run. It is wired to the real entrypoints and the real
+# nested evals/baseline.json, and runs on the first push.
+name: eval-gate
+on: [pull_request, push]
+
+jobs:
+  retrieval-eval:
+    runs-on: ubuntu-latest
+    services:
+      qdrant:
+        image: qdrant/qdrant:latest
+        ports: ["6333:6333"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with: {enable-cache: true}
+      - run: uv sync
+
+      - name: Cache HF models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ hashFiles('uv.lock') }}
+
+      - name: Unit tests
+        run: uv run pytest tests/ -q
+
+      # data/interim is gitignored (29 MB), so rebuild it from the committed
+      # EDGAR HTML. CUAD is fetched only when the cache misses.
+      - name: Rebuild corpus
+        run: |
+          mkdir -p data/external
+          curl -sL -o data/external/CUAD_v1.json \
+            https://huggingface.co/datasets/theatticusproject/cuad/resolve/main/CUAD_v1/CUAD_v1.json
+          uv run python ingest_cuad.py
+          uv run python build_corpus.py
+          uv run python chunk_structural.py
+
+      - name: Index
+        run: uv run python index.py
+
+      - name: Retrieval eval
+        run: uv run python -m clausecompass.eval.runner --retriever dense --scope doc_scoped --config ci
+
+      - name: Gate on regression
+        run: |
+          uv run python - <<'PY'
+          import glob, json, sys
+          run = sorted(glob.glob("runs/*ci-doc_scoped.json"),
+                       key=lambda p: __import__("os").path.getmtime(p))[-1]
+          cur = json.load(open(run))["aggregate"]
+          base = json.load(open("evals/baseline.json"))["day3_dense_baseline"]["doc_scoped"]
+          for metric, tol in (("recall@5", 0.02), ("mrr", 0.02)):
+              delta = cur[metric] - base[metric]
+              print(f"{metric}: {cur[metric]:.4f} vs baseline {base[metric]:.4f} ({delta:+.4f})")
+              if delta < -tol:
+                  print(f"::error::{metric} regressed by more than {tol}")
+                  sys.exit(1)
+          PY

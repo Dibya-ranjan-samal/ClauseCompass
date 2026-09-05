@@ -9,8 +9,9 @@ retriever's recall@candidates. That ceiling is the thing to watch.
 
 import re
 
-from clausecompass.obs.trace import tracer
 from sentence_transformers import CrossEncoder
+
+from clausecompass.obs.trace import tracer
 
 from .base import Hit
 

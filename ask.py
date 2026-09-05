@@ -7,6 +7,7 @@ Uses a local Ollama model, so no API key is needed. Requires:
 
 import argparse
 import re
+import sys
 
 import httpx
 from qdrant_client import QdrantClient, models
