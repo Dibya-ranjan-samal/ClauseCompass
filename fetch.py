@@ -5,6 +5,7 @@ https://www.sec.gov/edgar/search/ uses, keeps only EX-10.x exhibits, and
 downloads them to data/raw/ as contract_01.html, contract_02.html, ...
 """
 
+import os
 import re
 import sys
 import time
@@ -12,8 +13,11 @@ from pathlib import Path
 
 import httpx
 
-# SEC requires a declared contact in the User-Agent for automated access.
-UA = "ClauseCompass research dibyaranjansamal510@gmail.com"
+# SEC requires a declared contact in the User-Agent for automated access and
+# rate-limits or blocks requests without one. Set SEC_CONTACT to an email
+# address you control:  export SEC_CONTACT="you@example.com"
+CONTACT = os.environ.get("SEC_CONTACT", "").strip()
+UA = f"ClauseCompass research {CONTACT}"
 SEARCH_URL = "https://efts.sec.gov/LATEST/search-index"
 ARCHIVE = "https://www.sec.gov/Archives/edgar/data"
 
@@ -61,6 +65,14 @@ def looks_like_contract(html: str) -> bool:
 
 
 def main() -> int:
+    # Fail loudly rather than sending SEC an empty contact, which gets the IP
+    # rate-limited or blocked partway through a run.
+    if not CONTACT:
+        print('SEC_CONTACT is not set. SEC requires a real contact address in the\n'
+              'User-Agent for automated access. Set it first:\n'
+              '  export SEC_CONTACT="you@example.com"', file=sys.stderr)
+        return 2
+
     saved = 0
     seen_ciks: set[str] = set()   # one contract per filer keeps the corpus diverse
     seen_docs: set[str] = set()   # same exhibit is often attached to several filings

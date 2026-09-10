@@ -148,6 +148,11 @@ flowchart LR
 
 ```bash
 git clone <repo> && cd clausecompass
+
+# SEC requires a real contact address in the User-Agent for automated access.
+# Only needed if you re-run fetch.py; data/raw/ is already committed.
+export SEC_CONTACT="you@example.com"
+
 make setup     # deps, Qdrant, pull qwen2.5:3b and 7b
 make ingest    # CUAD + EDGAR -> chunks + metadata (~90 min)
 make index     # embed + index (~5 min)
@@ -156,7 +161,8 @@ make serve     # API on :8000  ->  http://localhost:8000/docs
 make ui        # Streamlit on :8501
 ```
 
-No API keys. Generation and judging run on local Ollama models.
+No API keys. Generation and judging run on local Ollama models. The only
+environment variable is `SEC_CONTACT`, and only for re-fetching the EDGAR corpus.
 
 ## Stack
 

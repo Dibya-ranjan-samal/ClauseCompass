@@ -7,6 +7,7 @@ setup:            ## deps + Qdrant + pull the local models
 	ollama pull qwen2.5:3b && ollama pull qwen2.5:7b
 
 ingest:           ## CUAD + EDGAR -> chunks + metadata  (~90 min, mostly metadata)
+	@test -n "$$SEC_CONTACT" || echo "note: SEC_CONTACT unset; only needed to re-run fetch.py"
 	uv run python ingest_cuad.py
 	uv run python build_corpus.py
 	uv run python chunk_structural.py
