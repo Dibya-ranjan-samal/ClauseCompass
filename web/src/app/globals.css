@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-2: #f1f1ee;
+  --border: #e3e2dd;
+  --ink: #1b1b19;
+  --ink-2: #55544f;
+  --ink-3: #8a8983;
+  --accent: #2f5bd3;
+  --accent-soft: #e8eefc;
+  --ok: #1f7a4d;
+  --ok-soft: #e4f3ea;
+  --bad: #b4322b;
+  --bad-soft: #fbe9e7;
+  --warn: #9a6400;
+  --warn-soft: #fbf0d9;
+  --mark: #fde68a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121211;
+    --surface: #1a1a19;
+    --surface-2: #222220;
+    --border: #2f2f2c;
+    --ink: #ecebe6;
+    --ink-2: #b0afa8;
+    --ink-3: #7b7a74;
+    --accent: #7c9cf5;
+    --accent-soft: #1f2840;
+    --ok: #5cc48d;
+    --ok-soft: #16291f;
+    --bad: #f07a71;
+    --bad-soft: #341b19;
+    --warn: #e6b04a;
+    --warn-soft: #33270f;
+    --mark: #6b5a12;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-mark: var(--mark);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+mark {
+  background: var(--mark);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* Contract text from EDGAR keeps the filing's hard line breaks; letting the
+   browser reflow it reads far better than whitespace-pre. */
+.clause-text {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}

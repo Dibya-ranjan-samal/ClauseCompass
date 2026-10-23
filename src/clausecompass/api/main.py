@@ -13,11 +13,13 @@ Two things here encode measurements rather than defaults:
 
 import asyncio
 import json
+import os
 import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import BackgroundTasks, FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from clausecompass.config import RetrievalConfig
@@ -48,6 +50,8 @@ async def lifespan(app: FastAPI):
     STATE["llm"] = OllamaProvider()
     STATE["chunks"] = json.loads(
         Path("data/interim/chunks_enriched.json").read_text())
+    STATE["by_id"] = {c["chunk_id"]: c for c in STATE["chunks"]}
+    STATE["metadata"] = json.loads(Path("data/interim/metadata.json").read_text())
     yield
     STATE.clear()
 
@@ -55,6 +59,15 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="ClauseCompass",
               description="Contract QA where every citation is verified in code.",
               version="1.0", lifespan=lifespan)
+
+# The Next.js UI (web/) calls this API straight from the browser rather than
+# through a Next rewrite: /ask and /audit polls can outlast a proxy timeout.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=os.environ.get("UI_ORIGINS", "http://localhost:3000").split(","),
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
 
 
 class AskRequest(BaseModel):
@@ -71,6 +84,16 @@ class Claim(BaseModel):
     quote: str | None = None
 
 
+class Source(BaseModel):
+    """One retrieved excerpt, under the label the model saw it as ([1]..[k])."""
+    label: str
+    chunk_id: str
+    doc_id: str
+    section_heading: str | None = None
+    score: float
+    text: str
+
+
 class AskResponse(BaseModel):
     answer: str
     answer_found: bool
@@ -81,6 +104,7 @@ class AskResponse(BaseModel):
     validation: dict
     latency_ms: float
     retriever: str
+    sources: list[Source] = []
 
 
 def _ask(question: str, doc_id: str | None, top_k: int) -> AskResponse:
@@ -95,7 +119,12 @@ def _ask(question: str, doc_id: str | None, top_k: int) -> AskResponse:
         stripped_claims=r.stripped_claims, confidence=r.confidence,
         retrieved_ids=r.retrieved_ids, validation=r.validation,
         latency_ms=r.latency_ms,
-        retriever="hybrid+rerank (doc-scoped)" if doc_id else "dense (corpus-wide)")
+        retriever="hybrid+rerank (doc-scoped)" if doc_id else "dense (corpus-wide)",
+        sources=[Source(label=str(i), chunk_id=h.chunk_id,
+                        doc_id=STATE["by_id"].get(h.chunk_id, {}).get("doc_id", ""),
+                        section_heading=STATE["by_id"].get(h.chunk_id, {}).get("section_heading"),
+                        score=h.score, text=h.text)
+                 for i, h in enumerate(hits, 1)])
 
 
 @app.post("/ask", response_model=AskResponse)
@@ -137,6 +166,65 @@ async def audit_status(job_id: str):
     if job_id not in JOBS:
         raise HTTPException(404, "unknown job_id")
     return JOBS[job_id]
+
+
+def _contract_summary(doc_id: str, n_chunks: int) -> dict:
+    m = STATE["metadata"].get(doc_id, {})
+    return {"doc_id": doc_id, "n_chunks": n_chunks,
+            **{k: m.get(k) for k in ("source", "contract_type", "governing_law",
+                                     "effective_date", "parties")}}
+
+
+@app.get("/contracts")
+async def contracts():
+    counts: dict[str, int] = {}
+    for c in STATE["chunks"]:
+        counts[c["doc_id"]] = counts.get(c["doc_id"], 0) + 1
+    return [_contract_summary(d, n) for d, n in sorted(counts.items())]
+
+
+@app.get("/contracts/{doc_id}")
+async def contract(doc_id: str):
+    chunks = [c for c in STATE["chunks"] if c["doc_id"] == doc_id]
+    if not chunks:
+        raise HTTPException(404, "unknown doc_id")
+    keep = ("chunk_id", "section_number", "section_heading", "part", "n_parts", "text")
+    return {**_contract_summary(doc_id, len(chunks)),
+            "defined_terms": STATE["metadata"].get(doc_id, {}).get("defined_terms", []),
+            "chunks": [{k: c.get(k) for k in keep} for c in chunks]}
+
+
+@app.get("/chunks/{chunk_id:path}")
+async def chunk(chunk_id: str):
+    c = STATE["by_id"].get(chunk_id)
+    if not c:
+        raise HTTPException(404, "unknown chunk_id")
+    return {k: c.get(k) for k in ("chunk_id", "doc_id", "section_number",
+                                   "section_heading", "text")}
+
+
+@app.get("/traces")
+async def traces(limit: int = 50):
+    from clausecompass.obs.trace import tracer
+    cols = ("trace_id", "name", "started_at", "duration_ms", "status",
+            "n_spans", "cost_usd", "question")
+    return [dict(zip(cols, row, strict=True)) for row in tracer.traces(limit)]
+
+
+@app.get("/traces/{trace_id}")
+async def trace(trace_id: str):
+    from clausecompass.obs.trace import tracer
+    # tracer.spans_of drops the tree; the UI's waterfall needs parent and timing.
+    rows = tracer.conn.execute(
+        "SELECT span_id, parent_id, name, started_at, duration_ms, status, attributes "
+        "FROM spans WHERE trace_id=? ORDER BY started_at", (trace_id,)).fetchall()
+    if not rows:
+        raise HTTPException(404, "unknown trace_id")
+    # started_at is written when the span closes, so it is really the END time.
+    return [{"span_id": sid, "parent_id": pid, "name": n,
+             "start_ms": t * 1000 - d, "duration_ms": d, "status": st,
+             "attributes": json.loads(a)}
+            for sid, pid, n, t, d, st, a in rows]
 
 
 @app.get("/healthz")

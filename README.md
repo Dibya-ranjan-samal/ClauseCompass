@@ -158,8 +158,13 @@ make ingest    # CUAD + EDGAR -> chunks + metadata (~90 min)
 make index     # embed + index (~5 min)
 make eval      # reproduce the retrieval table (~2 min, no LLM)
 make serve     # API on :8000  ->  http://localhost:8000/docs
-make ui        # Streamlit on :8501
+make web       # Next.js UI on :3000 (ask, audit, contracts, traces, eval)
+make ui        # Streamlit on :8501 (the original two-tab dashboard)
 ```
+
+The Next.js UI calls the API straight from the browser. Point it elsewhere with
+`NEXT_PUBLIC_API_URL`; the API allows `http://localhost:3000` by default and
+takes a comma-separated `UI_ORIGINS` to allow others.
 
 No API keys. Generation and judging run on local Ollama models. The only
 environment variable is `SEC_CONTACT`, and only for re-fetching the EDGAR corpus.
@@ -212,7 +217,8 @@ Read these before reusing any number. Fuller treatment in
 | `src/clausecompass/agent/` | schemas, 3 validated tools, planner + bounded loop |
 | `src/clausecompass/eval/` | metrics, retrieval runner, generation runner |
 | `src/clausecompass/obs/trace.py` | one-table span tracer |
-| `src/clausecompass/api/main.py` | FastAPI: `/ask`, `/audit`, `/healthz`, `/metrics` |
+| `src/clausecompass/api/main.py` | FastAPI: `/ask`, `/audit`, `/contracts`, `/chunks`, `/traces`, `/healthz`, `/metrics` |
+| `web/` | Next.js UI: ask with clickable citations, audit jobs, contract reader, trace waterfall |
 | `evals/golden/golden.jsonl` | the 148-question eval set |
 | `evals/baseline.json` | best-per-scope configuration |
 | `runs/` | 31 recorded eval runs, each with a git SHA |
