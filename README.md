@@ -163,16 +163,26 @@ make ui        # Streamlit on :8501 (the original two-tab dashboard)
 ```
 
 The Next.js UI calls the API straight from the browser. Point it elsewhere with
-`NEXT_PUBLIC_API_URL`; the API allows `http://localhost:3000` by default and
-takes a comma-separated `UI_ORIGINS` to allow others.
+`NEXT_PUBLIC_API_URL`; the API allows `http://localhost:3000` and
+`http://127.0.0.1:3000` by default and takes a comma-separated `UI_ORIGINS` to
+allow others.
 
-No API keys. Generation and judging run on local Ollama models. The only
-environment variable is `SEC_CONTACT`, and only for re-fetching the EDGAR corpus.
+**LLM provider.** The API generates with [Groq](https://console.groq.com) when
+`GROQ_API_KEY` is set (copy `.env.example` to `.env`), using
+`openai/gpt-oss-120b` unless `GROQ_MODEL` says otherwise. Without a key it falls
+back to local Ollama (`qwen2.5:3b`); `LLM_PROVIDER=groq|ollama` forces either.
+Embeddings and the cross-encoder still run locally, and Qdrant still runs in
+Docker. Note that with Groq, retrieved contract text is sent to Groq's API.
+
+**Every number in Results was measured with local qwen2.5 models.** The eval
+and audit scripts (`make eval-gen`, `make audit`) still use Ollama so those
+numbers stay reproducible; answers served by Groq have not been through the
+eval. `SEC_CONTACT` is needed only for re-fetching the EDGAR corpus.
 
 ## Stack
 
 Python 3.11 · FastAPI · Qdrant · BGE-small embeddings + BGE reranker ·
-rank_bm25 · Pydantic · SQLite tracing · Ollama · Docker · pytest
+rank_bm25 · Pydantic · SQLite tracing · Groq or Ollama · Next.js · Docker · pytest
 
 ---
 

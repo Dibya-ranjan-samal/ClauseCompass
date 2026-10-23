@@ -31,8 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <div className="mt-auto hidden border-t border-line pt-3 md:block">
               <HealthPill />
               <p className="px-3 text-xs leading-relaxed text-ink-3">
-                Local models only. Every citation is checked against the retrieved source before it
-                is shown.
+                Every citation is checked against the retrieved source before it is shown.
               </p>
             </div>
           </div>

@@ -18,12 +18,16 @@ import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 
+from dotenv import load_dotenv
 from fastapi import BackgroundTasks, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from clausecompass.config import RetrievalConfig
 from clausecompass.generation.answer import answer_from_hits
+
+# GROQ_API_KEY and friends may live in .env (gitignored). Before anything reads os.environ.
+load_dotenv()
 
 STATE: dict = {}
 JOBS: dict = {}
@@ -34,7 +38,7 @@ CFG = RetrievalConfig()
 async def lifespan(app: FastAPI):
     # Load models ONCE at startup. Loading per request is the classic
     # FastAPI + ML mistake: it turns a 40 ms call into a 10 s one.
-    from clausecompass.generation.llm import OllamaProvider
+    from clausecompass.generation.llm import make_llm
     from clausecompass.retrieval.dense import DenseRetriever
     from clausecompass.retrieval.fusion import HybridRetriever
     from clausecompass.retrieval.rerank import RerankingRetriever
@@ -47,7 +51,7 @@ async def lifespan(app: FastAPI):
     STATE["scoped"] = RerankingRetriever(hybrid, candidates=CFG.rerank_candidates,
                                          split_long=CFG.split_long_chunks,
                                          strip_entity=CFG.strip_entity_for_rerank)
-    STATE["llm"] = OllamaProvider()
+    STATE["llm"] = make_llm()
     STATE["chunks"] = json.loads(
         Path("data/interim/chunks_enriched.json").read_text())
     STATE["by_id"] = {c["chunk_id"]: c for c in STATE["chunks"]}
@@ -64,7 +68,8 @@ app = FastAPI(title="ClauseCompass",
 # through a Next rewrite: /ask and /audit polls can outlast a proxy timeout.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=os.environ.get("UI_ORIGINS", "http://localhost:3000").split(","),
+    allow_origins=os.environ.get(
+        "UI_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000").split(","),
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
@@ -104,6 +109,8 @@ class AskResponse(BaseModel):
     validation: dict
     latency_ms: float
     retriever: str
+    llm: str = ""
+    cost_usd: float = 0.0
     sources: list[Source] = []
 
 
@@ -120,6 +127,7 @@ def _ask(question: str, doc_id: str | None, top_k: int) -> AskResponse:
         retrieved_ids=r.retrieved_ids, validation=r.validation,
         latency_ms=r.latency_ms,
         retriever="hybrid+rerank (doc-scoped)" if doc_id else "dense (corpus-wide)",
+        llm=STATE["llm"].name, cost_usd=r.cost_usd,
         sources=[Source(label=str(i), chunk_id=h.chunk_id,
                         doc_id=STATE["by_id"].get(h.chunk_id, {}).get("doc_id", ""),
                         section_heading=STATE["by_id"].get(h.chunk_id, {}).get("section_heading"),
@@ -132,7 +140,15 @@ async def ask(req: AskRequest):
     if "llm" not in STATE:
         raise HTTPException(503, "models still loading")
     # Retrieval and local inference are blocking CPU/GPU work; off the event loop.
-    return await asyncio.to_thread(_ask, req.question, req.doc_id, req.top_k)
+    try:
+        return await asyncio.to_thread(_ask, req.question, req.doc_id, req.top_k)
+    except Exception as e:
+        # An unhandled error becomes a 500 from the outermost middleware, which
+        # runs outside CORS: the browser then sees "network error" instead of
+        # the cause. HTTPException is answered inside CORS, so the UI can show it.
+        raise HTTPException(
+            502, f"Pipeline failed ({type(e).__name__}: {e}). "
+                 "Check /healthz - Qdrant and the LLM provider must both be up.") from e
 
 
 class AuditRequest(BaseModel):
@@ -229,25 +245,18 @@ async def trace(trace_id: str):
 
 @app.get("/healthz")
 async def healthz():
-    import httpx
     loaded = {"dense", "scoped", "llm"} <= STATE.keys()
     try:
         STATE["dense"].client.get_collections()
         qdrant = True
     except Exception:
         qdrant = False
-    def _ping():
-        try:
-            return httpx.get("http://localhost:11434/api/tags",
-                             timeout=2).status_code == 200
-        except Exception:
-            return False
-
     # blocking call: off the event loop, same as /ask
-    ollama = await asyncio.to_thread(_ping)
-    ok = loaded and qdrant and ollama
+    llm = await asyncio.to_thread(STATE["llm"].ping) if loaded else False
+    ok = loaded and qdrant and llm
     return {"status": "ok" if ok else "degraded", "models_loaded": loaded,
-            "qdrant": qdrant, "ollama": ollama}
+            "qdrant": qdrant, "llm": llm,
+            "llm_provider": STATE["llm"].name if loaded else None}
 
 
 @app.get("/metrics")

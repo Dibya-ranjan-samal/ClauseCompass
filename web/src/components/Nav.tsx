@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getHealth, type Health } from "@/lib/api";
+import { describeLlm, getHealth, type Health } from "@/lib/api";
 import { cx } from "./ui";
 
 const LINKS = [
@@ -62,7 +62,7 @@ export function HealthPill() {
     ? [
         ["Models", h.models_loaded],
         ["Qdrant", h.qdrant],
-        ["Ollama", h.ollama],
+        [describeLlm(h.llm_provider).provider, h.llm],
       ] as const
     : [];
 
@@ -77,6 +77,11 @@ export function HealthPill() {
         />
         {label}
       </div>
+      {h?.llm_provider && !down && (
+        <div className="truncate px-3 pb-1 font-mono text-[0.68rem] text-ink-3" title={h.llm_provider}>
+          {h.llm_provider}
+        </div>
+      )}
       {parts.length > 0 && (
         <div className="flex gap-3 px-3 pb-2 text-xs text-ink-3">
           {parts.map(([k, v]) => (

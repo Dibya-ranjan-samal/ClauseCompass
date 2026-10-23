@@ -87,7 +87,10 @@ export default function EvaluationView() {
 
           {m.generation && (
             <section>
-              <h2 className="mb-2 text-sm font-semibold">Generated answers</h2>
+              <h2 className="mb-2 text-sm font-semibold">
+                Generated answers{" "}
+                <span className="font-normal text-ink-3">· measured with local qwen2.5:3b, judged by qwen2.5:7b</span>
+              </h2>
               <Card className="grid grid-cols-2 gap-5 p-5 sm:grid-cols-4">
                 <Stat label="Faithfulness (judge)" value={pct(m.generation.faithfulness_mean)} />
                 <Stat label="Hallucination rate" value={pct(m.generation.hallucination_rate)} />
@@ -107,7 +110,9 @@ export default function EvaluationView() {
 
           {m.agent && (
             <section>
-              <h2 className="mb-2 text-sm font-semibold">Audit agent</h2>
+              <h2 className="mb-2 text-sm font-semibold">
+                Audit agent <span className="font-normal text-ink-3">· measured with local qwen2.5:3b</span>
+              </h2>
               <Card className="p-5">
                 <p className="mb-4 text-sm text-ink-2">
                   Policy: <span className="italic">“{m.agent.policy}”</span> · {m.agent.n} contracts · ground truth: {m.agent.ground_truth}

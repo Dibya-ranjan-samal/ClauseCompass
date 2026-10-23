@@ -130,7 +130,8 @@ export default function AuditView() {
                 className="w-full accent-[var(--accent)]"
               />
               <p className="mt-1 text-xs text-ink-3">
-                Estimated {fmtDuration(n * 22)} at ~22 s per contract on a laptop. Runs in the background.
+                Up to {fmtDuration(n * 22)} at ~22 s per contract with a local model; Groq is much faster. Runs
+                in the background.
               </p>
             </div>
             <button type="submit" disabled={starting || policy.trim().length < 10} className={buttonClass.primary}>
@@ -289,7 +290,7 @@ function Report({ report }: { report: AuditReport }) {
           <Stat label="Contracts examined" value={report.n_contracts_examined} />
           <Stat label="Findings recorded" value={report.findings.length} />
           <Stat label="Did not finish" value={aborted.length} hint="step / time cap" />
-          <Stat label="Duration" value={fmtDuration(report.duration_s)} hint={`$${report.total_cost_usd.toFixed(2)} (local)`} />
+          <Stat label="Duration" value={fmtDuration(report.duration_s)} hint={report.total_cost_usd > 0 ? `$${report.total_cost_usd.toFixed(4)}` : undefined} />
         </div>
       </Card>
 

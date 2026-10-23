@@ -49,7 +49,7 @@ class AuditReport(BaseModel):
     findings: list[Finding]
     n_contracts_examined: int
     duration_s: float
-    # 0.0 on the local Ollama path; kept so a hosted provider drops straight in
+    # 0.0 on the local Ollama path; summed from Groq's token usage otherwise
     total_cost_usd: float = 0.0
     aborted: dict[str, str] = Field(default_factory=dict)
 

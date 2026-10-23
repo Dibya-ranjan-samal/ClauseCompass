@@ -63,3 +63,18 @@ def test_injected_compliance_cannot_be_recorded_without_evidence():
 
 def test_unknown_tool_args_are_rejected_not_executed():
     assert "error" in _box().record_finding(status="compliant")   # no doc_id
+
+
+@pytest.mark.parametrize("call", [
+    {"tool": "search_clauses", "args": {"query": "cap"}},
+    {"name": "search_clauses", "arguments": {"query": "cap"}},
+    {"name": "search_clauses", "arguments": '{"query": "cap"}'},
+])
+def test_both_tool_call_shapes_parse(call):
+    from clausecompass.agent.loop import _tool_call
+    assert _tool_call(call) == ("search_clauses", {"query": "cap"})
+
+
+def test_non_tool_json_is_not_a_tool_call():
+    from clausecompass.agent.loop import _tool_call
+    assert _tool_call({"answer": "x"}) is None and _tool_call(None) is None

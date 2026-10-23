@@ -18,7 +18,10 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
       headers: { "Content-Type": "application/json", ...init?.headers },
     });
   } catch {
-    throw new ApiError(0, `Cannot reach the API at ${API_URL}. Is \`make serve\` running?`);
+    throw new ApiError(
+      0,
+      `Cannot reach the API at ${API_URL}. Is \`make serve\` running? It accepts requests only once its models have loaded.`,
+    );
   }
   if (!res.ok) {
     let detail = res.statusText;
@@ -72,6 +75,8 @@ export type AskResponse = {
   };
   latency_ms: number;
   retriever: string;
+  llm: string;
+  cost_usd: number;
   sources: Source[];
 };
 
@@ -214,8 +219,16 @@ export type Health = {
   status: "ok" | "degraded";
   models_loaded: boolean;
   qdrant: boolean;
-  ollama: boolean;
+  llm: boolean;
+  llm_provider: string | null;
 };
+
+/** "groq:openai/gpt-oss-120b" -> { provider: "Groq", model: "openai/gpt-oss-120b" } */
+export function describeLlm(name: string | null | undefined) {
+  const [p, ...rest] = (name ?? "").split(":");
+  const provider = p === "groq" ? "Groq" : p === "ollama" ? "Ollama" : p || "LLM";
+  return { provider, model: rest.join(":") };
+}
 export const getHealth = () => request<Health>("/healthz");
 
 type Aggregate = Record<string, number>;
