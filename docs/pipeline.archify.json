@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "ClauseCompass Pipeline",
+    "output": "docs/pipeline.html",
+    "viewBox": [
+      1080,
+      610
+    ],
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "security": {
+          "label": "verified output"
+        },
+        "dashed": {
+          "label": "spans / eval"
+        },
+        "emphasis": {
+          "label": "main data path"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "Build"
+    },
+    {
+      "label": "Index"
+    },
+    {
+      "label": "Retrieve"
+    },
+    {
+      "label": "Answer / Audit"
+    },
+    {
+      "label": "Serve / Measure"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cuad",
+      "type": "external",
+      "label": "CUAD + EDGAR",
+      "sublabel": "530 contracts",
+      "stage": 0,
+      "row": 0,
+      "tag": "source"
+    },
+    {
+      "id": "chunker",
+      "type": "backend",
+      "label": "Chunker",
+      "sublabel": "structural, metadata",
+      "stage": 0,
+      "row": 1,
+      "tag": "18,280 chunks"
+    },
+    {
+      "id": "qdrant",
+      "type": "database",
+      "label": "Qdrant",
+      "sublabel": "bge-small, 384-d",
+      "stage": 1,
+      "row": 0,
+      "tag": "dense"
+    },
+    {
+      "id": "store",
+      "type": "database",
+      "label": "Chunk store",
+      "sublabel": "JSON + BM25 pickle",
+      "stage": 1,
+      "row": 2,
+      "tag": "sparse"
+    },
+    {
+      "id": "retriever",
+      "type": "backend",
+      "label": "Retriever",
+      "sublabel": "dense | hybrid + rerank",
+      "stage": 2,
+      "row": 1,
+      "tag": "top-5"
+    },
+    {
+      "id": "generator",
+      "type": "cloud",
+      "label": "Grounded LLM",
+      "sublabel": "Groq or Ollama",
+      "stage": 3,
+      "row": 0,
+      "tag": "JSON claims"
+    },
+    {
+      "id": "validator",
+      "type": "security",
+      "label": "Validator",
+      "sublabel": "citation + quote",
+      "stage": 3,
+      "row": 1,
+      "tag": "in code"
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "Audit agent",
+      "sublabel": "plan, 3 tools, 3 brakes",
+      "stage": 3,
+      "row": 2,
+      "tag": "per contract"
+    },
+    {
+      "id": "tracer",
+      "type": "database",
+      "label": "SQLite traces",
+      "sublabel": "retrieval + agent spans",
+      "stage": 3,
+      "row": 3,
+      "tag": "obs"
+    },
+    {
+      "id": "eval",
+      "type": "backend",
+      "label": "Eval harness",
+      "sublabel": "recall, judge, refusal",
+      "stage": 4,
+      "row": 0,
+      "tag": "148 Qs"
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "FastAPI",
+      "sublabel": "/ask /audit /traces",
+      "stage": 4,
+      "row": 2,
+      "tag": ":8000"
+    },
+    {
+      "id": "ui",
+      "type": "frontend",
+      "label": "Web UIs",
+      "sublabel": "Next.js, Streamlit",
+      "stage": 4,
+      "row": 3,
+      "tag": ":3000 / :8501"
+    }
+  ],
+  "flows": [
+    {
+      "id": "f-contracts",
+      "from": "cuad",
+      "to": "chunker",
+      "label": "contracts",
+      "variant": "emphasis",
+      "route": "straight",
+      "labelAt": [
+        100,
+        214
+      ]
+    },
+    {
+      "id": "f-embed",
+      "from": "chunker",
+      "to": "qdrant",
+      "label": "embeddings",
+      "variant": "emphasis"
+    },
+    {
+      "id": "f-chunks",
+      "from": "chunker",
+      "to": "store",
+      "label": "chunks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "f-ann",
+      "from": "qdrant",
+      "to": "retriever",
+      "label": "ANN top-50",
+      "variant": "emphasis"
+    },
+    {
+      "id": "f-bm25",
+      "from": "store",
+      "to": "retriever",
+      "label": "BM25 top-50",
+      "variant": "default"
+    },
+    {
+      "id": "f-excerpts",
+      "from": "retriever",
+      "to": "generator",
+      "label": "excerpts",
+      "variant": "emphasis"
+    },
+    {
+      "id": "f-hits",
+      "from": "retriever",
+      "to": "agent",
+      "label": "dense hits",
+      "variant": "default"
+    },
+    {
+      "id": "f-claims",
+      "from": "generator",
+      "to": "validator",
+      "label": "claims",
+      "variant": "emphasis",
+      "route": "straight",
+      "labelAt": [
+        745,
+        214
+      ]
+    },
+    {
+      "id": "f-verified",
+      "from": "validator",
+      "to": "api",
+      "label": "verified",
+      "variant": "security"
+    },
+    {
+      "id": "f-findings",
+      "from": "agent",
+      "to": "api",
+      "label": "report",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        827,
+        385
+      ]
+    },
+    {
+      "id": "f-serve",
+      "from": "api",
+      "to": "ui",
+      "label": "REST",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        960,
+        442
+      ]
+    },
+    {
+      "id": "f-spans-r",
+      "from": "retriever",
+      "to": "tracer",
+      "label": "spans",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "via": [
+        [
+          530,
+          499
+        ]
+      ]
+    },
+    {
+      "id": "f-spans-a",
+      "from": "agent",
+      "to": "tracer",
+      "label": "spans",
+      "variant": "dashed",
+      "route": "straight",
+      "labelAt": [
+        745,
+        442
+      ]
+    },
+    {
+      "from": "tracer",
+      "to": "ui",
+      "label": "trace view",
+      "variant": "dashed",
+      "route": "straight",
+      "id": "f-traces"
+    },
+    {
+      "id": "f-metrics",
+      "from": "eval",
+      "to": "api",
+      "label": "metrics",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        960,
+        271
+      ]
+    },
+    {
+      "id": "f-gold",
+      "from": "cuad",
+      "to": "eval",
+      "label": "gold spans",
+      "variant": "dashed",
+      "route": "top-channel",
+      "fromSide": "top",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Build once, offline",
+      "items": [
+        "Chunks follow each contract's own numbering; the unnumbered preamble is kept",
+        "Type, law and parties are extracted once, never at query time"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Scope picks the retriever",
+      "items": [
+        "No doc_id: dense only, recall@5 0.363",
+        "With doc_id: dense + BM25 + cross-encoder, recall@5 0.762. The audit agent is dense only"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Verified in code",
+      "items": [
+        "A claim is dropped unless its citation was retrieved and its quote matches the chunk (0.95)",
+        "If every claim is dropped the answer becomes a refusal"
+      ]
+    }
+  ]
+}
