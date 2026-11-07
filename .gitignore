@@ -23,6 +23,8 @@ data/interim/*
 # every accuracy number in the project is measured against.
 !data/interim/labels_done.json
 !data/interim/labels_holdout_done.json
+# 342 KB, but ~90 min of model time to regenerate; CI rebuilds enriched chunks from it.
+!data/interim/metadata.json
 
 # CUAD_v1.json, 38 MB, re-downloadable (see ingest_cuad.py docstring)
 data/external/

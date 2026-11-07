@@ -18,6 +18,7 @@ import argparse
 import json
 from pathlib import Path
 
+import torch
 from qdrant_client import QdrantClient, models
 from sentence_transformers import SentenceTransformer
 
@@ -25,10 +26,13 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--collection", default="clauses")
 ap.add_argument("--no-prefix", action="store_true",
                 help="embed chunk text only, for the Day 4 prefix ablation")
+ap.add_argument("--docs-from", help="index only chunks of doc_ids in this golden .jsonl "
+                "(CI: doc-scoped results depend only on that document's chunks)")
 ARGS = ap.parse_args()
 
 COLLECTION = ARGS.collection
 MODEL_NAME = "BAAI/bge-small-en-v1.5"
+DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
 VECTOR_SIZE = 384
 BATCH = 32
 UPSERT_BATCH = 256
@@ -63,9 +67,12 @@ def main() -> int:
         print("missing chunks_enriched.json - run extract_metadata.py first")
         return 1
     chunks = json.loads(src.read_text())
+    if ARGS.docs_from:
+        keep = {json.loads(line)["doc_id"] for line in open(ARGS.docs_from)}
+        chunks = [c for c in chunks if c["doc_id"] in keep]
     print(f"Loaded {len(chunks)} chunks")
 
-    model = SentenceTransformer(MODEL_NAME, device="mps")
+    model = SentenceTransformer(MODEL_NAME, device=DEVICE)
     client = QdrantClient(url="http://localhost:6333")
 
     if client.collection_exists(COLLECTION):
