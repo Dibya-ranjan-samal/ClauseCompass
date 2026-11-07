@@ -17,6 +17,9 @@ services:
     environment:
       - QDRANT_URL=http://qdrant:6333
       - OLLAMA_URL=http://host.docker.internal:11434
+      # Groq replaces Ollama when set; passed through from the host env or .env
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - GROQ_MODEL=${GROQ_MODEL:-openai/gpt-oss-120b}
     extra_hosts: ["host.docker.internal:host-gateway"]
     volumes: ["./data:/app/data"]
     depends_on:

@@ -1,9 +1,8 @@
 # Retrieval-only eval gate: no LLM calls, so it is free and fast.
 # Generation eval (faithfulness, refusal) needs a local model and runs manually.
 #
-# NOT YET EXECUTED - this repository had no remote when the workflow was
-# written, so it has never run. It is wired to the real entrypoints and the real
-# nested evals/baseline.json, and runs on the first push.
+# First run (Nov 2026) failed at Index: chunks_enriched.json needs the 90 min
+# metadata step. Fixed by committing metadata.json; see the two steps below.
 name: eval-gate
 on: [pull_request, push]
 
@@ -40,8 +39,14 @@ jobs:
           uv run python build_corpus.py
           uv run python chunk_structural.py
 
-      - name: Index
-        run: uv run python index.py
+      # The ~90 min metadata extraction is not re-run: metadata.json is committed.
+      - name: Enrich chunks from committed metadata
+        run: uv run python extract_metadata.py --from-metadata
+
+      # Doc-scoped dense results depend only on the filtered document's chunks, so
+      # indexing just the golden set's documents reproduces the full-corpus numbers.
+      - name: Index golden-set documents
+        run: uv run python index.py --docs-from evals/golden/golden.jsonl
 
       - name: Retrieval eval
         run: uv run python -m clausecompass.eval.runner --retriever dense --scope doc_scoped --config ci

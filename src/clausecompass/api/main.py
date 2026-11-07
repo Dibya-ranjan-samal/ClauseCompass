@@ -13,15 +13,21 @@ Two things here encode measurements rather than defaults:
 
 import asyncio
 import json
+import os
 import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 
+from dotenv import load_dotenv
 from fastapi import BackgroundTasks, FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from clausecompass.config import RetrievalConfig
 from clausecompass.generation.answer import answer_from_hits
+
+# GROQ_API_KEY and friends may live in .env (gitignored). Before anything reads os.environ.
+load_dotenv()
 
 STATE: dict = {}
 JOBS: dict = {}
@@ -32,7 +38,7 @@ CFG = RetrievalConfig()
 async def lifespan(app: FastAPI):
     # Load models ONCE at startup. Loading per request is the classic
     # FastAPI + ML mistake: it turns a 40 ms call into a 10 s one.
-    from clausecompass.generation.llm import OllamaProvider
+    from clausecompass.generation.llm import make_llm
     from clausecompass.retrieval.dense import DenseRetriever
     from clausecompass.retrieval.fusion import HybridRetriever
     from clausecompass.retrieval.rerank import RerankingRetriever
@@ -45,9 +51,11 @@ async def lifespan(app: FastAPI):
     STATE["scoped"] = RerankingRetriever(hybrid, candidates=CFG.rerank_candidates,
                                          split_long=CFG.split_long_chunks,
                                          strip_entity=CFG.strip_entity_for_rerank)
-    STATE["llm"] = OllamaProvider()
+    STATE["llm"] = make_llm()
     STATE["chunks"] = json.loads(
         Path("data/interim/chunks_enriched.json").read_text())
+    STATE["by_id"] = {c["chunk_id"]: c for c in STATE["chunks"]}
+    STATE["metadata"] = json.loads(Path("data/interim/metadata.json").read_text())
     yield
     STATE.clear()
 
@@ -55,6 +63,16 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="ClauseCompass",
               description="Contract QA where every citation is verified in code.",
               version="1.0", lifespan=lifespan)
+
+# The Next.js UI (web/) calls this API straight from the browser rather than
+# through a Next rewrite: /ask and /audit polls can outlast a proxy timeout.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=os.environ.get(
+        "UI_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000").split(","),
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
 
 
 class AskRequest(BaseModel):
@@ -71,6 +89,16 @@ class Claim(BaseModel):
     quote: str | None = None
 
 
+class Source(BaseModel):
+    """One retrieved excerpt, under the label the model saw it as ([1]..[k])."""
+    label: str
+    chunk_id: str
+    doc_id: str
+    section_heading: str | None = None
+    score: float
+    text: str
+
+
 class AskResponse(BaseModel):
     answer: str
     answer_found: bool
@@ -81,6 +109,9 @@ class AskResponse(BaseModel):
     validation: dict
     latency_ms: float
     retriever: str
+    llm: str = ""
+    cost_usd: float = 0.0
+    sources: list[Source] = []
 
 
 def _ask(question: str, doc_id: str | None, top_k: int) -> AskResponse:
@@ -95,7 +126,13 @@ def _ask(question: str, doc_id: str | None, top_k: int) -> AskResponse:
         stripped_claims=r.stripped_claims, confidence=r.confidence,
         retrieved_ids=r.retrieved_ids, validation=r.validation,
         latency_ms=r.latency_ms,
-        retriever="hybrid+rerank (doc-scoped)" if doc_id else "dense (corpus-wide)")
+        retriever="hybrid+rerank (doc-scoped)" if doc_id else "dense (corpus-wide)",
+        llm=STATE["llm"].name, cost_usd=r.cost_usd,
+        sources=[Source(label=str(i), chunk_id=h.chunk_id,
+                        doc_id=STATE["by_id"].get(h.chunk_id, {}).get("doc_id", ""),
+                        section_heading=STATE["by_id"].get(h.chunk_id, {}).get("section_heading"),
+                        score=h.score, text=h.text)
+                 for i, h in enumerate(hits, 1)])
 
 
 @app.post("/ask", response_model=AskResponse)
@@ -103,7 +140,15 @@ async def ask(req: AskRequest):
     if "llm" not in STATE:
         raise HTTPException(503, "models still loading")
     # Retrieval and local inference are blocking CPU/GPU work; off the event loop.
-    return await asyncio.to_thread(_ask, req.question, req.doc_id, req.top_k)
+    try:
+        return await asyncio.to_thread(_ask, req.question, req.doc_id, req.top_k)
+    except Exception as e:
+        # An unhandled error becomes a 500 from the outermost middleware, which
+        # runs outside CORS: the browser then sees "network error" instead of
+        # the cause. HTTPException is answered inside CORS, so the UI can show it.
+        raise HTTPException(
+            502, f"Pipeline failed ({type(e).__name__}: {e}). "
+                 "Check /healthz - Qdrant and the LLM provider must both be up.") from e
 
 
 class AuditRequest(BaseModel):
@@ -139,27 +184,79 @@ async def audit_status(job_id: str):
     return JOBS[job_id]
 
 
+def _contract_summary(doc_id: str, n_chunks: int) -> dict:
+    m = STATE["metadata"].get(doc_id, {})
+    return {"doc_id": doc_id, "n_chunks": n_chunks,
+            **{k: m.get(k) for k in ("source", "contract_type", "governing_law",
+                                     "effective_date", "parties")}}
+
+
+@app.get("/contracts")
+async def contracts():
+    counts: dict[str, int] = {}
+    for c in STATE["chunks"]:
+        counts[c["doc_id"]] = counts.get(c["doc_id"], 0) + 1
+    return [_contract_summary(d, n) for d, n in sorted(counts.items())]
+
+
+@app.get("/contracts/{doc_id}")
+async def contract(doc_id: str):
+    chunks = [c for c in STATE["chunks"] if c["doc_id"] == doc_id]
+    if not chunks:
+        raise HTTPException(404, "unknown doc_id")
+    keep = ("chunk_id", "section_number", "section_heading", "part", "n_parts", "text")
+    return {**_contract_summary(doc_id, len(chunks)),
+            "defined_terms": STATE["metadata"].get(doc_id, {}).get("defined_terms", []),
+            "chunks": [{k: c.get(k) for k in keep} for c in chunks]}
+
+
+@app.get("/chunks/{chunk_id:path}")
+async def chunk(chunk_id: str):
+    c = STATE["by_id"].get(chunk_id)
+    if not c:
+        raise HTTPException(404, "unknown chunk_id")
+    return {k: c.get(k) for k in ("chunk_id", "doc_id", "section_number",
+                                   "section_heading", "text")}
+
+
+@app.get("/traces")
+async def traces(limit: int = 50):
+    from clausecompass.obs.trace import tracer
+    cols = ("trace_id", "name", "started_at", "duration_ms", "status",
+            "n_spans", "cost_usd", "question")
+    return [dict(zip(cols, row, strict=True)) for row in tracer.traces(limit)]
+
+
+@app.get("/traces/{trace_id}")
+async def trace(trace_id: str):
+    from clausecompass.obs.trace import tracer
+    # tracer.spans_of drops the tree; the UI's waterfall needs parent and timing.
+    rows = tracer.conn.execute(
+        "SELECT span_id, parent_id, name, started_at, duration_ms, status, attributes "
+        "FROM spans WHERE trace_id=? ORDER BY started_at", (trace_id,)).fetchall()
+    if not rows:
+        raise HTTPException(404, "unknown trace_id")
+    # started_at is written when the span closes, so it is really the END time.
+    return [{"span_id": sid, "parent_id": pid, "name": n,
+             "start_ms": t * 1000 - d, "duration_ms": d, "status": st,
+             "attributes": json.loads(a)}
+            for sid, pid, n, t, d, st, a in rows]
+
+
 @app.get("/healthz")
 async def healthz():
-    import httpx
     loaded = {"dense", "scoped", "llm"} <= STATE.keys()
     try:
         STATE["dense"].client.get_collections()
         qdrant = True
     except Exception:
         qdrant = False
-    def _ping():
-        try:
-            return httpx.get("http://localhost:11434/api/tags",
-                             timeout=2).status_code == 200
-        except Exception:
-            return False
-
     # blocking call: off the event loop, same as /ask
-    ollama = await asyncio.to_thread(_ping)
-    ok = loaded and qdrant and ollama
+    llm = await asyncio.to_thread(STATE["llm"].ping) if loaded else False
+    ok = loaded and qdrant and llm
     return {"status": "ok" if ok else "degraded", "models_loaded": loaded,
-            "qdrant": qdrant, "ollama": ollama}
+            "qdrant": qdrant, "llm": llm,
+            "llm_provider": STATE["llm"].name if loaded else None}
 
 
 @app.get("/metrics")

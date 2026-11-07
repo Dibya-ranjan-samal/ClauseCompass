@@ -1,5 +1,6 @@
 """Dense retrieval: BGE-small embeddings over Qdrant."""
 
+import torch
 from qdrant_client import QdrantClient, models
 from sentence_transformers import SentenceTransformer
 
@@ -15,8 +16,9 @@ QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
 class DenseRetriever:
     name = "dense"
 
-    def __init__(self, model_name="BAAI/bge-small-en-v1.5", device="mps",
+    def __init__(self, model_name="BAAI/bge-small-en-v1.5", device=None,
                  url="http://localhost:6333", collection="clauses"):
+        device = device or ("mps" if torch.backends.mps.is_available() else "cpu")
         self.model = SentenceTransformer(model_name, device=device)
         self.client = QdrantClient(url=url)
         self.collection = collection

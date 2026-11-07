@@ -342,6 +342,19 @@ def parties_all(docs: list[dict], device: str) -> dict:
 
 
 # --------------------------------------------------------------------------
+def enrich_chunks(meta: dict) -> None:
+    """Denormalise metadata onto chunks so vector search can filter on it."""
+    chunks = json.loads((INTERIM / "chunks_structural.json").read_text())
+    keep = ("effective_date", "governing_law", "contract_type", "type_confidence",
+            "contract_type_tutorial", "parties", "defined_terms")
+    for c in chunks:
+        m = meta.get(c["doc_id"], {})
+        for k in keep:
+            c[k] = m.get(k)
+    (INTERIM / "chunks_enriched.json").write_text(json.dumps(chunks, indent=2))
+    print(f"Enriched {len(chunks)} chunks")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0, help="only first N docs (smoke test)")
@@ -349,7 +362,13 @@ def main() -> int:
     ap.add_argument("--skip-models", action="store_true", help="regex only")
     ap.add_argument("--backend", choices=["auto", "nli", "ollama"], default="auto",
                     help="auto: use the local NLI weights if present, else Ollama")
+    ap.add_argument("--from-metadata", action="store_true",
+                    help="skip extraction; enrich chunks from the committed metadata.json (CI)")
     args = ap.parse_args()
+
+    if args.from_metadata:
+        enrich_chunks(json.loads((INTERIM / "metadata.json").read_text()))
+        return 0
 
     docs = json.loads((INTERIM / "documents.json").read_text())
     if args.limit:
@@ -401,16 +420,7 @@ def main() -> int:
     (INTERIM / "metadata.json").write_text(json.dumps(meta, indent=2))
     print(f"  wrote metadata for {len(meta)} docs")
 
-    # denormalise onto chunks so vector search can filter on it
-    chunks = json.loads((INTERIM / "chunks_structural.json").read_text())
-    keep = ("effective_date", "governing_law", "contract_type", "type_confidence",
-            "contract_type_tutorial", "parties", "defined_terms")
-    for c in chunks:
-        m = meta.get(c["doc_id"], {})
-        for k in keep:
-            c[k] = m.get(k)
-    (INTERIM / "chunks_enriched.json").write_text(json.dumps(chunks, indent=2))
-    print(f"Enriched {len(chunks)} chunks")
+    enrich_chunks(meta)
     return 0
 
 

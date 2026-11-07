@@ -1,4 +1,4 @@
-.PHONY: help setup ingest index eval eval-gen audit serve ui test lint docker clean
+.PHONY: help setup ingest index eval eval-gen audit serve ui web test lint docker clean
 help:
 	@grep -E '^[a-z-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN{FS=":.*?## "}{printf "  %-12s %s\n",$$1,$$2}'
 
@@ -34,6 +34,9 @@ serve:            ## FastAPI on :8000
 
 ui:               ## Streamlit on :8501 (needs `make serve` running)
 	uv run streamlit run dashboard.py
+
+web:              ## Next.js UI on :3000 (needs `make serve` running)
+	cd web && npm install && npm run dev
 
 test:             ## unit tests, no LLM required
 	uv run pytest tests/ -q
